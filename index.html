@@ -95,7 +95,6 @@ li{margin-bottom:.35em;}
 .chapter h4{font-size:1rem; margin-top:1.2em;}
 .chapter > p:first-of-type{font-size:.98rem;}
 
-/* ===== BADGES ===== */
 .badge{font-family:'JetBrains Mono',monospace; font-size:.66rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; padding:3px 9px; border-radius:20px; display:inline-block; margin-left:10px; vertical-align:middle;}
 .badge.essential{background:color-mix(in srgb, #D8323C 20%, var(--panel)); color:color-mix(in srgb, #D8323C 75%, var(--ink)); border:1px solid color-mix(in srgb, #D8323C 40%, var(--panel));}
 .badge.recommended{background:color-mix(in srgb, #C97A1E 20%, var(--panel)); color:color-mix(in srgb, #C97A1E 80%, var(--ink)); border:1px solid color-mix(in srgb, #C97A1E 40%, var(--panel));}
@@ -104,7 +103,6 @@ html[data-theme="light"] .badge.essential{background:#FDE7E7; color:#B4232C; bor
 html[data-theme="light"] .badge.recommended{background:#FFF3D9; color:#95660B; border-color:#F0D9A0;}
 html[data-theme="light"] .badge.advanced{background:#E7ECFE; color:#3247B8; border-color:#B9C9F5;}
 
-/* ===== BOXES ===== */
 .box{border-radius:10px; padding:14px 18px; margin:16px 0; font-size:.94rem; color:var(--ink);}
 .box p:last-child{margin-bottom:0;}
 .box-title{font-weight:700; margin-bottom:4px; display:flex; align-items:center; gap:7px; font-family:'Inter',sans-serif; font-size:.85rem; text-transform:uppercase; letter-spacing:.03em;}
@@ -133,7 +131,6 @@ html[data-theme="light"] .badge.advanced{background:#E7ECFE; color:#3247B8; bord
 .box.defs dd .fr{font-style:italic; color:var(--ink-soft); opacity:.85; font-size:.85em;}
 html[lang="fr"] .box.defs dd .fr{display:none;}
 
-/* ===== GLOSSARY ===== */
 .glossary-search{width:100%; padding:12px 16px; border-radius:10px; border:1px solid var(--line); background:var(--panel); color:var(--ink); font-family:'Inter',sans-serif; font-size:.95rem; margin-bottom:20px;}
 .glossary-search:focus{outline:none; border-color:var(--track-color);}
 .glossary-count{font-family:'JetBrains Mono',monospace; font-size:.75rem; color:var(--ink-soft); margin-bottom:16px; display:block;}
@@ -329,7 +326,7 @@ footer.credit{text-align:center; color:var(--ink-soft); font-size:.8rem; padding
       </div>
 
       <div class="mini-grid">
-        <div class="mini-card"><div class="mc-label" data-fr="Chapitres au total">Total Chapters</div><div class="mc-val" data-fr="21 chapitres">21 chapters</div></div>
+        <div class="mini-card"><div class="mc-label" data-fr="Chapitres au total">Total Chapters</div><div class="mc-val" data-fr="22 chapitres">22 chapters</div></div>
         <div class="mini-card"><div class="mc-label" data-fr="Structure">Structure</div><div class="mc-val" data-fr="Intro → Démo → Exemple → Résumé">Intro → Proof → Example → Summary</div></div>
         <div class="mini-card"><div class="mc-label" data-fr="Thème">Theme</div><div class="mc-val" data-fr="Clair / Sombre 🌗">Light / Dark 🌗</div></div>
       </div>
@@ -529,7 +526,7 @@ footer.credit{text-align:center; color:var(--ink-soft); font-size:.8rem; padding
         <h2><span class="chnum">04</span><span data-fr="Écriture scientifique">Standard Index Form</span> <span class="badge essential" data-fr="Essentiel">Essential</span></h2>
         <p data-fr="L'écriture scientifique (aussi appelée <strong>standard index form</strong> ou <strong>scientific notation</strong>) est utile pour les très grands ou très petits nombres. Un nombre en écriture scientifique s'écrit a × 10ⁿ, avec 1 ≤ a &lt; 10 et n entier.">Standard index form (also called <strong>scientific notation</strong>) is useful for very large or very small numbers. A number in standard form looks like \(a \times 10^n\), where \(1 \le a < 10\) and \(n\) is an integer.</p>
 
-        <div class="box formula">\(a \times 10^n \quad \text{<span data-fr='avec'>with</span> } 1 \le a < 10, \; n \in \mathbb{Z}\)</div>
+        <div class="box formula">\(a \times 10^n\) &nbsp;&nbsp;<span data-fr="avec">with</span>&nbsp;&nbsp; \(1 \le a < 10, \; n \in \mathbb{Z}\)</div>
 
         <h3 data-fr="Grands nombres">Large numbers</h3>
         <p data-fr="5 600 000 : on déplace la virgule de 6 rangs vers la gauche → 5,6 × 10⁶.">5,600,000: move the decimal point 6 places to the left → 5.6 × 10⁶.</p>
@@ -637,7 +634,7 @@ footer.credit{text-align:center; color:var(--ink-soft); font-size:.8rem; padding
           <tr><td data-fr="Hauteur">Altitude</td><td data-fr="Droite passant par un sommet et perpendiculaire au côté opposé (ou à son prolongement).">A line from a vertex perpendicular to the opposite side (or its extension).</td><td>hauteur</td></tr>
         </table>
 
-        <div class="box formula" data-fr="Aire d'un triangle : A = (b × h) / 2 &nbsp;&nbsp; Périmètre : P = a + b + c">Area of a triangle: \(\;A = \dfrac{b \times h}{2}\;\) &nbsp;&nbsp; Perimeter: \(\;P = a + b + c\)</div>
+        <div class="box formula" data-fr="Somme des angles d'un triangle : a + b + c = 180°. Aire : A = (b × h) / 2. Périmètre : P = a + b + c.">Angle sum in a triangle: \(a + b + c = 180°\). Area: \(\;A = \dfrac{b \times h}{2}\). Perimeter: \(\;P = a + b + c\)</div>
 
         <div class="box example">
           <div class="box-title" data-fr="✏️ Exemple résolu">✏️ Worked example</div>
@@ -651,6 +648,7 @@ footer.credit{text-align:center; color:var(--ink-soft); font-size:.8rem; padding
           <ul>
             <li data-fr="Les triangles se classent selon les côtés (équilatéral / isocèle / scalène) et selon les angles (rectangle / acutangle / obtusangle).">Triangles are classified by sides (equilateral / isosceles / scalene) and by angles (right / acute / obtuse).</li>
             <li data-fr="Périmètre = somme des côtés ; Aire = (base × hauteur) ÷ 2.">Perimeter = sum of all sides; Area = (base × height) ÷ 2.</li>
+            <li data-fr="La somme des angles d'un triangle vaut toujours 180°.">The angle sum of a triangle is always 180°.</li>
           </ul>
         </div>
       </div>
@@ -680,7 +678,15 @@ footer.credit{text-align:center; color:var(--ink-soft); font-size:.8rem; padding
         </details>
 
         <h3 data-fr="Rapports trigonométriques (SOH CAH TOA)">Trigonometric ratios (SOH CAH TOA)</h3>
-        <div class="box formula">\(\sin\theta = \dfrac{\text{<span data-fr='Opposé'>Opposite</span>}}{\text{<span data-fr='Hypoténuse'>Hypotenuse</span>}} \qquad \cos\theta = \dfrac{\text{<span data-fr='Adjacent'>Adjacent</span>}}{\text{<span data-fr='Hypoténuse'>Hypotenuse</span>}} \qquad \tan\theta = \dfrac{\text{<span data-fr='Opposé'>Opposite</span>}}{\text{<span data-fr='Adjacent'>Adjacent</span>}}\)</div>
+        <div class="box formula">\(\sin\theta = \dfrac{\text{Opp}}{\text{Hyp}} \qquad \cos\theta = \dfrac{\text{Adj}}{\text{Hyp}} \qquad \tan\theta = \dfrac{\text{Opp}}{\text{Adj}}\)</div>
+        <div class="box defs" style="margin-top:-8px;">
+          <div class="box-title" data-fr="📖 Légende">📖 Legend</div>
+          <dl>
+            <dt>Opp</dt><dd data-fr="Côté opposé à l'angle considéré.">Side opposite the angle. <span class="fr">côté opposé</span></dd>
+            <dt>Adj</dt><dd data-fr="Côté adjacent à l'angle.">Side next to the angle. <span class="fr">côté adjacent</span></dd>
+            <dt>Hyp</dt><dd data-fr="Hypoténuse (le plus long côté).">Hypotenuse (the longest side). <span class="fr">hypoténuse</span></dd>
+          </dl>
+        </div>
 
         <div class="box example">
           <div class="box-title" data-fr="✏️ Exemple résolu">✏️ Worked example</div>
@@ -704,6 +710,104 @@ footer.credit{text-align:center; color:var(--ink-soft); font-size:.8rem; padding
           </ul>
         </div>
       </div>
+
+      <div class="chapter">
+        <h2><span class="chnum">07.1</span><span data-fr="Exemples résolus — présentation orale complète">Full worked examples — complete oral presentation</span> <span class="badge recommended" data-fr="Conseillé">Recommended</span></h2>
+        <p data-fr="Cette section reprend une présentation orale complète (Mizgin &amp; Success, TG2, ~14 min) qui combine le théorème de Pythagore et les rapports trigonométriques à travers trois exercices progressifs.">This section reproduces a complete oral presentation (Mizgin &amp; Success, TG2, ~14 min) combining Pythagoras’ theorem and trigonometric ratios through three progressive exercises.</p>
+
+        <div class="box info">
+          <div class="box-title" data-fr="ℹ️ Vocabulaire clé">ℹ️ Key vocabulary</div>
+          <p data-fr="<strong>Hypotenuse</strong> — le côté opposé à l'angle droit (le plus long). <strong>Opposite</strong> — le côté opposé à l'angle considéré. <strong>Adjacent</strong> — le côté à côté de l'angle considéré. <strong>Sine</strong> = Opp / Hyp. <strong>Tangent</strong> = Opp / Adj."><strong>Hypotenuse</strong> — the side opposite the right angle (the longest). <strong>Opposite</strong> — the side opposite the angle we are looking at. <strong>Adjacent</strong> — the side next to the angle. <strong>Sine</strong> = Opp / Hyp. <strong>Tangent</strong> = Opp / Adj.</p>
+        </div>
+
+        <h3 data-fr="Exercice 1 — Un côté partagé, Pythagore appliqué deux fois">Exercise 1 — Shared side, Pythagoras applied twice</h3>
+        <p data-fr="Deux triangles rectangles ABC et ACD partagent le côté AC. On sait que AB = 20 cm, BC = 12 cm et CD = 9 cm. Calculer la longueur AD, arrondie à trois chiffres significatifs.">Two right-angled triangles ABC and ACD share the side AC. We know that AB = 20 cm, BC = 12 cm and CD = 9 cm. Calculate the length AD, rounded to three significant figures.</p>
+
+        <div class="box example">
+          <div class="box-title" data-fr="✏️ Étape 1 — Trouver AC dans le triangle ABC">✏️ Step 1 — Find AC in triangle ABC</div>
+          <p data-fr="AB est l'hypoténuse (opposée à l'angle droit). On applique Pythagore :">AB is the hypotenuse (opposite the right angle). Apply Pythagoras:</p>
+          <p>\(AC^2 + 12^2 = 20^2\)</p>
+          <p>\(AC^2 = 400 - 144 = 256\)</p>
+          <p>\(AC = \sqrt{256} = 16 \text{ cm}\)</p>
+        </div>
+
+        <div class="box example">
+          <div class="box-title" data-fr="✏️ Étape 2 — Trouver AD dans le triangle ACD">✏️ Step 2 — Find AD in triangle ACD</div>
+          <p data-fr="Maintenant AC = 16 cm et CD = 9 cm. AD est l'hypoténuse :">Now AC = 16 cm and CD = 9 cm. AD is the hypotenuse:</p>
+          <p>\(AD^2 = AC^2 + CD^2 = 16^2 + 9^2 = 256 + 81 = 337\)</p>
+          <p>\(AD = \sqrt{337} \approx 18.3576 \text{ cm}\)</p>
+          <p data-fr="Arrondi à 3 chiffres significatifs : AD ≈ 18,4 cm.">Rounded to 3 s.f.: <strong>AD ≈ 18.4 cm</strong>.</p>
+        </div>
+
+        <div class="box tip">
+          <div class="box-title" data-fr="💡 Point clé">💡 Key point</div>
+          <p data-fr="Les deux triangles partagent AC. On trouve d'abord AC exactement (16 cm), puis on l'utilise pour trouver AD. Il ne faut jamais arrondir le côté partagé trop tôt — sinon l'erreur se propage dans le second calcul.">The two triangles share AC. We first find AC exactly (16 cm), then use it to find AD. <strong>Never round the shared side too early</strong> — otherwise the error propagates into the second calculation.</p>
+        </div>
+
+        <h3 data-fr="Exercice 2 — Échelle contre un mur (conversion d'unités)">Exercise 2 — Ladder against a wall (unit conversion)</h3>
+        <p data-fr="Une échelle atteint 2,4 m en haut d'un mur vertical. Sa base est à 70 cm du pied du mur, sur un sol horizontal. Trouver la longueur de l'échelle.">A ladder reaches 2.4 m up a vertical wall. The base of the ladder is 70 cm from the base of the wall on horizontal ground. Find the length of the ladder.</p>
+
+        <div class="box err">
+          <div class="box-title" data-fr="⚠ Attention aux unités">⚠ Watch the units</div>
+          <p data-fr="La hauteur est en mètres (2,4 m), la distance horizontale en centimètres (70 cm). Il faut convertir d'abord : 2,4 m = 240 cm.">The height is in metres (2.4 m), the horizontal distance in centimetres (70 cm). Convert first: 2.4 m = 240 cm.</p>
+        </div>
+
+        <div class="box example">
+          <div class="box-title" data-fr="✏️ Résolution">✏️ Solution</div>
+          <p data-fr="Le mur est vertical, le sol horizontal, l'échelle est l'hypoténuse. On applique Pythagore :">The wall is vertical, the ground horizontal, the ladder is the hypotenuse. Apply Pythagoras:</p>
+          <p>\(240^2 + 70^2 = L^2\)</p>
+          <p>\(L^2 = 57\,600 + 4\,900 = 62\,500\)</p>
+          <p>\(L = \sqrt{62\,500} = 250 \text{ cm}\)</p>
+          <p data-fr="Conversion : 250 cm = 2,5 m. L'échelle mesure 2,5 m.">Conversion: 250 cm = 2.5 m. The ladder is <strong>2.5 m</strong> long.</p>
+        </div>
+
+        <div class="box bilan">
+          <div class="box-title" data-fr="🧩 Méthode">🧩 Method</div>
+          <ul>
+            <li data-fr="1. Convertir les unités pour les rendre cohérentes.">1. Convert units to make them consistent.</li>
+            <li data-fr="2. Identifier l'hypoténuse.">2. Identify the hypotenuse.</li>
+            <li data-fr="3. Appliquer Pythagore.">3. Apply Pythagoras.</li>
+            <li data-fr="4. Prendre la racine carrée et donner la réponse avec l'unité correcte.">4. Take the square root and give the answer with the correct unit.</li>
+          </ul>
+        </div>
+
+        <h3 data-fr="Exercice 3 — Deux méthodes pour le même triangle">Exercise 3 — Two methods for the same triangle</h3>
+        <p data-fr="Triangle rectangle : côté vertical = 20 cm, angle en bas à droite = 35°, hypoténuse = x cm. Trouver x (3 chiffres significatifs) par deux méthodes différentes.">Right-angled triangle: vertical side = 20 cm, bottom-right angle = 35°, hypotenuse = x cm. Find x (3 s.f.) using two different methods.</p>
+
+        <div class="box defs">
+          <div class="box-title" data-fr="📖 Identification des côtés">📖 Identifying the sides</div>
+          <dl>
+            <dt data-fr="Côté opposé">Opposite side</dt><dd data-fr="20 cm (face à l'angle de 35°).">20 cm (facing the 35° angle).</dd>
+            <dt data-fr="Côté adjacent">Adjacent side</dt><dd data-fr="inconnu, noté y.">unknown, called y.</dd>
+            <dt data-fr="Hypoténuse">Hypotenuse</dt><dd data-fr="x (le plus long côté).">x (the longest side).</dd>
+          </dl>
+        </div>
+
+        <h4 data-fr="Méthode 1 — Rapport sinus (Success)">Method 1 — Sine ratio (Success)</h4>
+        <p data-fr="On connaît l'opposé et on cherche l'hypoténuse → on utilise le sinus.">We know the opposite and want the hypotenuse → use sine.</p>
+        <div class="box formula">\(\sin(35°) = \dfrac{20}{x}\)</div>
+        <p data-fr="On isole x :">Isolate x:</p>
+        <p>\(x = \dfrac{20}{\sin(35°)} \approx 34.8689 \text{ cm}\)</p>
+        <p data-fr="À 3 chiffres significatifs : x ≈ 34,9 cm.">To 3 s.f.: <strong>x ≈ 34.9 cm</strong>.</p>
+
+        <h4 data-fr="Méthode 2 — Tangente + Pythagore (Mizgin)">Method 2 — Tangent + Pythagoras (Mizgin)</h4>
+        <p data-fr="On ne connaît pas l'adjacent, donc on commence par la tangente pour le trouver.">We don't know the adjacent, so start with tangent to find it.</p>
+        <div class="box formula">\(\tan(35°) = \dfrac{20}{y} \Rightarrow y = \dfrac{20}{\tan(35°)} \approx 28.563 \text{ cm}\)</div>
+        <p data-fr="Puis on applique Pythagore avec les deux petits côtés (20 cm et 28,563 cm) :">Then apply Pythagoras with the two shorter sides (20 cm and 28.563 cm):</p>
+        <p>\(x^2 = 20^2 + 28.563^2 = 400 + 815.8427 = 1215.8427\)</p>
+        <p>\(x = \sqrt{1215.8427} \approx 34.8689 \text{ cm}\)</p>
+        <p data-fr="À 3 chiffres significatifs : x ≈ 34,9 cm.">To 3 s.f.: <strong>x ≈ 34.9 cm</strong>.</p>
+
+        <div class="box bilan">
+          <div class="box-title" data-fr="🧩 Comparaison des deux méthodes">🧩 Comparison</div>
+          <ul>
+            <li data-fr="Les deux méthodes donnent le même résultat (x ≈ 34,9 cm) — elles sont algébriquement équivalentes.">Both methods give the same result (x ≈ 34.9 cm) — they are algebraically equivalent.</li>
+            <li data-fr="La méthode sinus est plus directe : un seul calcul.">The sine method is more direct: one calculation.</li>
+            <li data-fr="La méthode tangente + Pythagore passe par l'adjacent : deux étapes, mais utile quand on a besoin des deux petits côtés.">Tangent + Pythagoras goes through the adjacent: two steps, but useful when both shorter sides are needed.</li>
+            <li data-fr="Choisir la méthode dépend des informations fournies dans l'énoncé.">Choose the method based on the information given in the problem.</li>
+          </ul>
+        </div>
+      </div>
     </section>
 
     <section class="section" id="d0-quads" data-track="core">
@@ -713,14 +817,46 @@ footer.credit{text-align:center; color:var(--ink-soft); font-size:.8rem; padding
 
         <h3 data-fr="Quadrilatères">Quadrilaterals</h3>
         <table>
-          <tr><th data-fr="Nom">Name</th><th data-fr="Propriétés">Properties</th><th data-fr="Français">French</th></tr>
-          <tr><td data-fr="Carré">Square</td><td data-fr="4 côtés égaux, 4 angles droits">4 equal sides, 4 right angles</td><td>carré</td></tr>
-          <tr><td data-fr="Rectangle">Rectangle</td><td data-fr="Côtés opposés égaux, 4 angles droits">Opposite sides equal, 4 right angles</td><td>rectangle</td></tr>
-          <tr><td data-fr="Parallélogramme">Parallelogram</td><td data-fr="Côtés opposés parallèles et égaux">Opposite sides parallel and equal</td><td>parallélogramme</td></tr>
-          <tr><td data-fr="Losange">Rhombus</td><td data-fr="4 côtés égaux, angles opposés égaux">4 equal sides, opposite angles equal</td><td>losange</td></tr>
-          <tr><td data-fr="Trapèze">Trapezium</td><td data-fr="Une paire de côtés parallèles">One pair of parallel sides</td><td>trapèze</td></tr>
-          <tr><td data-fr="Cerf-volant">Kite</td><td data-fr="Deux paires de côtés adjacents égaux">Two pairs of adjacent equal sides</td><td>cerf-volant</td></tr>
+          <tr><th data-fr="Nom">Name</th><th data-fr="Propriétés">Properties</th><th data-fr="Diagonales">Diagonals</th><th data-fr="Français">French</th></tr>
+          <tr>
+            <td data-fr="Carré">Square</td>
+            <td data-fr="4 côtés égaux ; 4 angles droits.">4 equal sides; 4 right angles.</td>
+            <td data-fr="Égales, se coupent en leur milieu, perpendiculaires.">Equal, bisect each other, perpendicular.</td>
+            <td>carré</td>
+          </tr>
+          <tr>
+            <td data-fr="Rectangle">Rectangle</td>
+            <td data-fr="Côtés opposés égaux ; 4 angles droits.">Opposite sides equal; 4 right angles.</td>
+            <td data-fr="Égales, se coupent en leur milieu.">Equal, bisect each other.</td>
+            <td>rectangle</td>
+          </tr>
+          <tr>
+            <td data-fr="Parallélogramme">Parallelogram</td>
+            <td data-fr="Côtés opposés parallèles et égaux ; angles opposés égaux.">Opposite sides parallel and equal; opposite angles equal.</td>
+            <td data-fr="Se coupent en leur milieu.">Bisect each other.</td>
+            <td>parallélogramme</td>
+          </tr>
+          <tr>
+            <td data-fr="Losange">Rhombus</td>
+            <td data-fr="4 côtés égaux ; 2 paires de côtés parallèles ; angles opposés égaux.">4 equal sides; 2 pairs of parallel sides; opposite angles equal.</td>
+            <td data-fr="Se coupent en leur milieu, perpendiculaires.">Bisect each other, perpendicular.</td>
+            <td>losange</td>
+          </tr>
+          <tr>
+            <td data-fr="Trapèze">Trapezium</td>
+            <td data-fr="Une paire de côtés parallèles.">One pair of parallel sides.</td>
+            <td data-fr="Pas de propriété générale.">No general property.</td>
+            <td>trapèze</td>
+          </tr>
+          <tr>
+            <td data-fr="Cerf-volant">Kite</td>
+            <td data-fr="Deux paires de côtés adjacents égaux ; une paire d'angles opposés égaux.">Two pairs of adjacent equal sides; one pair of opposite equal angles.</td>
+            <td data-fr="Perpendiculaires ; la plus longue coupe la plus courte en son milieu.">Perpendicular; the longer bisects the shorter.</td>
+            <td>cerf-volant</td>
+          </tr>
         </table>
+
+        <div class="box formula" data-fr="Dans tout quadrilatère, la somme des angles intérieurs vaut 360°.">In any quadrilateral, the sum of the interior angles is 360°.</div>
 
         <div class="box formula" data-fr="Aire d'un rectangle : A = L × l &nbsp;&nbsp; Aire d'un parallélogramme : A = b × h &nbsp;&nbsp; Aire d'un trapèze : A = ((a+b)h)/2">Area of a rectangle: \(A = L \times W\) &nbsp;&nbsp; Area of a parallelogram: \(A = b \times h\) &nbsp;&nbsp; Area of a trapezium: \(A = \dfrac{(a+b)h}{2}\)</div>
 
@@ -732,6 +868,7 @@ footer.credit{text-align:center; color:var(--ink-soft); font-size:.8rem; padding
             <dt data-fr="Diamètre">Diameter</dt><dd><span data-fr="Distance à travers le cercle passant par le centre (d = 2r).">Distance across the circle through the centre (\(d = 2r\)).</span> <span class="fr">diamètre</span></dd>
             <dt data-fr="Circonférence">Circumference</dt><dd><span data-fr="Périmètre d'un cercle.">Perimeter of a circle.</span> <span class="fr">circonférence</span></dd>
             <dt data-fr="Corde">Chord</dt><dd><span data-fr="Segment joignant deux points du cercle.">A line segment joining two points on the circle.</span> <span class="fr">corde</span></dd>
+            <dt data-fr="Arc">Arc</dt><dd><span data-fr="Une portion du cercle (bord courbe).">A portion of the circle's curve.</span> <span class="fr">arc</span></dd>
             <dt data-fr="Tangente">Tangent</dt><dd><span data-fr="Droite qui touche le cercle en un seul point.">A line that touches the circle at exactly one point.</span> <span class="fr">tangente</span></dd>
             <dt data-fr="Secteur">Sector</dt><dd><span data-fr="Une « part » de cercle délimitée par deux rayons et un arc.">A “slice” of a circle bounded by two radii and an arc.</span> <span class="fr">secteur</span></dd>
           </dl>
@@ -739,8 +876,43 @@ footer.credit{text-align:center; color:var(--ink-soft); font-size:.8rem; padding
 
         <div class="box formula" data-fr="Circonférence : C = 2πr = πd &nbsp;&nbsp; Aire : A = πr²">Circumference: \(C = 2\pi r = \pi d\) &nbsp;&nbsp; Area: \(A = \pi r^2\)</div>
 
+        <h3 data-fr="Théorèmes du cercle">Circle theorems</h3>
+
+        <div class="box defs">
+          <div class="box-title" data-fr="📖 Définitions">📖 Definitions</div>
+          <dl>
+            <dt data-fr="Théorème de la tangente">Tangent–radius theorem</dt>
+            <dd><span data-fr="L'angle entre une tangente et le rayon au point de contact est 90°.">The angle between a tangent and the radius at the point of contact is 90°.</span> <span class="fr">angle tangente-rayon = 90°</span></dd>
+            <dt data-fr="Angle au centre">Angle at the centre</dt>
+            <dd><span data-fr="L'angle sous-tendu par un arc au centre est le double de l'angle sous-tendu au périmètre.">The angle subtended by an arc at the centre is twice the angle subtended at the circumference.</span> <span class="fr">angle au centre = 2 × angle au périmètre</span></dd>
+            <dt data-fr="Angle dans un demi-cercle">Angle in a semicircle</dt>
+            <dd><span data-fr="Un angle inscrit dans un demi-cercle est un angle droit (90°).">An angle in a semicircle is a right angle (90°).</span> <span class="fr">angle dans un demi-cercle = 90°</span></dd>
+          </dl>
+        </div>
+
+        <div class="box formula">
+          <p style="margin:6px 0;"><strong>1.</strong> Tangent ⊥ radius</p>
+          <p style="margin:6px 0;"><strong>2.</strong> Angle at centre = 2 × Angle at circumference</p>
+          <p style="margin:6px 0;"><strong>3.</strong> Angle in a semicircle = 90°</p>
+        </div>
+
+        <details class="acc">
+          <summary data-fr="📐 Pourquoi l'angle dans un demi-cercle vaut-il 90° ?">📐 Why is the angle in a semicircle 90°?</summary>
+          <div class="acc-body">
+            <p data-fr="Soit AB un diamètre d'un cercle de centre O, et C un point du cercle. Le triangle AOC est isocèle (OA = OC = rayon), donc les angles OÂC et OĈA sont égaux — appelons-les α. De même, le triangle BOC est isocèle (OB = OC = rayon), donc les angles OB̂C et OĈB sont égaux — appelons-les β. La somme des angles du triangle ABC vaut : α + (α + β) + β = 180°, donc 2(α + β) = 180°, c'est-à-dire α + β = 90°. Or l'angle en C du triangle ABC vaut justement α + β = 90° : c'est bien un angle droit.">Let AB be a diameter of a circle with centre O, and C a point on the circle. Triangle AOC is isosceles (OA = OC = radius), so angles OÂC and OĈA are equal — call them α. Similarly, triangle BOC is isosceles (OB = OC = radius), so angles OB̂C and OĈB are equal — call them β. The angle sum in triangle ABC is α + (α + β) + β = 180°, so 2(α + β) = 180°, i.e. α + β = 90°. But the angle at C in triangle ABC is exactly α + β = 90°: it is a right angle.</p>
+          </div>
+        </details>
+
         <div class="box example">
-          <div class="box-title" data-fr="✏️ Exemple résolu">✏️ Worked example</div>
+          <div class="box-title" data-fr="✏️ Exemple résolu — théorèmes du cercle">✏️ Worked example — circle theorems</div>
+          <p data-fr="Un arc AB sous-tend un angle de 50° au périmètre. Quel est l'angle sous-tendu par le même arc au centre ?">An arc AB subtends an angle of 50° at the circumference. What angle does the same arc subtend at the centre?</p>
+          <p data-fr="<strong>1. Théorème :</strong> angle au centre = 2 × angle au périmètre."><strong>1. Theorem:</strong> angle at centre = 2 × angle at circumference.</p>
+          <p data-fr="<strong>2. Calcul :</strong> angle au centre = 2 × 50° = 100°."><strong>2. Computation:</strong> angle at centre = 2 × 50° = 100°.</p>
+          <p data-fr="<strong>3. Application :</strong> si une tangente passe par A, l'angle entre la tangente et le rayon OA vaut 90°. Et si AB est un diamètre, tout angle ACB inscrit dans le demi-cercle vaut 90°."><strong>3. Application:</strong> if a tangent passes through A, the angle between the tangent and the radius OA is 90°. And if AB is a diameter, any angle ACB inscribed in the semicircle is 90°.</p>
+        </div>
+
+        <div class="box example">
+          <div class="box-title" data-fr="✏️ Exemple résolu — cercle">✏️ Worked example — circle</div>
           <p data-fr="Un cercle a un rayon de 7 cm. Calculer sa circonférence et son aire (π ≈ 3,14).">A circle has radius 7 cm. Find its circumference and area (use \(\pi \approx 3.14\)).</p>
           <p data-fr="<strong>1. Circonférence :</strong> C = 2πr = 2 × 3,14 × 7 ≈ 43,96 cm."><strong>1. Circumference:</strong> \(C = 2\pi r = 2 \times 3.14 \times 7 \approx 43.96\) cm.</p>
           <p data-fr="<strong>2. Aire :</strong> A = πr² = 3,14 × 49 ≈ 153,86 cm²."><strong>2. Area:</strong> \(A = \pi r^2 = 3.14 \times 49 \approx 153.86\) cm².</p>
@@ -749,8 +921,10 @@ footer.credit{text-align:center; color:var(--ink-soft); font-size:.8rem; padding
         <div class="box bilan">
           <div class="box-title" data-fr="🧩 Résumé">🧩 Summary</div>
           <ul>
-            <li data-fr="Les quadrilatères se classent selon leurs côtés et leurs angles.">Quadrilaterals are classified by their sides and angles.</li>
+            <li data-fr="La somme des angles intérieurs d'un quadrilatère vaut toujours 360°.">The interior angle sum of any quadrilateral is always 360°.</li>
+            <li data-fr="Les diagonales ont des propriétés spécifiques selon le quadrilatère (parallèles, égales, perpendiculaires, se coupent en leur milieu).">Diagonals have specific properties depending on the quadrilateral (equal, perpendicular, bisecting each other).</li>
             <li data-fr="Formules du cercle : C = 2πr, A = πr².">Circle formulae: \(C = 2\pi r\), \(A = \pi r^2\).</li>
+            <li data-fr="Trois théorèmes-clés : tangente ⊥ rayon, angle au centre = 2 × angle au périmètre, angle dans un demi-cercle = 90°.">Three key theorems: tangent ⊥ radius, angle at centre = 2 × angle at circumference, angle in a semicircle = 90°.</li>
           </ul>
         </div>
       </div>
@@ -769,12 +943,13 @@ footer.credit{text-align:center; color:var(--ink-soft); font-size:.8rem; padding
             <dt data-fr="Angle obtus">Obtuse angle</dt><dd><span data-fr="Un angle entre 90° et 180°.">An angle between 90° and 180°.</span> <span class="fr">angle obtus</span></dd>
             <dt data-fr="Angle plat">Straight angle</dt><dd><span data-fr="Un angle de 180°.">An angle of exactly 180°.</span> <span class="fr">angle plat</span></dd>
             <dt data-fr="Angle rentrant">Reflex angle</dt><dd><span data-fr="Un angle supérieur à 180° et inférieur à 360°.">An angle greater than 180° and less than 360°.</span> <span class="fr">angle rentrant</span></dd>
+            <dt data-fr="Angle plein">Full turn</dt><dd><span data-fr="Un angle égal à 360° (un tour complet).">An angle equal to 360° (a complete turn).</span> <span class="fr">angle plein / tour complet</span></dd>
             <dt data-fr="Angles complémentaires">Complementary angles</dt><dd><span data-fr="Deux angles dont la somme vaut 90°.">Two angles that add up to 90°.</span> <span class="fr">angles complémentaires</span></dd>
             <dt data-fr="Angles supplémentaires">Supplementary angles</dt><dd><span data-fr="Deux angles dont la somme vaut 180°.">Two angles that add up to 180°.</span> <span class="fr">angles supplémentaires</span></dd>
           </dl>
         </div>
 
-        <div class="box formula" data-fr="Somme des angles d'un triangle : a + b + c = 180° &nbsp;&nbsp; Angle dans un demi-cercle : 90°">Angle sum in a triangle: \(a + b + c = 180°\) &nbsp;&nbsp; Angle in a semi-circle: \(90°\)</div>
+        <div class="box formula" data-fr="Somme des angles d'un triangle : a + b + c = 180° &nbsp;&nbsp; Somme des angles d'un quadrilatère : 360° &nbsp;&nbsp; Angle dans un demi-cercle : 90°">Angle sum in a triangle: \(a + b + c = 180°\) &nbsp;&nbsp; Angle sum in a quadrilateral: \(360°\) &nbsp;&nbsp; Angle in a semi-circle: \(90°\)</div>
 
         <div class="box example">
           <div class="box-title" data-fr="✏️ Exemple résolu">✏️ Worked example</div>
@@ -785,7 +960,7 @@ footer.credit{text-align:center; color:var(--ink-soft); font-size:.8rem; padding
         <div class="box bilan">
           <div class="box-title" data-fr="🧩 Résumé">🧩 Summary</div>
           <ul>
-            <li data-fr="Les angles sont nommés selon leur taille : aigu, droit, obtus, plat, rentrant.">Angles are named by size: acute, right, obtuse, straight, reflex.</li>
+            <li data-fr="Les angles sont nommés selon leur taille : aigu, droit, obtus, plat, rentrant, plein.">Angles are named by size: acute, right, obtuse, straight, reflex, full turn.</li>
             <li data-fr="L'angle dans un demi-cercle vaut toujours 90° (théorème de Thalès).">The angle in a semi-circle is always 90° (Thales’ theorem).</li>
           </ul>
         </div>
@@ -797,6 +972,23 @@ footer.credit{text-align:center; color:var(--ink-soft); font-size:.8rem; padding
         <h2><span class="chnum">10</span><span data-fr="Formes 3D">3D Shapes</span> <span class="badge recommended" data-fr="Conseillé">Recommended</span></h2>
         <p data-fr="Les formes tridimensionnelles ont un volume et une aire de surface. Voici les principales.">Three-dimensional shapes have volume and surface area. Here are the most common ones.</p>
 
+        <h3 data-fr="Vocabulaire d'un solide (prisme)">Vocabulary of a solid (prism)</h3>
+        <div class="box defs">
+          <div class="box-title" data-fr="📖 Définitions">📖 Definitions</div>
+          <dl>
+            <dt data-fr="Base">Base</dt><dd><span data-fr="L'une des deux faces parallèles d'un prisme.">One of the two parallel faces of a prism.</span> <span class="fr">base</span></dd>
+            <dt data-fr="Face">Face</dt><dd><span data-fr="Une surface plane d'un solide.">A flat surface of a 3D shape.</span> <span class="fr">face</span></dd>
+            <dt data-fr="Arête">Edge</dt><dd><span data-fr="Une ligne où deux faces se rencontrent.">A line where two faces meet.</span> <span class="fr">arête</span></dd>
+            <dt data-fr="Sommet (coin)">Vertex (corner)</dt><dd><span data-fr="Un point où plusieurs arêtes se rencontrent.">A point where edges meet.</span> <span class="fr">sommet</span></dd>
+            <dt data-fr="Section transversale">Cross-section</dt><dd><span data-fr="La forme obtenue en coupant le prisme parallèlement à sa base.">The shape you get by cutting the prism parallel to its base.</span> <span class="fr">section transversale</span></dd>
+          </dl>
+        </div>
+
+        <h3 data-fr="Prismes">Prisms</h3>
+        <p data-fr="Un prisme possède une section transversale constante sur toute sa longueur. Le cube, le pavé droit et le cylindre sont des cas particuliers de prismes.">A prism has a constant cross-section along its length. The cube, cuboid and cylinder are special cases of prisms.</p>
+        <div class="box formula" data-fr="Volume d'un prisme : V = aire de la section × longueur. Aire de surface : S = 2 × aire de la section + périmètre de la section × longueur.">Volume of a prism: \(V = \text{area of cross-section} \times \text{length}\). Surface area: \(S = 2 \times \text{area of cross-section} + \text{perimeter of cross-section} \times \text{length}\).</div>
+
+        <h3 data-fr="Formules usuelles">Common formulae</h3>
         <table>
           <tr><th data-fr="Nom">Name</th><th data-fr="Volume">Volume</th><th data-fr="Aire de surface">Surface area</th><th data-fr="Français">French</th></tr>
           <tr><td data-fr="Cube (côté a)">Cube (side \(a\))</td><td>\(V = a^3\)</td><td>\(S = 6a^2\)</td><td>cube</td></tr>
@@ -810,6 +1002,7 @@ footer.credit{text-align:center; color:var(--ink-soft); font-size:.8rem; padding
           <div class="box-title" data-fr="🧩 Résumé">🧩 Summary</div>
           <ul>
             <li data-fr="Le volume se mesure en unités cubes (cm³, m³) ; l'aire de surface en unités carrées (cm², m²).">Volume is measured in cubic units (cm³, m³); surface area in square units (cm², m²).</li>
+            <li data-fr="Un prisme a une section transversale constante : toutes les formules découlent de V = aire de la section × longueur.">A prism has a constant cross-section: all formulae come from V = area of cross-section × length.</li>
             <li data-fr="Toujours identifier la forme d'abord, puis appliquer la bonne formule.">Always identify the shape first, then apply the correct formula.</li>
           </ul>
         </div>
@@ -942,7 +1135,12 @@ footer.credit{text-align:center; color:var(--ink-soft); font-size:.8rem; padding
           <tr><th data-fr="Mesure">Measure</th><th data-fr="Formule">Formula</th><th data-fr="Unités usuelles">Common units</th><th data-fr="Français">French</th></tr>
           <tr><td data-fr="Vitesse">Speed</td><td>\(v = \dfrac{d}{t}\)</td><td>m/s, km/h, mph</td><td>vitesse</td></tr>
           <tr><td data-fr="Masse volumique">Density</td><td>\(\rho = \dfrac{m}{V}\)</td><td>kg/m³, g/cm³</td><td>masse volumique</td></tr>
-          <tr><td data-fr="Consommation">Consumption</td><td>\(C = \dfrac{\text{<span data-fr='carburant'>fuel</span>}}{\text{<span data-fr='distance'>distance</span>}}\)</td><td>L/100 km, mpg</td><td>consommation</td></tr>
+          <tr>
+            <td data-fr="Consommation">Consumption</td>
+            <td>\(C = \dfrac{\text{fuel}}{\text{distance}}\)</td>
+            <td>L/100 km, mpg</td>
+            <td>consommation</td>
+          </tr>
           <tr><td data-fr="Accélération">Acceleration</td><td>\(a = \dfrac{\Delta v}{\Delta t}\)</td><td>m/s²</td><td>accélération</td></tr>
         </table>
 
@@ -1277,6 +1475,7 @@ footer.credit{text-align:center; color:var(--ink-soft); font-size:.8rem; padding
           <label><input type="checkbox"><span data-fr="Je connais la différence entre « mean », « median » et « mode »">I know the difference between “mean”, “median” and “mode”</span></label>
           <label><input type="checkbox"><span data-fr="Je sais dire « rounded to two decimal places » et « to two significant figures »">I can say “rounded to two decimal places” and “to two significant figures”</span></label>
           <label><input type="checkbox"><span data-fr="Je connais les noms anglais des figures courantes (equilateral, isosceles, scalene…)">I know the English names of common shapes (equilateral, isosceles, scalene…)</span></label>
+          <label><input type="checkbox"><span data-fr="Je connais le vocabulaire d'un prisme (base, face, edge, vertex, cross-section)">I know the vocabulary of a prism (base, face, edge, vertex, cross-section)</span></label>
         </div>
       </div>
 
@@ -1286,6 +1485,8 @@ footer.credit{text-align:center; color:var(--ink-soft); font-size:.8rem; padding
           <label><input type="checkbox"><span data-fr="Je sais définir et illustrer chacun des quatre concepts sur les nombres (mixed, rounding, prime, standard form)">I can define and illustrate each of the four number concepts (mixed, rounding, prime, standard form)</span></label>
           <label><input type="checkbox"><span data-fr="Je sais résoudre un système de deux équations par substitution et par élimination">I can solve a system of two simultaneous equations by substitution and by elimination</span></label>
           <label><input type="checkbox"><span data-fr="Je sais énoncer et appliquer Pythagore et SOH CAH TOA">I can state and apply Pythagoras’ theorem and SOH CAH TOA</span></label>
+          <label><input type="checkbox"><span data-fr="Je connais les trois théorèmes du cercle (tangente-rayon, angle au centre, demi-cercle)">I know the three circle theorems (tangent-radius, angle at centre, semicircle)</span></label>
+          <label><input type="checkbox"><span data-fr="Je connais les propriétés des diagonales des quadrilatères">I know the diagonal properties of quadrilaterals</span></label>
           <label><input type="checkbox"><span data-fr="Je sais compléter le carré et retrouver la formule quadratique">I can complete the square and derive the quadratic formula</span></label>
           <label><input type="checkbox"><span data-fr="Je peux décrire les principales représentations de données et leurs usages">I can describe the main types of data representation and their uses</span></label>
           <label><input type="checkbox"><span data-fr="Je sais lire et donner des azimuts à trois chiffres">I can read and give three-figure bearings</span></label>
@@ -1305,13 +1506,9 @@ footer.credit{text-align:center; color:var(--ink-soft); font-size:.8rem; padding
 </div>
 
 <script>
-/* ================= SAFE LOCALSTORAGE =================
-   localStorage peut être bloqué (file://, iframe sandbox, mode privé).
-   On l'utilise toujours via ces helpers pour ne jamais faire planter le script. */
 function safeGet(key){ try { return localStorage.getItem(key); } catch(e){ return null; } }
 function safeSet(key,val){ try { localStorage.setItem(key,val); } catch(e){} }
 
-/* ================= THEME ================= */
 function applyTheme(t){
   document.documentElement.setAttribute('data-theme', t);
   const icon = (t === 'dark') ? '☀️' : '🌙';
@@ -1335,7 +1532,6 @@ const savedTheme = safeGet('theme');
 const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 applyTheme(savedTheme || (prefersDark ? 'dark' : 'light'));
 
-/* ================= LANGUAGE ================= */
 let currentLang = safeGet('lang') || 'en';
 
 function setLanguage(lang){
@@ -1365,7 +1561,6 @@ function setLanguage(lang){
 }
 function toggleLanguage(){ setLanguage(currentLang === 'fr' ? 'en' : 'fr'); }
 
-/* ================= NAVIGATION ================= */
 const sections = document.querySelectorAll('.section');
 const trackColorVar = {core:'--core', mapping:'--mapping', stats:'--stats', advgeo:'--advgeo', methode:'--methode'};
 
@@ -1388,7 +1583,6 @@ document.querySelectorAll('[data-target]').forEach(el=>{
 const initial = location.hash ? location.hash.substring(1) : 'accueil';
 showSection(document.getElementById(initial) ? initial : 'accueil');
 
-/* ================= MATH ================= */
 function renderMath(){
   if(window.renderMathInElement){
     try {
@@ -1402,7 +1596,6 @@ function renderMath(){
 window.katexRender = renderMath;
 window.addEventListener('load', renderMath);
 
-/* ================= GLOSSARY ================= */
 const glossaryData = [
   {t:"Numerator", t_fr:"Numérateur", d:"The top number of a fraction.", d_fr:"Le nombre du haut d'une fraction.", tr:"core", l:"d0-numbers", ln:"Numbers", ln_fr:"Nombres"},
   {t:"Denominator", t_fr:"Dénominateur", d:"The bottom number of a fraction.", d_fr:"Le nombre du bas d'une fraction.", tr:"core", l:"d0-numbers", ln:"Numbers", ln_fr:"Nombres"},
@@ -1425,11 +1618,19 @@ const glossaryData = [
   {t:"Diameter", t_fr:"Diamètre", d:"Distance across the circle through the centre.", d_fr:"Distance à travers le cercle passant par le centre.", tr:"core", l:"d0-quads", ln:"Circles", ln_fr:"Cercles"},
   {t:"Circumference", t_fr:"Circonférence", d:"Perimeter of a circle.", d_fr:"Périmètre d'un cercle.", tr:"core", l:"d0-quads", ln:"Circles", ln_fr:"Cercles"},
   {t:"Tangent", t_fr:"Tangente", d:"A line that touches the circle at exactly one point.", d_fr:"Droite qui touche le cercle en un seul point.", tr:"core", l:"d0-quads", ln:"Circles", ln_fr:"Cercles"},
+  {t:"Tangent–radius theorem", t_fr:"Théorème tangente-rayon", d:"The angle between a tangent and the radius is 90°.", d_fr:"L'angle entre une tangente et le rayon est 90°.", tr:"core", l:"d0-quads", ln:"Circle theorems", ln_fr:"Théorèmes du cercle"},
+  {t:"Angle at the centre", t_fr:"Angle au centre", d:"The angle subtended by an arc at the centre is twice the angle at the circumference.", d_fr:"L'angle sous-tendu par un arc au centre est le double de l'angle au périmètre.", tr:"core", l:"d0-quads", ln:"Circle theorems", ln_fr:"Théorèmes du cercle"},
+  {t:"Angle in a semicircle", t_fr:"Angle dans un demi-cercle", d:"An angle inscribed in a semicircle is a right angle (90°).", d_fr:"Un angle inscrit dans un demi-cercle est un angle droit (90°).", tr:"core", l:"d0-quads", ln:"Circle theorems", ln_fr:"Théorèmes du cercle"},
   {t:"Acute angle", t_fr:"Angle aigu", d:"An angle less than 90°.", d_fr:"Un angle inférieur à 90°.", tr:"core", l:"d0-angles", ln:"Angles", ln_fr:"Angles"},
   {t:"Obtuse angle", t_fr:"Angle obtus", d:"An angle between 90° and 180°.", d_fr:"Un angle entre 90° et 180°.", tr:"core", l:"d0-angles", ln:"Angles", ln_fr:"Angles"},
   {t:"Reflex angle", t_fr:"Angle rentrant", d:"An angle greater than 180° and less than 360°.", d_fr:"Un angle supérieur à 180° et inférieur à 360°.", tr:"core", l:"d0-angles", ln:"Angles", ln_fr:"Angles"},
+  {t:"Full turn", t_fr:"Angle plein", d:"An angle equal to 360°.", d_fr:"Un angle égal à 360°.", tr:"core", l:"d0-angles", ln:"Angles", ln_fr:"Angles"},
   {t:"Complementary angles", t_fr:"Angles complémentaires", d:"Two angles that add up to 90°.", d_fr:"Deux angles dont la somme vaut 90°.", tr:"core", l:"d0-angles", ln:"Angles", ln_fr:"Angles"},
   {t:"Supplementary angles", t_fr:"Angles supplémentaires", d:"Two angles that add up to 180°.", d_fr:"Deux angles dont la somme vaut 180°.", tr:"core", l:"d0-angles", ln:"Angles", ln_fr:"Angles"},
+  {t:"Base", t_fr:"Base", d:"One of the two parallel faces of a prism.", d_fr:"L'une des deux faces parallèles d'un prisme.", tr:"core", l:"d0-3d", ln:"3D Shapes", ln_fr:"Formes 3D"},
+  {t:"Face", t_fr:"Face", d:"A flat surface of a 3D shape.", d_fr:"Une surface plane d'un solide.", tr:"core", l:"d0-3d", ln:"3D Shapes", ln_fr:"Formes 3D"},
+  {t:"Edge", t_fr:"Arête", d:"A line where two faces meet.", d_fr:"Une ligne où deux faces se rencontrent.", tr:"core", l:"d0-3d", ln:"3D Shapes", ln_fr:"Formes 3D"},
+  {t:"Cross-section", t_fr:"Section transversale", d:"The shape you get by cutting a prism parallel to its base.", d_fr:"La forme obtenue en coupant le prisme parallèlement à sa base.", tr:"core", l:"d0-3d", ln:"3D Shapes", ln_fr:"Formes 3D"},
   {t:"Linear equation", t_fr:"Équation linéaire", d:"An equation of the form ax + b = c or ax + by = c.", d_fr:"Une équation de la forme ax + b = c ou ax + by = c.", tr:"core", l:"d0-algebra", ln:"Solving Algebraically", ln_fr:"Résolution algébrique"},
   {t:"Simultaneous equations", t_fr:"Système d'équations", d:"A set of two or more equations with the same unknowns.", d_fr:"Un ensemble de deux ou plusieurs équations avec les mêmes inconnues.", tr:"core", l:"d0-algebra", ln:"Solving Algebraically", ln_fr:"Résolution algébrique"},
   {t:"Substitution", t_fr:"Substitution", d:"Solving by isolating one unknown and replacing it.", d_fr:"Résoudre en isolant une inconnue et en la remplaçant.", tr:"core", l:"d0-algebra", ln:"Solving Algebraically", ln_fr:"Résolution algébrique"},
@@ -1492,7 +1693,6 @@ function renderGlossary(filter){
 const gsInput = document.getElementById('glossarySearch');
 if(gsInput) gsInput.addEventListener('input', (e)=>renderGlossary(e.target.value));
 
-/* ================= QUIZ ================= */
 const quizData = [
   {q:"Which of these is an improper fraction?", q_fr:"Laquelle de ces fractions est impropre ?", opts:["\\(\\frac{3}{4}\\)","\\(\\frac{7}{4}\\)","\\(\\frac{1}{2}\\)"], a:1},
   {q:"Round 3.146 to 2 decimal places.", q_fr:"Arrondir 3,146 à 2 décimales.", opts:["3.14","3.15","3.16"], a:1},
@@ -1501,6 +1701,9 @@ const quizData = [
   {q:"In a right-angled triangle, the hypotenuse is:", q_fr:"Dans un triangle rectangle, l'hypoténuse est :", opts:["the shortest side","the side opposite the right angle","the side adjacent to the right angle"], opts_fr:["le plus petit côté","le côté opposé à l'angle droit","le côté adjacent à l'angle droit"], a:1},
   {q:"Pythagoras’ theorem states:", q_fr:"Le théorème de Pythagore énonce :", opts:["\\(a+b=c\\)","\\(a^2+b^2=c^2\\)","\\(a^2-b^2=c^2\\)"], a:1},
   {q:"SOH CAH TOA: sin θ =", q_fr:"SOH CAH TOA : sin θ =", opts:["Adj/Hyp","Opp/Hyp","Opp/Adj"], a:1},
+  {q:"The sum of the interior angles of a quadrilateral is:", q_fr:"La somme des angles intérieurs d'un quadrilatère vaut :", opts:["180°","360°","90°"], a:1},
+  {q:"The angle between a tangent and a radius is:", q_fr:"L'angle entre une tangente et un rayon vaut :", opts:["45°","90°","180°"], a:1},
+  {q:"The angle at the centre is … the angle at the circumference.", q_fr:"L'angle au centre est … l'angle au périmètre.", opts:["equal to","twice","half"], opts_fr:["égal à","le double de","la moitié de"], a:1},
   {q:"The discriminant of \\(2x^2-4x-6\\) is:", q_fr:"Le discriminant de \\(2x^2-4x-6\\) est :", opts:["64","−32","16"], a:0},
   {q:"A rule that maps each input to exactly one output is called:", q_fr:"Une règle qui associe à chaque entrée exactement une sortie s'appelle :", opts:["a relation","a function","a mapping diagram"], opts_fr:["une relation","une fonction","un diagramme de correspondance"], a:1},
   {q:"The domain of \\(f(x)=1/x\\) is:", q_fr:"L'ensemble de définition de \\(f(x)=1/x\\) est :", opts:["all real numbers","all real numbers except 0","\\(x > 0\\)"], opts_fr:["tous les réels","tous les réels sauf 0","\\(x > 0\\)"], a:1},
@@ -1518,8 +1721,8 @@ function renderQuiz(){
   if(qIndex >= quizData.length){
     card.innerHTML = `<div class="quiz-q">${isFr?'Résultat':'Result'} : ${qScore} / ${quizData.length}</div>
       <p style="color:var(--ink-soft)">${isFr
-        ? (qScore>=12 ? "Excellente maîtrise — vous êtes prêt !" : qScore>=8 ? "Bonne base — revoyez les chapitres liés aux questions manquées." : "Reprenez calmement les chapitres de base avant d'attaquer la Terminale.")
-        : (qScore>=12 ? "Excellent mastery — you are ready!" : qScore>=8 ? "Good base — review the chapters linked to the questions you missed." : "Take time to review the core knowledge chapters before Terminale.")}</p>
+        ? (qScore>=15 ? "Excellente maîtrise — vous êtes prêt !" : qScore>=10 ? "Bonne base — revoyez les chapitres liés aux questions manquées." : "Reprenez calmement les chapitres de base avant d'attaquer la Terminale.")
+        : (qScore>=15 ? "Excellent mastery — you are ready!" : qScore>=10 ? "Good base — review the chapters linked to the questions you missed." : "Take time to review the core knowledge chapters before Terminale.")}</p>
       <button class="btn" onclick="qIndex=0;qScore=0;renderQuiz();">${isFr?'Recommencer':'Restart'}</button>`;
     return;
   }
@@ -1552,8 +1755,7 @@ function renderQuiz(){
   renderMath();
 }
 
-/* ================= INIT ================= */
-/* On initialise la langue à la toute fin, une fois tout le reste défini.
-   setLanguage est enveloppé dans un try/catch pour ne jamais bloquer le reste. */
 try { setLanguage(currentLang); } catch(e){ console.warn('setLanguage init', e); }
 </script>
+</body>
+</html>
