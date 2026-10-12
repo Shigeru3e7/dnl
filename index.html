@@ -1,0 +1,1559 @@
+
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DNL Maths — Core Knowledge &amp; Beyond</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72;0,6..72;0,6..72;1,6..72;500&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+
+<style>
+:root{
+  --core:#0E9488;
+  --mapping:#4C5FD5;
+  --stats:#A63D6E;
+  --advgeo:#B5750E;
+  --methode:#5D6B94;
+  --radius: 14px;
+
+  --ink:#161A22;
+  --ink-soft:#4B5265;
+  --line:#DEE1EA;
+  --line-soft:#ECEEF3;
+  --paper:#FCFCFA;
+  --panel:#FFFFFF;
+  --grid-line: rgba(20,25,40,.045);
+
+  --sidebar:#12141C;
+  --sidebar-panel:#181B26;
+  --sidebar-text:#C4C8D6;
+  --sidebar-text-dim:#5B6178;
+  --sidebar-line:#242732;
+  --sidebar-active:#1E2130;
+
+  --code-bg:#161A22;
+  --code-text:#E4E7F1;
+  --track-color: var(--core);
+}
+html[data-theme="dark"]{
+  --ink:#E9EAF0; --ink-soft:#A5AABC; --line:#2B2F3D; --line-soft:#22252F;
+  --paper:#0D0F16; --panel:#151822; --grid-line: rgba(255,255,255,.035);
+  --sidebar:#090A10; --sidebar-panel:#0F1119; --sidebar-text:#B7BBCB; --sidebar-text-dim:#565C72;
+  --sidebar-line:#1C1F29; --sidebar-active:#1A1D29; --code-bg:#0A0C12; --code-text:#D9DCE8;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0; font-family:'Inter',sans-serif; color:var(--ink); background:var(--paper); font-size:16px; line-height:1.65; transition:background .2s ease, color .2s ease;}
+.content{background-image:linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px); background-size:28px 28px; background-position:-1px -1px;}
+h1,h2,h3,h4{font-family:'Newsreader',serif; color:var(--ink); line-height:1.15; margin:0 0 .4em 0; font-weight:600;}
+a{color:inherit;}
+p{margin:0 0 1em 0;}
+ul,ol{margin:0 0 1em 0; padding-left:1.3em;}
+li{margin-bottom:.35em;}
+.katex{font-size:1.05em;}
+.katex-display{margin:.3em 0;}
+
+.app{display:flex; min-height:100vh;}
+.sidebar{width:300px; flex-shrink:0; background:var(--sidebar); color:var(--sidebar-text); padding:22px 18px 90px 18px; position:sticky; top:0; height:100vh; overflow-y:auto; scrollbar-width:thin; border-right:1px solid var(--sidebar-line);}
+.sidebar::-webkit-scrollbar{width:6px;}
+.sidebar::-webkit-scrollbar-thumb{background:#2C3040; border-radius:4px;}
+.brand-row{display:flex; align-items:center; justify-content:space-between; padding:2px 8px 18px 8px; border-bottom:1px solid var(--sidebar-line); margin-bottom:16px;}
+.brand{display:flex; align-items:baseline; gap:8px;}
+.brand-mark{font-family:'JetBrains Mono',monospace; font-weight:700; background:linear-gradient(135deg,var(--core),var(--mapping) 45%, var(--advgeo) 75%, var(--stats)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; font-size:1.4rem;}
+.brand-sub{font-family:'JetBrains Mono',monospace; font-size:.6rem; letter-spacing:.08em; color:var(--sidebar-text-dim); text-transform:uppercase; display:block; margin-top:2px;}
+.sidebar-controls{display:flex; gap:6px;}
+.theme-toggle,.lang-toggle{background:var(--sidebar-panel); border:1px solid var(--sidebar-line); color:var(--sidebar-text); height:32px; border-radius:9px; cursor:pointer; display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-size:.7rem; font-weight:700; letter-spacing:.05em;}
+.theme-toggle{width:32px; font-size:.95rem;}
+.lang-toggle{padding:0 10px; min-width:40px;}
+.theme-toggle:hover,.lang-toggle:hover{border-color:var(--sidebar-text-dim); color:#fff;}
+.nav-group{margin-bottom:6px;}
+.nav-group-title{font-family:'JetBrains Mono',monospace; font-size:.66rem; letter-spacing:.11em; text-transform:uppercase; color:var(--sidebar-text-dim); padding:16px 10px 6px 10px;}
+.nav-group-title .dot{display:inline-block;width:7px;height:7px;border-radius:50%; margin-right:7px;}
+.nav-link{display:flex; align-items:center; gap:9px; padding:7px 10px; border-radius:8px; font-size:.855rem; color:var(--sidebar-text); text-decoration:none; cursor:pointer; transition:background .15s ease, color .15s ease;}
+.nav-link .ic{width:1.1em; text-align:center; opacity:.9;}
+.nav-link:hover{background:var(--sidebar-panel); color:#fff;}
+.nav-link.active{background:var(--sidebar-active); color:#fff; font-weight:600;}
+
+.main-wrap{flex:1; min-width:0;}
+.content{padding:54px 6vw 120px 6vw; max-width:1000px; margin:0 auto;}
+.section{padding-top:26px; margin-bottom:70px; scroll-margin-top:20px;}
+.section-kicker{font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--track-color); font-weight:700; margin-bottom:10px; display:flex; align-items:center; gap:10px;}
+.section-kicker::after{content:""; height:1px; flex:1; background:var(--line);}
+.section h1{font-size:2.5rem;}
+.section h1 em{font-style:italic; color:var(--track-color);}
+.section-lede{font-size:1.05rem; color:var(--ink-soft); max-width:680px; margin-top:10px;}
+.chnum{font-family:'JetBrains Mono',monospace; font-weight:700; font-size:.75rem; color:#fff; background:var(--track-color); border-radius:6px; padding:3px 8px; margin-right:10px; display:inline-block;}
+.chapter{background:var(--panel); border:1px solid var(--line); border-left:4px solid var(--track-color); border-radius:var(--radius); padding:26px 30px 30px 30px; margin-bottom:22px; box-shadow:0 1px 2px rgba(20,20,30,.03);}
+.chapter h2{font-size:1.5rem; display:flex; align-items:center; flex-wrap:wrap; gap:4px 0;}
+.chapter h3{font-size:1.12rem; margin-top:1.6em; color:var(--track-color);}
+.chapter h4{font-size:1rem; margin-top:1.2em;}
+.chapter > p:first-of-type{font-size:.98rem;}
+
+/* ===== BADGES ===== */
+.badge{font-family:'JetBrains Mono',monospace; font-size:.66rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; padding:3px 9px; border-radius:20px; display:inline-block; margin-left:10px; vertical-align:middle;}
+.badge.essential{background:color-mix(in srgb, #D8323C 20%, var(--panel)); color:color-mix(in srgb, #D8323C 75%, var(--ink)); border:1px solid color-mix(in srgb, #D8323C 40%, var(--panel));}
+.badge.recommended{background:color-mix(in srgb, #C97A1E 20%, var(--panel)); color:color-mix(in srgb, #C97A1E 80%, var(--ink)); border:1px solid color-mix(in srgb, #C97A1E 40%, var(--panel));}
+.badge.advanced{background:color-mix(in srgb, #3247B8 24%, var(--panel)); color:color-mix(in srgb, #3247B8 60%, var(--ink)); border:1px solid color-mix(in srgb, #3247B8 45%, var(--panel));}
+html[data-theme="light"] .badge.essential{background:#FDE7E7; color:#B4232C; border-color:#F5B5BA;}
+html[data-theme="light"] .badge.recommended{background:#FFF3D9; color:#95660B; border-color:#F0D9A0;}
+html[data-theme="light"] .badge.advanced{background:#E7ECFE; color:#3247B8; border-color:#B9C9F5;}
+
+/* ===== BOXES ===== */
+.box{border-radius:10px; padding:14px 18px; margin:16px 0; font-size:.94rem; color:var(--ink);}
+.box p:last-child{margin-bottom:0;}
+.box-title{font-weight:700; margin-bottom:4px; display:flex; align-items:center; gap:7px; font-family:'Inter',sans-serif; font-size:.85rem; text-transform:uppercase; letter-spacing:.03em;}
+.box.info{background:color-mix(in srgb, #3B63E0 16%, var(--panel)); border:1px solid color-mix(in srgb, #3B63E0 38%, var(--panel));}
+.box.info .box-title{color:color-mix(in srgb, #3B63E0 60%, var(--ink));}
+.box.warning{background:color-mix(in srgb, #C97A1E 16%, var(--panel)); border:1px solid color-mix(in srgb, #C97A1E 38%, var(--panel));}
+.box.warning .box-title{color:color-mix(in srgb, #C97A1E 65%, var(--ink));}
+.box.tip{background:color-mix(in srgb, #23A159 16%, var(--panel)); border:1px solid color-mix(in srgb, #23A159 38%, var(--panel));}
+.box.tip .box-title{color:color-mix(in srgb, #23A159 65%, var(--ink));}
+.box.star{background:color-mix(in srgb, #B23FD6 16%, var(--panel)); border:1px solid color-mix(in srgb, #B23FD6 38%, var(--panel));}
+.box.star .box-title{color:color-mix(in srgb, #B23FD6 65%, var(--ink));}
+.box.err{background:color-mix(in srgb, #D8323C 16%, var(--panel)); border:1px solid color-mix(in srgb, #D8323C 38%, var(--panel));}
+.box.err .box-title{color:color-mix(in srgb, #D8323C 70%, var(--ink));}
+.box.formula{background:var(--line-soft); border:1px solid var(--line); text-align:center; padding:18px; font-size:1.08rem; color:var(--ink);}
+.box.example{background:color-mix(in srgb, var(--core) 14%, var(--panel)); border:1px solid color-mix(in srgb, var(--core) 38%, var(--panel));}
+.box.example .box-title{color:color-mix(in srgb, var(--core) 70%, var(--ink));}
+.box.bilan{background:color-mix(in srgb, var(--track-color) 14%, var(--panel)); border:1px solid color-mix(in srgb, var(--track-color) 40%, var(--panel));}
+.box.bilan .box-title{color:color-mix(in srgb, var(--track-color) 70%, var(--ink));}
+.box.bilan ul{margin-bottom:0;}
+.box.defs{background:color-mix(in srgb, var(--ink) 5%, var(--panel)); border:1px solid var(--line);}
+.box.defs .box-title{color:var(--ink-soft);}
+.box.defs dl{margin:0;}
+.box.defs dt{font-weight:700; font-family:'JetBrains Mono',monospace; font-size:.82rem; color:var(--track-color); margin-top:.7em;}
+.box.defs dt:first-child{margin-top:0;}
+.box.defs dd{margin:.15em 0 0 0; color:var(--ink-soft); font-size:.92rem;}
+.box.defs dd .fr{font-style:italic; color:var(--ink-soft); opacity:.85; font-size:.85em;}
+html[lang="fr"] .box.defs dd .fr{display:none;}
+
+/* ===== GLOSSARY ===== */
+.glossary-search{width:100%; padding:12px 16px; border-radius:10px; border:1px solid var(--line); background:var(--panel); color:var(--ink); font-family:'Inter',sans-serif; font-size:.95rem; margin-bottom:20px;}
+.glossary-search:focus{outline:none; border-color:var(--track-color);}
+.glossary-count{font-family:'JetBrains Mono',monospace; font-size:.75rem; color:var(--ink-soft); margin-bottom:16px; display:block;}
+.glossary-grid{display:grid; gap:10px;}
+.gterm{background:var(--panel); border:1px solid var(--line); border-left:4px solid var(--gcolor, var(--mapping)); border-radius:10px; padding:12px 18px;}
+.gterm .gt-head{display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;}
+.gterm .gt-term{font-family:'Newsreader',serif; font-weight:600; font-size:1.05rem;}
+.gterm .gt-tag{font-family:'JetBrains Mono',monospace; font-size:.62rem; text-transform:uppercase; letter-spacing:.05em; color:color-mix(in srgb, var(--gcolor, var(--mapping)) 70%, var(--ink)); background:color-mix(in srgb, var(--gcolor, var(--mapping)) 16%, var(--panel)); border:1px solid color-mix(in srgb, var(--gcolor, var(--mapping)) 35%, var(--panel)); padding:2px 8px; border-radius:12px;}
+.gterm .gt-def{color:var(--ink-soft); font-size:.9rem; margin-top:5px;}
+.gterm .gt-fr{color:var(--ink-soft); font-size:.82rem; font-style:italic; margin-top:2px;}
+html[lang="fr"] .gterm .gt-fr{display:none;}
+
+table{border-collapse:collapse; width:100%; margin:16px 0; font-size:.92rem;}
+th,td{border:1px solid var(--line); padding:9px 12px; text-align:left; vertical-align:top;}
+th{background:color-mix(in srgb, var(--track-color) 14%, var(--panel)); font-weight:700; font-family:'Inter',sans-serif; font-size:.82rem; text-transform:uppercase; letter-spacing:.02em; color:var(--ink);}
+tr:nth-child(even) td{background:color-mix(in srgb, var(--ink) 3%, var(--panel));}
+
+.steps{counter-reset:step;}
+.step{position:relative; padding:4px 0 4px 46px; margin-bottom:18px;}
+.step::before{counter-increment:step; content:counter(step); position:absolute; left:0; top:0; width:32px; height:32px; border-radius:9px; background:color-mix(in srgb, var(--track-color) 16%, var(--panel)); color:var(--track-color); font-family:'JetBrains Mono',monospace; font-weight:700; display:flex; align-items:center; justify-content:center; font-size:.95rem;}
+.step h4{margin-top:0;}
+
+.prereq{display:flex; flex-wrap:wrap; gap:8px; margin:10px 0 18px 0;}
+.prereq .pill{font-size:.78rem; font-family:'JetBrains Mono',monospace; background:color-mix(in srgb, var(--core) 18%, var(--panel)); color:color-mix(in srgb, var(--core) 70%, var(--ink)); padding:4px 10px; border-radius:20px; border:1px solid color-mix(in srgb, var(--core) 40%, var(--panel));}
+
+details.acc{border:1px solid var(--line); border-radius:10px; margin:16px 0; background:var(--panel); overflow:hidden;}
+details.acc summary{padding:12px 16px; cursor:pointer; font-weight:600; list-style:none; display:flex; align-items:center; justify-content:space-between; font-family:'Inter',sans-serif; font-size:.95rem; color:var(--ink);}
+details.acc summary::-webkit-details-marker{display:none;}
+details.acc summary::after{content:"+"; font-family:'JetBrains Mono',monospace; color:var(--track-color); font-size:1.1rem;}
+details.acc[open] summary::after{content:"–";}
+details.acc .acc-body{padding:2px 18px 18px 18px; font-size:.92rem; color:var(--ink-soft);}
+details.acc .acc-body p{color:var(--ink-soft);}
+details.acc[open]{border-color:var(--track-color);}
+
+code, pre{font-family:'JetBrains Mono',monospace; font-size:.85em;}
+pre{background:var(--code-bg); color:var(--code-text); padding:16px 18px; border-radius:10px; overflow-x:auto; line-height:1.55;}
+p code, li code{background:var(--line-soft); padding:1px 6px; border-radius:5px; color:var(--ink);}
+
+.home-hero{padding:56px 0 30px 0;}
+.home-hero .eyebrow{font-family:'JetBrains Mono',monospace; font-size:.75rem; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-soft);}
+.home-hero h1{font-size:2.9rem; margin-top:10px;}
+.home-hero h1 .a{color:var(--core);} .home-hero h1 .b{color:var(--mapping);} .home-hero h1 .c{color:var(--advgeo);} .home-hero h1 .d{color:var(--stats);}
+.home-hero p{font-size:1.06rem; color:var(--ink-soft); max-width:680px;}
+.track-cards{display:grid; grid-template-columns:repeat(auto-fit, minmax(230px,1fr)); gap:16px; margin:34px 0 10px 0;}
+.track-card{border-radius:var(--radius); padding:22px; border:1px solid var(--line); background:var(--panel); cursor:pointer; text-decoration:none; display:block; transition:transform .15s ease, box-shadow .15s ease;}
+.track-card:hover{transform:translateY(-3px); box-shadow:0 10px 24px rgba(0,0,0,.12);}
+.track-card .tc-top{font-family:'JetBrains Mono',monospace; font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; font-weight:700;}
+.track-card h3{margin-top:8px; font-size:1.18rem;}
+.track-card p{color:var(--ink-soft); font-size:.87rem; margin-top:6px;}
+.track-card.c .tc-top{color:var(--core);} .track-card.c{border-top:4px solid var(--core);}
+.track-card.m .tc-top{color:var(--mapping);} .track-card.m{border-top:4px solid var(--mapping);}
+.track-card.s .tc-top{color:var(--stats);} .track-card.s{border-top:4px solid var(--stats);}
+.track-card.g .tc-top{color:var(--advgeo);} .track-card.g{border-top:4px solid var(--advgeo);}
+
+.mini-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:30px;}
+.mini-card{border:1px solid var(--line); border-radius:12px; padding:16px 18px; background:var(--panel);}
+.mini-card .mc-label{font-family:'JetBrains Mono',monospace; font-size:.66rem; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-soft);}
+.mini-card .mc-val{font-family:'Newsreader',serif; font-size:1.4rem; margin-top:4px; color:var(--ink);}
+
+.checklist label{display:flex; gap:10px; align-items:flex-start; padding:8px 0; font-size:.95rem; cursor:pointer; border-bottom:1px dashed var(--line-soft); color:var(--ink);}
+.checklist input{margin-top:4px; accent-color:var(--track-color); width:16px; height:16px; flex-shrink:0;}
+.checklist input:checked + span{color:var(--ink-soft); text-decoration:line-through;}
+
+.quiz-card{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:26px 30px;}
+.quiz-q{font-weight:600; margin-bottom:14px; font-size:1.05rem; color:var(--ink);}
+.quiz-opts{display:flex; flex-direction:column; gap:8px;}
+.quiz-opt{border:1px solid var(--line); border-radius:9px; padding:10px 14px; cursor:pointer; font-size:.92rem; background:var(--panel); color:var(--ink);}
+.quiz-opt:hover{border-color:var(--track-color);}
+.quiz-opt.correct{background:color-mix(in srgb, #23A159 22%, var(--panel)); border-color:#23A159; font-weight:600; color:var(--ink);}
+.quiz-opt.wrong{background:color-mix(in srgb, #D8323C 22%, var(--panel)); border-color:#D8323C; color:var(--ink);}
+.quiz-footer{display:flex; justify-content:space-between; align-items:center; margin-top:20px;}
+.quiz-progress{font-family:'JetBrains Mono',monospace; font-size:.78rem; color:var(--ink-soft);}
+.btn{font-family:'Inter',sans-serif; font-weight:600; font-size:.86rem; background:var(--track-color); color:#fff; border:none; border-radius:9px; padding:9px 18px; cursor:pointer;}
+.btn:disabled{opacity:.4; cursor:default;}
+
+.mobile-bar{display:none; position:sticky; top:0; z-index:50; background:var(--sidebar); color:#fff; padding:14px 18px; align-items:center; justify-content:space-between;}
+.mobile-bar .brand-mark{font-size:1.15rem;}
+.mobile-controls{display:flex; gap:8px;}
+.burger{background:none; border:none; color:#fff; font-size:1.4rem; cursor:pointer;}
+footer.credit{text-align:center; color:var(--ink-soft); font-size:.8rem; padding:40px 0 10px 0; font-family:'JetBrains Mono',monospace;}
+
+@media (max-width:980px){
+  .app{display:block;}
+  .sidebar{position:fixed; left:0; top:0; height:100vh; z-index:100; transform:translateX(-100%); transition:transform .25s ease; box-shadow:0 0 40px rgba(0,0,0,.4);}
+  .sidebar.open{transform:translateX(0);}
+  .mobile-bar{display:flex;}
+  .content{padding:36px 6vw 100px 6vw;}
+  .mini-grid{grid-template-columns:1fr;}
+  .home-hero h1{font-size:2rem;}
+}
+</style>
+</head>
+<body>
+
+<div class="mobile-bar">
+  <div><span class="brand-mark">Σ DNL</span></div>
+  <div class="mobile-controls">
+    <button class="lang-toggle" onclick="toggleLanguage()" id="langToggleMobile" title="Switch language">FR</button>
+    <button class="theme-toggle" id="themeToggleMobile" title="Toggle theme">🌙</button>
+    <button class="burger" onclick="document.querySelector('.sidebar').classList.toggle('open')">☰</button>
+  </div>
+</div>
+
+<div class="app">
+  <nav class="sidebar" id="sidebar">
+    <div class="brand-row">
+      <div class="brand"><span class="brand-mark">Σ DNL</span></div>
+      <div class="sidebar-controls">
+        <button class="lang-toggle" onclick="toggleLanguage()" id="langToggle" title="Switch language">FR</button>
+        <button class="theme-toggle" id="themeToggle" title="Toggle theme">🌙</button>
+      </div>
+    </div>
+    <div class="brand-sub" style="margin:-10px 0 16px 8px;" data-fr="Maths in English · Banque de cours">Maths in English · Course Bank</div>
+
+    <div class="nav-group">
+      <a class="nav-link" data-target="accueil"><span class="ic">🏠</span> <span data-fr="Tableau de bord">Dashboard</span></a>
+      <a class="nav-link" data-target="methode"><span class="ic">🧭</span> <span data-fr="Guide d'utilisation">Guide</span></a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-title"><span class="dot" style="background:var(--core)"></span><span data-fr="Domaine 0 — Connaissances de base">Domain 0 — Core Knowledge</span></div>
+      <a class="nav-link" data-target="d0-numbers"><span class="ic">🔢</span> <span data-fr="Nombres">Numbers</span></a>
+      <a class="nav-link" data-target="d0-ratios"><span class="ic">⚖️</span> <span data-fr="Ratios">Ratios</span></a>
+      <a class="nav-link" data-target="d0-triangles"><span class="ic">📐</span> <span data-fr="Formes 2D — Triangles">2D Shapes — Triangles</span></a>
+      <a class="nav-link" data-target="d0-pythagoras"><span class="ic">△</span> <span data-fr="Pythagore & Trigonométrie">Pythagoras &amp; Trigonometry</span></a>
+      <a class="nav-link" data-target="d0-quads"><span class="ic">⬜</span> <span data-fr="Quadrilatères & Cercles">Quadrilaterals &amp; Circles</span></a>
+      <a class="nav-link" data-target="d0-angles"><span class="ic">📏</span> <span data-fr="Angles">Angles</span></a>
+      <a class="nav-link" data-target="d0-3d"><span class="ic">📦</span> <span data-fr="Formes 3D">3D Shapes</span></a>
+      <a class="nav-link" data-target="d0-algebra"><span class="ic">✏️</span> <span data-fr="Résolution algébrique">Solving Algebraically</span></a>
+      <a class="nav-link" data-target="d0-compound"><span class="ic">🚗</span> <span data-fr="Mesures composées & Unités impériales">Compound Measures &amp; Imperial Units</span></a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-title"><span class="dot" style="background:var(--mapping)"></span><span data-fr="Domaine 1 — Fonctions">Domain 1 — Mapping</span></div>
+      <a class="nav-link" data-target="d1-functions"><span class="ic">🔁</span> <span data-fr="Fonctions">Functions</span></a>
+      <a class="nav-link" data-target="d1-particular"><span class="ic">📈</span> <span data-fr="Fonctions particulières">Particular Functions</span></a>
+      <a class="nav-link" data-target="d1-quadratic"><span class="ic">∪</span> <span data-fr="Fonctions du second degré">Quadratic Functions</span></a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-title"><span class="dot" style="background:var(--stats)"></span><span data-fr="Domaines 0 & 4 — Statistiques">Domains 0 &amp; 4 — Statistics</span></div>
+      <a class="nav-link" data-target="s-data"><span class="ic">📊</span> <span data-fr="Types de données">Types of Data</span></a>
+      <a class="nav-link" data-target="s-discrete"><span class="ic">🎲</span> <span data-fr="Données discrètes">Discrete Data</span></a>
+      <a class="nav-link" data-target="s-continuous"><span class="ic">📉</span> <span data-fr="Données continues">Continuous Data</span></a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-title"><span class="dot" style="background:var(--advgeo)"></span><span data-fr="Domaine 5 — Géométrie avancée">Domain 5 — Advanced Geometry</span></div>
+      <a class="nav-link" data-target="g-angles"><span class="ic">🧭</span> <span data-fr="Angles & Azimuts">Angles &amp; Bearings</span></a>
+      <a class="nav-link" data-target="g-coord"><span class="ic">📍</span> <span data-fr="Géométrie analytique">Coordinate Geometry</span></a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-title"><span class="dot" style="background:var(--methode)"></span><span data-fr="Entraînement">Practice</span></div>
+      <a class="nav-link" data-target="glossaire"><span class="ic">📖</span> <span data-fr="Glossaire complet">Full Glossary</span></a>
+      <a class="nav-link" data-target="quiz"><span class="ic">🧠</span> <span data-fr="Quiz de positionnement">Placement Quiz</span></a>
+      <a class="nav-link" data-target="checklist"><span class="ic">✅</span> <span data-fr="Fiche de révision">Revision Checklist</span></a>
+    </div>
+  </nav>
+
+  <div class="main-wrap">
+  <div class="content" id="content">
+
+    <!-- ============ HOME ============ -->
+    <section class="section" id="accueil" data-track="methode">
+      <div class="home-hero">
+        <div class="eyebrow" data-fr="★ DNL Maths · Terminale · Banque de cours">★ DNL Maths · Terminale · Course Bank</div>
+        <h1><span data-fr="Les maths en">Maths in</span> <span class="a" data-fr="anglais">English</span>,<br><span data-fr="des">from</span> <span class="b" data-fr="bases">Core</span> <span data-fr="à la">to</span> <span class="d" data-fr="géométrie">Advanced</span> <span class="c" data-fr="avancée">Geometry</span></h1>
+        <p data-fr="Tout le programme de l'année regroupé ici : vocabulaire clé, propriétés, démonstrations et exemples entièrement résolus — aligné sur la liste officielle des thèmes (Domaines 0, 1, 4 et 5). Chaque chapitre suit la même structure : introduction, démonstration (quand elle est accessible), exemple résolu et résumé.">Everything from the year's programme gathered here: key vocabulary, properties, proofs and fully worked examples — aligned with the official topic list (Domains 0, 1, 4 and 5). Each chapter follows the same structure: introduction, proof (when accessible), worked example and summary.</p>
+      </div>
+
+      <div class="track-cards">
+        <a class="track-card c" data-target="d0-numbers">
+          <div class="tc-top"><span data-fr="01 · Domaine 0">01 · Domain 0</span></div>
+          <h3 data-fr="Connaissances de base">Core Knowledge</h3>
+          <p data-fr="Nombres, ratios, formes 2D & 3D, Pythagore, angles, résolution algébrique, mesures composées.">Numbers, ratios, 2D &amp; 3D shapes, Pythagoras, angles, solving algebraically, compound measures.</p>
+        </a>
+        <a class="track-card m" data-target="d1-functions">
+          <div class="tc-top"><span data-fr="02 · Domaine 1">02 · Domain 1</span></div>
+          <h3 data-fr="Fonctions">Mapping</h3>
+          <p data-fr="Fonctions, domaine & image, fonctions linéaires & inverse, second degré, discriminant, forme canonique.">Functions, domain &amp; range, linear &amp; reciprocal functions, quadratic functions, discriminant, completing the square.</p>
+        </a>
+        <a class="track-card s" data-target="s-data">
+          <div class="tc-top"><span data-fr="03 · Domaines 0 & 4">03 · Domains 0 &amp; 4</span></div>
+          <h3 data-fr="Statistiques">Statistics</h3>
+          <p data-fr="Types de données, diagrammes circulaires, tige-feuille, graphiques trompeurs, boîtes à moustaches, dispersion.">Types of data, pie charts, stem-and-leaf diagrams, misleading graphs, box plots, measures of spread.</p>
+        </a>
+        <a class="track-card g" data-target="g-angles">
+          <div class="tc-top"><span data-fr="04 · Domaine 5">04 · Domain 5</span></div>
+          <h3 data-fr="Géométrie avancée">Advanced Geometry</h3>
+          <p data-fr="Azimuts, vocabulaire des angles, géométrie analytique, coefficients directeurs, équations de droites.">Three-figure bearings, angle vocabulary, coordinate geometry, gradients, equations of straight lines.</p>
+        </a>
+      </div>
+
+      <div class="mini-grid">
+        <div class="mini-card"><div class="mc-label" data-fr="Chapitres au total">Total Chapters</div><div class="mc-val" data-fr="21 chapitres">21 chapters</div></div>
+        <div class="mini-card"><div class="mc-label" data-fr="Structure">Structure</div><div class="mc-val" data-fr="Intro → Démo → Exemple → Résumé">Intro → Proof → Example → Summary</div></div>
+        <div class="mini-card"><div class="mc-label" data-fr="Thème">Theme</div><div class="mc-val" data-fr="Clair / Sombre 🌗">Light / Dark 🌗</div></div>
+      </div>
+
+      <div class="box tip" style="margin-top:30px;">
+        <div class="box-title" data-fr="💡 Comment utiliser ce site">💡 How to use this site</div>
+        <p data-fr="Les encarts 📐 Démonstration sont dépliables (cliquez dessus) : essayez de refaire la preuve au brouillon avant de l'ouvrir, c'est le meilleur moyen de vraiment comprendre une formule. Les badges Essentiel / Conseillé / Avancé indiquent la priorité pour l'apprentissage.">The <strong>📐 Proof</strong> boxes are collapsible (click them): try to redo the proof on paper before opening it — that is the best way to truly understand a formula rather than memorise it. The badges <span class="badge essential">Essential</span> <span class="badge recommended">Recommended</span> <span class="badge advanced">Advanced</span> indicate the learning priority.</p>
+      </div>
+    </section>
+
+    <!-- ============ METHOD ============ -->
+    <section class="section" id="methode" data-track="methode">
+      <div class="section-kicker" data-fr="Guide d'utilisation">Guide</div>
+      <h1 data-fr="Comment <em>utiliser</em> cette banque">How to <em>use</em> this resource</h1>
+      <p class="section-lede" data-fr="Ce site rassemble le programme de maths en anglais pour la DNL : un vocabulaire précis, des propriétés clés, des démonstrations et des exemples. Voici quelques habitudes à prendre pour en tirer le meilleur parti.">This site gathers the maths programme in English for DNL: precise vocabulary, key properties, proofs and examples. Here are a few habits to get the most out of it.</p>
+
+      <div class="chapter">
+        <h2 data-fr="Comment parcourir les chapitres">How to work through the chapters</h2>
+        <div class="steps">
+          <div class="step"><h4 data-fr="Commencez par le vocabulaire">Start with the vocabulary</h4><p data-fr="Chaque chapitre s'ouvre sur un encart Définitions qui donne les termes clés en anglais et en français. Lisez-les en premier : sans le vocabulaire, la suite est difficile à suivre.">Each chapter opens with a Definitions box giving the key terms in English and French. Read those first — without the vocabulary, the rest is hard to follow.</p></div>
+          <div class="step"><h4 data-fr="Cherchez la démonstration vous-même">Attempt the proof yourself</h4><p data-fr="Avant de déplier un encart 📐 Démonstration, essayez de la retrouver au brouillon à partir de l'introduction : c'est ce qui distingue « savoir la formule » de « comprendre pourquoi elle est vraie ».">Before opening a 📐 Proof box, try to reconstruct it on paper from the introduction — that is what distinguishes “knowing the formula” from “understanding why it is true”.</p></div>
+          <div class="step"><h4 data-fr="Refaites l'exemple sans regarder">Redo the worked example without looking</h4><p data-fr="Cachez la solution, refaites le calcul, puis comparez. C'est l'exercice qui ressemble le plus à ce qui sera demandé en évaluation.">Hide the solution, redo the calculation, then compare. That is the exercise that most resembles what will be asked in an assessment.</p></div>
+          <div class="step"><h4 data-fr="Relisez le résumé à voix haute">Re-read the summary out loud</h4><p data-fr="Le résumé de chaque chapitre est ce que vous devez être capable de réciter sans notes avant l'évaluation.">The summary of each chapter is what you should be able to recite without notes before an assessment.</p></div>
+        </div>
+      </div>
+
+      <div class="chapter">
+        <h2 data-fr="Vocabulaire : correspondances EN / FR">Vocabulary: EN / FR correspondences</h2>
+        <table>
+          <tr><th data-fr="Français">French</th><th data-fr="Anglais correct">Correct English</th><th data-fr="Remarque">Note</th></tr>
+          <tr><td>nombre mixte</td><td>mixed number</td><td data-fr="« mixed fraction » est moins standard">“mixed fraction” is less standard</td></tr>
+          <tr><td>fraction impropre</td><td>improper fraction / top-heavy fraction</td><td data-fr="on dit aussi top-heavy">also called top-heavy</td></tr>
+          <tr><td>chiffre significatif</td><td>significant figure</td><td data-fr="« significant number » est à éviter">avoid “significant number”</td></tr>
+          <tr><td>décomposition en facteurs premiers</td><td>prime factorization</td><td data-fr="« prime decomposition » est compréhensible mais rare">“prime decomposition” is understandable but rare</td></tr>
+          <tr><td>arrondir à deux décimales</td><td>round to two decimal places (2 d.p.)</td><td data-fr="« round at two decimals » est incorrect">“round at two decimals” is incorrect</td></tr>
+          <tr><td>théorème de Pythagore</td><td>Pythagoras’ theorem</td><td data-fr="« Pythagorean theorem » (US) est aussi accepté">“Pythagorean theorem” (US) is also accepted</td></tr>
+        </table>
+      </div>
+
+      <div class="chapter">
+        <h2 data-fr="Notations et conventions anglaises">English notation &amp; conventions</h2>
+        <table>
+          <tr><th data-fr="Notation">Notation</th><th data-fr="Signification">Meaning</th></tr>
+          <tr><td>2 d.p.</td><td data-fr="2 décimales (decimal places)">two decimal places</td></tr>
+          <tr><td>2 s.f.</td><td data-fr="2 chiffres significatifs (significant figures)">two significant figures</td></tr>
+          <tr><td>\(a : b\)</td><td data-fr="ratio « a sur b »">ratio “a to b”</td></tr>
+          <tr><td>\(\bar{x}\)</td><td data-fr="moyenne d'un échantillon">sample mean</td></tr>
+          <tr><td>\(Q_1, Q_3\)</td><td data-fr="premier et troisième quartile">lower and upper quartile</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- ============================================================ DOMAIN 0 ============================================================ -->
+
+    <section class="section" id="d0-numbers" data-track="core">
+      <div class="section-kicker" data-fr="Domaine 0 — Connaissances de base">Domain 0 — Core Knowledge</div>
+      <h1><span data-fr="Nombres :">Numbers:</span> <em data-fr="mixte, arrondi, premier, forme standard">mixed, rounded, prime, standard form</em></h1>
+      <p class="section-lede" data-fr="Un nombre peut prendre de nombreuses formes différentes — une fraction, un nombre mixte, un décimal, ou une écriture scientifique. Ces formes paraissent différentes mais peuvent représenter exactement la même quantité.">A number can take many different forms — a fraction, a mixed number, a decimal, or standard index form. These forms look different but can represent the exact same quantity.</p>
+
+      <div class="chapter">
+        <h2><span class="chnum">01</span><span data-fr="Nombres mixtes">Mixed Numbers</span> <span class="badge essential" data-fr="Essentiel">Essential</span></h2>
+        <p data-fr="Avant d'étudier les nombres mixtes, rappelons deux mots : dans une fraction, le nombre du haut est le <strong>numérateur</strong> et le nombre du bas le <strong>dénominateur</strong>. Une <strong>fraction propre</strong> a un numérateur plus petit que le dénominateur (ex. ½). Une <strong>fraction impropre</strong> (ou <strong>top-heavy fraction</strong>) a un numérateur supérieur ou égal au dénominateur (ex. 7⁄4, 7⁄7).">Before looking at mixed numbers, let us recall two words: in a fraction, the top number is the <strong>numerator</strong> and the bottom number is the <strong>denominator</strong>. A <strong>proper fraction</strong> has a numerator smaller than the denominator (e.g. ½). An <strong>improper fraction</strong> (or <strong>top-heavy fraction</strong>) has a numerator greater than or equal to the denominator (e.g. 7⁄4, 7⁄7).</p>
+        <p data-fr="Un <strong>nombre mixte</strong> est un nombre entier suivi d'une fraction propre — par exemple quatre et un tiers.">A <strong>mixed number</strong> is a whole number followed by a proper fraction — for example, four and a third.</p>
+
+        <div class="box defs">
+          <div class="box-title" data-fr="📖 Définitions">📖 Definitions</div>
+          <dl>
+            <dt data-fr="Numérateur">Numerator</dt><dd><span data-fr="Le nombre du haut d'une fraction.">The top number of a fraction.</span> <span class="fr">numérateur</span></dd>
+            <dt data-fr="Dénominateur">Denominator</dt><dd><span data-fr="Le nombre du bas d'une fraction.">The bottom number of a fraction.</span> <span class="fr">dénominateur</span></dd>
+            <dt data-fr="Fraction propre">Proper fraction</dt><dd><span data-fr="Une fraction dont le numérateur est plus petit que le dénominateur.">A fraction where the numerator is smaller than the denominator.</span> <span class="fr">fraction propre</span></dd>
+            <dt data-fr="Fraction impropre">Improper / top-heavy fraction</dt><dd><span data-fr="Une fraction dont le numérateur est supérieur ou égal au dénominateur.">A fraction where the numerator is greater than or equal to the denominator.</span> <span class="fr">fraction impropre</span></dd>
+            <dt data-fr="Nombre mixte">Mixed number</dt><dd><span data-fr="Un nombre entier suivi d'une fraction propre.">A whole number followed by a proper fraction.</span> <span class="fr">nombre mixte</span></dd>
+          </dl>
+        </div>
+
+        <h3 data-fr="Convertir une fraction impropre en nombre mixte">Converting an improper fraction to a mixed number</h3>
+        <p data-fr="Prenons 7⁄2. On divise 7 par 2 : le quotient est 3 et le reste est 1. Donc 7⁄2 = 3½ — le quotient devient la partie entière et le reste est mis sur le diviseur.">Take 7⁄2. Divide 7 by 2: the quotient is 3 and the remainder is 1. So 7⁄2 = 3½ — the quotient becomes the whole number and the remainder is placed over the divisor.</p>
+        <div class="box formula">\(\dfrac{7}{2} \;\longrightarrow\; 3 \text{ R } 1 \;\longrightarrow\; 3\tfrac{1}{2}\)</div>
+
+        <h3 data-fr="Dans l'autre sens">Going backwards</h3>
+        <p data-fr="Pour reconvertir 3½ en fraction impropre : 3 × 2 = 6, plus 1 = 7, donc 3½ = 7⁄2.">To convert 3½ back to an improper fraction: 3 × 2 = 6, plus 1 = 7, so 3½ = 7⁄2.</p>
+
+        <details class="acc">
+          <summary data-fr="📐 Pourquoi la valeur ne change pas">📐 Why the value does not change</summary>
+          <div class="acc-body">
+            <p data-fr="Quand on écrit 7⁄2 = 3½, on utilise le fait que 7 = 3×2 + 1. Donc 7/2 = (3×2+1)/2 = 3 + 1/2 = 3½. Le nombre mixte n'est qu'une autre notation du même nombre rationnel — aucune approximation n'est faite.">When we write 7⁄2 = 3½, we use the fact that 7 = 3×2 + 1. So \(\frac{7}{2} = \frac{3\times2+1}{2} = \frac{3\times2}{2} + \frac{1}{2} = 3 + \frac12 = 3\tfrac12\). The mixed number is just a different notation for the same rational number — no approximation is involved.</p>
+          </div>
+        </details>
+
+        <div class="box example">
+          <div class="box-title" data-fr="✏️ Exemple résolu">✏️ Worked example</div>
+          <p data-fr="Convertir 38⁄7 en nombre mixte, puis l'exprimer en décimal arrondi à deux décimales.">Convert 38⁄7 into a mixed number, then express it as a decimal rounded to two decimal places.</p>
+          <p data-fr="<strong>1. Nombre mixte :</strong> 38 ÷ 7 = 5 R 3 (car 7 × 5 = 35 et 38 − 35 = 3). Donc 38⁄7 = 5 3⁄7."><strong>1. Mixed number:</strong> 38 ÷ 7 = 5 R 3 (since 7 × 5 = 35 and 38 − 35 = 3). So 38⁄7 = 5 3⁄7.</p>
+          <p data-fr="<strong>2. Décimal :</strong> 3⁄7 ≈ 0,428571…, donc 38⁄7 ≈ 5,428571…"><strong>2. Decimal:</strong> 3⁄7 ≈ 0.428571…, so 38⁄7 ≈ 5.428571…</p>
+          <p data-fr="<strong>3. Arrondi à 2 décimales :</strong> on garde 5,42, on regarde le troisième chiffre (8 ≥ 5), on arrondit : 5,43."><strong>3. Rounding to 2 d.p.:</strong> keep 5.42, look at the third digit (8 ≥ 5), so round up: 5.43.</p>
+          <p data-fr="<strong>Réponse finale :</strong> 38⁄7 ≈ 5,43 (à 2 décimales). Remarque : 5 3⁄7 est exact ; 5,43 n'est qu'une approximation."><strong>Final answer:</strong> 38⁄7 ≈ 5.43 (to 2 d.p.). Note: 5 3⁄7 is exact; 5.43 is only an approximation.</p>
+        </div>
+
+        <div class="box err">
+          <div class="box-title" data-fr="⚠ Erreur fréquente">⚠ Common mistake</div>
+          <p data-fr="Écrire « 5,3 » pour 5 3⁄7 — le nombre mixte 5 3⁄7 vaut 5 + 3⁄7, pas 5,3. Toujours garder la barre de fraction visible dans la forme mixte.">Writing “5.3” for 5 3⁄7 — the mixed number 5 3⁄7 means 5 + 3⁄7, not 5.3. Always keep the fraction bar visible in the mixed form.</p>
+        </div>
+
+        <div class="box bilan">
+          <div class="box-title" data-fr="🧩 Résumé">🧩 Summary</div>
+          <ul>
+            <li data-fr="Un nombre mixte est une notation exacte alternative pour une fraction impropre.">A mixed number is an exact alternative notation for an improper fraction.</li>
+            <li data-fr="Quotient → partie entière, reste → numérateur sur le diviseur.">Quotient → whole number, remainder → numerator over the divisor.</li>
+            <li data-fr="Arrondir modifie la valeur ; convertir en nombre mixte non.">Rounding changes the value; converting to a mixed number does not.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="chapter">
+        <h2><span class="chnum">02</span><span data-fr="Arrondir des nombres">Rounding Numbers</span> <span class="badge essential" data-fr="Essentiel">Essential</span></h2>
+        <p data-fr="Arrondir est utile quand un décimal a beaucoup de chiffres et qu'on veut une valeur plus simple à lire. Il y a deux méthodes courantes : arrondir à un nombre de <strong>décimales</strong> (d.p.), ou à un nombre de <strong>chiffres significatifs</strong> (s.f.).">Rounding is useful when a decimal has many digits and we want a simpler, more readable value. There are two common ways: rounding to a number of <strong>decimal places</strong> (d.p.), or to a number of <strong>significant figures</strong> (s.f.).</p>
+
+        <div class="box defs">
+          <div class="box-title" data-fr="📖 Définitions">📖 Definitions</div>
+          <dl>
+            <dt data-fr="Décimale">Decimal place</dt><dd><span data-fr="Une position après la virgule.">A position after the decimal point.</span> <span class="fr">décimale</span></dd>
+            <dt data-fr="Chiffre significatif">Significant figure</dt><dd><span data-fr="Un chiffre porteur de sens dans un nombre, à partir du premier chiffre non nul.">A digit that carries meaning in a number, starting from the first non-zero digit.</span> <span class="fr">chiffre significatif</span></dd>
+            <dt data-fr="Zéro non significatif">Leading zero</dt><dd><span data-fr="Un zéro au début d'un nombre, non significatif.">A zero at the start of a number that is not significant.</span> <span class="fr">zéro non significatif</span></dd>
+          </dl>
+        </div>
+
+        <h3 data-fr="Arrondir à un nombre de décimales">Rounding to decimal places</h3>
+        <p data-fr="Prenons 3,14159 et arrondissons à 2 décimales. On garde les deux premiers chiffres après la virgule (1 et 4), puis on regarde le suivant (1). Comme 1 &lt; 5, on ne change rien : 3,14159 → 3,14.">Take 3.14159 and round it to 2 d.p. We keep the first two digits after the point (1 and 4), then look at the next digit (1). Since 1 &lt; 5, we do not change anything: 3.14159 → 3.14.</p>
+        <p data-fr="Pour 3,146 à 2 décimales : le troisième chiffre est 6 ≥ 5, on arrondit au-dessus : 3,146 → 3,15.">For 3.146 to 2 d.p.: the third digit is 6 ≥ 5, so we round up: 3.146 → 3.15.</p>
+
+        <h3 data-fr="Arrondir à un nombre de chiffres significatifs">Rounding to significant figures</h3>
+        <p data-fr="Arrondissons 0,0523 à 2 chiffres significatifs. Le premier chiffre significatif est 5, le second est 2 — les zéros au début ne comptent pas. Le chiffre suivant est 3 &lt; 5, donc le second reste identique : 0,0523 → 0,052.">Round 0.0523 to 2 s.f. The first significant figure is 5, the second is 2 — the leading zeros do not count. The next digit is 3 &lt; 5, so the second figure stays the same: 0.0523 → 0.052.</p>
+
+        <div class="box formula" data-fr="Règle : on garde les chiffres voulus, on regarde le suivant, et on arrondit au-dessus s'il est supérieur ou égal à 5.">Rule: keep the digits you need, look at the next one, and round up if it is 5 or more.</div>
+
+        <div class="box example">
+          <div class="box-title" data-fr="✏️ Exemple résolu">✏️ Worked example</div>
+          <p data-fr="Arrondir 3,14159 à 2 décimales et 0,0523 à 2 chiffres significatifs.">Round 3.14159 to 2 d.p. and 0.0523 to 2 s.f.</p>
+          <p data-fr="<strong>3,14159 → 3,14</strong> (chiffre suivant 1 &lt; 5)."><strong>3.14159 → 3.14</strong> (next digit 1 &lt; 5).</p>
+          <p data-fr="<strong>0,0523 → 0,052</strong> (chiffre suivant 3 &lt; 5, zéros de tête ignorés)."><strong>0.0523 → 0.052</strong> (next digit 3 &lt; 5, leading zeros ignored).</p>
+        </div>
+
+        <div class="box bilan">
+          <div class="box-title" data-fr="🧩 Résumé">🧩 Summary</div>
+          <ul>
+            <li data-fr="Arrondir remplace une valeur exacte par une approximation — toujours préciser la précision (ex. « à 2 décimales »).">Rounding replaces an exact value by an approximation — always state the precision (e.g. “to 2 d.p.”).</li>
+            <li data-fr="Pour les chiffres significatifs, on ignore les zéros de tête : ils ne sont pas significatifs.">For significant figures, ignore leading zeros; they are not significant.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="chapter">
+        <h2><span class="chnum">03</span><span data-fr="Nombres premiers">Prime Numbers</span> <span class="badge essential" data-fr="Essentiel">Essential</span></h2>
+        <p data-fr="Un <strong>nombre premier</strong> est un nombre strictement supérieur à 1 qui ne peut être divisé que par 1 et lui-même. Par exemple : 2, 3, 5, 7, 11, 13, …">A <strong>prime number</strong> is a number bigger than 1 that can only be divided by 1 and itself. For example: 2, 3, 5, 7, 11, 13, …</p>
+        <p data-fr="7 est premier : ses seuls diviseurs sont 1 et 7. 12 n'est pas premier — il est divisible par 1, 2, 3, 4, 6 et 12 — on dit que c'est un <strong>nombre composé</strong>.">7 is prime: its only divisors are 1 and 7. 12 is not prime — it can be divided by 1, 2, 3, 4, 6, and 12 — we call it a <strong>composite number</strong>.</p>
+
+        <div class="box defs">
+          <div class="box-title" data-fr="📖 Définitions">📖 Definitions</div>
+          <dl>
+            <dt data-fr="Nombre premier">Prime number</dt><dd><span data-fr="Un entier supérieur à 1 dont les seuls diviseurs positifs sont 1 et lui-même.">An integer greater than 1 whose only positive divisors are 1 and itself.</span> <span class="fr">nombre premier</span></dd>
+            <dt data-fr="Nombre composé">Composite number</dt><dd><span data-fr="Un entier supérieur à 1 qui n'est pas premier.">An integer greater than 1 that is not prime.</span> <span class="fr">nombre composé</span></dd>
+            <dt data-fr="Décomposition en facteurs premiers">Prime factorization</dt><dd><span data-fr="Écrire un nombre comme produit de nombres premiers.">Writing a number as a product of prime numbers.</span> <span class="fr">décomposition en facteurs premiers</span></dd>
+          </dl>
+        </div>
+
+        <h3 data-fr="Décomposition en facteurs premiers">Prime factorization</h3>
+        <p data-fr="Tout nombre composé peut être décomposé en produit de nombres premiers, et cette factorisation est unique (à l'ordre près). Par exemple : 12 = 2² × 3.">Every composite number can be broken down into a product of prime numbers, and this factorization is unique (up to order). For example: 12 = 2² × 3.</p>
+
+        <div class="box formula" data-fr="Tout entier n ≥ 2 admet une décomposition en facteurs premiers <strong>unique</strong>.">Every integer \(n \ge 2\) has a <strong>unique</strong> prime factorization.</div>
+
+        <details class="acc">
+          <summary data-fr="📐 Démonstration — il y a une infinité de nombres premiers (Euclide)">📐 Proof — there are infinitely many prime numbers (Euclid)</summary>
+          <div class="acc-body">
+            <p data-fr="Supposons par l'absurde qu'il n'y ait qu'un nombre fini de premiers p₁, p₂, …, pₙ. Considérons N = p₁ × p₂ × ⋯ × pₙ + 1. Aucun des pᵢ ne divise N (diviser N par un pᵢ laisse toujours un reste de 1). Or tout entier ≥ 2 admet au moins un diviseur premier, donc N possède un diviseur premier qui n'est aucun des pᵢ — contradiction. Donc il existe une infinité de nombres premiers.">Suppose, for contradiction, that there are only finitely many primes \(p_1, p_2, \dots, p_n\). Consider \(N = p_1 \times p_2 \times \cdots \times p_n + 1\). None of the \(p_i\) divides \(N\) (dividing \(N\) by any \(p_i\) leaves remainder 1). But every integer ≥ 2 has at least one prime divisor, so \(N\) must have a prime divisor not among the \(p_i\) — contradiction. Hence there are infinitely many primes.</p>
+          </div>
+        </details>
+
+        <div class="box example">
+          <div class="box-title" data-fr="✏️ Exemple résolu">✏️ Worked example</div>
+          <p data-fr="Soit N le produit des cinq premiers nombres premiers. Calculer N et l'exprimer en écriture scientifique.">Let \(N\) be the product of the first five prime numbers. Calculate \(N\) and express it in standard index form.</p>
+          <p data-fr="<strong>1.</strong> Les cinq premiers nombres premiers : 2, 3, 5, 7, 11."><strong>1.</strong> First five primes: 2, 3, 5, 7, 11.</p>
+          <p data-fr="<strong>2.</strong> N = 2 × 3 × 5 × 7 × 11 = 2310."><strong>2.</strong> \(N = 2 \times 3 \times 5 \times 7 \times 11 = 2310\).</p>
+          <p data-fr="<strong>3. Forme standard :</strong> 2310 = 2,31 × 10³. Vérification : 2,31 × 1000 = 2310 ✓."><strong>3. Standard form:</strong> \(2310 = 2.31 \times 10^3\). Check: \(2.31 \times 1000 = 2310\) ✓.</p>
+        </div>
+
+        <div class="box bilan">
+          <div class="box-title" data-fr="🧩 Résumé">🧩 Summary</div>
+          <ul>
+            <li data-fr="Les nombres premiers sont les « briques élémentaires » des entiers.">Primes are the “building blocks” of whole numbers.</li>
+            <li data-fr="Pour tester si n est premier, il suffit de chercher un diviseur jusqu'à √n.">To test whether \(n\) is prime, it is enough to look for divisors up to \(\sqrt{n}\).</li>
+            <li data-fr="La factorisation est toujours unique — c'est le théorème fondamental de l'arithmétique.">The factorization is always unique — this is the Fundamental Theorem of Arithmetic.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="chapter">
+        <h2><span class="chnum">04</span><span data-fr="Écriture scientifique">Standard Index Form</span> <span class="badge essential" data-fr="Essentiel">Essential</span></h2>
+        <p data-fr="L'écriture scientifique (aussi appelée <strong>standard index form</strong> ou <strong>scientific notation</strong>) est utile pour les très grands ou très petits nombres. Un nombre en écriture scientifique s'écrit a × 10ⁿ, avec 1 ≤ a &lt; 10 et n entier.">Standard index form (also called <strong>scientific notation</strong>) is useful for very large or very small numbers. A number in standard form looks like \(a \times 10^n\), where \(1 \le a < 10\) and \(n\) is an integer.</p>
+
+        <div class="box formula">\(a \times 10^n \quad \text{<span data-fr='avec'>with</span> } 1 \le a < 10, \; n \in \mathbb{Z}\)</div>
+
+        <h3 data-fr="Grands nombres">Large numbers</h3>
+        <p data-fr="5 600 000 : on déplace la virgule de 6 rangs vers la gauche → 5,6 × 10⁶.">5,600,000: move the decimal point 6 places to the left → 5.6 × 10⁶.</p>
+
+        <h3 data-fr="Petits nombres">Small numbers</h3>
+        <p data-fr="0,00043 : on déplace la virgule de 4 rangs vers la droite → 4,3 × 10⁻⁴. L'exposant négatif signifie que le nombre est plus petit que 1.">0.00043: move the decimal point 4 places to the right → 4.3 × 10⁻⁴. The negative exponent tells us the number is smaller than 1.</p>
+
+        <div class="box tip">
+          <div class="box-title" data-fr="💡 Notation universelle">💡 Universal notation</div>
+          <p data-fr="L'écriture scientifique est utilisée partout dans le monde — dans les manuels britanniques et américains, et dans les revues scientifiques internationales — ce qui montre que les mathématiques sont un langage véritablement universel.">Standard index form is used worldwide — in British and American textbooks, and in international science journals — which shows that mathematics is a truly universal language.</p>
+        </div>
+
+        <div class="box example">
+          <div class="box-title" data-fr="✏️ Exemple résolu">✏️ Worked example</div>
+          <p data-fr="Exprimer 2310 en écriture scientifique.">Express 2310 in standard index form.</p>
+          <p data-fr="<strong>1.</strong> Coefficient entre 1 et 10 : 2,31."><strong>1.</strong> Coefficient between 1 and 10: 2.31.</p>
+          <p data-fr="<strong>2.</strong> On a déplacé la virgule de 3 rangs vers la gauche → multiplier par 10³."><strong>2.</strong> Moved the point 3 places to the left → multiply by 10³.</p>
+          <p data-fr="<strong>3.</strong> 2310 = 2,31 × 10³."><strong>3.</strong> \(2310 = 2.31 \times 10^3\).</p>
+        </div>
+
+        <div class="box bilan">
+          <div class="box-title" data-fr="🧩 Résumé">🧩 Summary</div>
+          <ul>
+            <li data-fr="L'écriture scientifique est a × 10ⁿ avec 1 ≤ a &lt; 10.">Standard form is \(a \times 10^n\) with \(1 \le a < 10\).</li>
+            <li data-fr="Les grands nombres ont un exposant positif, les petits un exposant négatif.">Large numbers have positive exponents; small numbers have negative exponents.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="d0-ratios" data-track="core">
+      <div class="chapter">
+        <h2><span class="chnum">05</span><span data-fr="Ratios">Ratios</span> <span class="badge recommended" data-fr="Conseillé">Recommended</span></h2>
+        <p data-fr="Un <strong>ratio</strong> compare deux ou plusieurs quantités de même nature. Il peut s'écrire a : b, comme fraction a/b, ou en mots (« a pour b »).">A <strong>ratio</strong> compares two or more quantities of the same kind. It can be written as \(a : b\), as a fraction \(\frac{a}{b}\), or in words (“a to b”).</p>
+
+        <div class="box defs">
+          <div class="box-title" data-fr="📖 Définitions">📖 Definitions</div>
+          <dl>
+            <dt data-fr="Ratio">Ratio</dt><dd><span data-fr="Une comparaison de deux ou plusieurs quantités.">A comparison of two or more quantities.</span> <span class="fr">rapport / ratio</span></dd>
+            <dt data-fr="Proportion">Proportion</dt><dd><span data-fr="Une égalité entre deux ratios.">An equation stating that two ratios are equal.</span> <span class="fr">proportion</span></dd>
+            <dt data-fr="Coefficient de proportionnalité">Scale factor</dt><dd><span data-fr="Le nombre par lequel on multiplie toutes les parties d'un ratio.">The number by which all parts of a ratio are multiplied.</span> <span class="fr">coefficient de proportionnalité</span></dd>
+          </dl>
+        </div>
+
+        <div class="box formula" data-fr="Si a : b = c : d, alors ad = bc (produit en croix).">If \(a : b = c : d\), then \(ad = bc\) (cross-multiplication).</div>
+
+        <div class="box example">
+          <div class="box-title" data-fr="✏️ Exemple résolu">✏️ Worked example</div>
+          <p data-fr="Partager 120 £ dans le ratio 2 : 3.">Divide £120 in the ratio 2 : 3.</p>
+          <p data-fr="<strong>1.</strong> Nombre total de parts = 2 + 3 = 5."><strong>1.</strong> Total parts = 2 + 3 = 5.</p>
+          <p data-fr="<strong>2.</strong> Une part = 120 ÷ 5 = 24 £."><strong>2.</strong> One part = 120 ÷ 5 = £24.</p>
+          <p data-fr="<strong>3.</strong> Parts : 2 × 24 = 48 £ et 3 × 24 = 72 £."><strong>3.</strong> Shares: 2 × 24 = £48 and 3 × 24 = £72.</p>
+          <p data-fr="<strong>Vérification :</strong> 48 + 72 = 120 ✓ et 48 : 72 = 2 : 3 ✓."><strong>Check:</strong> 48 + 72 = 120 ✓ and 48 : 72 = 2 : 3 ✓.</p>
+        </div>
+
+        <div class="box bilan">
+          <div class="box-title" data-fr="🧩 Résumé">🧩 Summary</div>
+          <ul>
+            <li data-fr="Pour partager selon un ratio : additionner les parts, diviser le total, multiplier chaque part.">To share in a ratio: add the parts, divide the total, multiply each share.</li>
+            <li data-fr="Toujours vérifier que les parts redonnent bien le total initial.">Always check that the shares add back to the original total.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="d0-triangles" data-track="core">
+      <div class="section-kicker" data-fr="Domaine 0 — Connaissances de base">Domain 0 — Core Knowledge</div>
+      <h1><span data-fr="Formes 2D :">2D Shapes:</span> <em data-fr="Triangles">Triangles</em></h1>
+      <p class="section-lede" data-fr="Un triangle est une forme à 2 dimensions avec 3 côtés, 3 angles et 3 sommets. Les triangles se classent selon leurs côtés et selon leurs angles.">A triangle is a 2-dimensional shape with 3 sides, 3 angles and 3 vertices. Triangles are classified by their sides and by their angles.</p>
+
+      <div class="chapter">
+        <h2><span class="chnum">06</span><span data-fr="Noms & propriétés des triangles">Names &amp; Properties of Triangles</span> <span class="badge essential" data-fr="Essentiel">Essential</span></h2>
+
+        <div class="box defs">
+          <div class="box-title" data-fr="📖 Définitions">📖 Definitions</div>
+          <dl>
+            <dt data-fr="Sommet">Vertex</dt><dd><span data-fr="Un coin d'une figure.">A corner of a shape.</span> <span class="fr">sommet</span></dd>
+            <dt data-fr="Côté">Side</dt><dd><span data-fr="Un segment formant une partie du contour.">A line segment forming part of the boundary.</span> <span class="fr">côté</span></dd>
+            <dt data-fr="Angle">Angle</dt><dd><span data-fr="L'espace entre deux droites qui se coupent, mesuré en degrés.">The space between two intersecting lines, measured in degrees.</span> <span class="fr">angle</span></dd>
+          </dl>
+        </div>
+
+        <h3 data-fr="Types de triangles selon les côtés">Types of triangles by side</h3>
+        <table>
+          <tr><th data-fr="Nom">Name</th><th data-fr="Propriétés">Properties</th><th data-fr="Français">French</th></tr>
+          <tr><td data-fr="Équilatéral">Equilateral</td><td data-fr="Les trois côtés égaux ; les trois angles valent 60°.">All three sides are equal in length; all angles are 60°.</td><td>équilatéral</td></tr>
+          <tr><td data-fr="Isocèle">Isosceles</td><td data-fr="Deux côtés égaux ; deux angles à la base égaux. Les angles opposés aux côtés égaux sont égaux.">Two equal sides; two equal base angles. The angles opposite the equal sides are equal.</td><td>isocèle</td></tr>
+          <tr><td data-fr="Scalène">Scalene</td><td data-fr="Les trois côtés et les trois angles différents.">All three sides different; all three angles different.</td><td>scalène</td></tr>
+        </table>
+
+        <h3 data-fr="Types de triangles selon les angles">Types of triangles by angle</h3>
+        <table>
+          <tr><th data-fr="Nom">Name</th><th data-fr="Propriétés">Properties</th><th data-fr="Français">French</th></tr>
+          <tr><td data-fr="Rectangle">Right-angled</td><td data-fr="Un angle mesure exactement 90°.">One angle is exactly 90°.</td><td>rectangle</td></tr>
+          <tr><td data-fr="Acutangle">Acute-angled</td><td data-fr="Tous les angles sont inférieurs à 90°.">All angles are less than 90°.</td><td>acutangle</td></tr>
+          <tr><td data-fr="Obtusangle">Obtuse-angled</td><td data-fr="Un angle est supérieur à 90°.">One angle is greater than 90°.</td><td>obtusangle</td></tr>
+        </table>
+
+        <h3 data-fr="Droites remarquables d'un triangle">Particular straight lines in a triangle</h3>
+        <table>
+          <tr><th data-fr="Droite">Line</th><th data-fr="Définition">Definition</th><th data-fr="Français">French</th></tr>
+          <tr><td data-fr="Médiatrice">Perpendicular bisector</td><td data-fr="Droite passant par le milieu d'un côté, perpendiculaire à ce côté.">A line passing through the midpoint of a side, perpendicular to it.</td><td>médiatrice</td></tr>
+          <tr><td data-fr="Bissectrice">Angle bisector</td><td data-fr="Droite passant par un sommet et coupant l'angle en deux.">A line that passes through a vertex and cuts the angle in half.</td><td>bissectrice</td></tr>
+          <tr><td data-fr="Médiane">Median</td><td data-fr="Droite joignant un sommet au milieu du côté opposé.">A line from a vertex to the midpoint of the opposite side.</td><td>médiane</td></tr>
+          <tr><td data-fr="Hauteur">Altitude</td><td data-fr="Droite passant par un sommet et perpendiculaire au côté opposé (ou à son prolongement).">A line from a vertex perpendicular to the opposite side (or its extension).</td><td>hauteur</td></tr>
+        </table>
+
+        <div class="box formula" data-fr="Aire d'un triangle : A = (b × h) / 2 &nbsp;&nbsp; Périmètre : P = a + b + c">Area of a triangle: \(\;A = \dfrac{b \times h}{2}\;\) &nbsp;&nbsp; Perimeter: \(\;P = a + b + c\)</div>
+
+        <div class="box example">
+          <div class="box-title" data-fr="✏️ Exemple résolu">✏️ Worked example</div>
+          <p data-fr="Un triangle a pour côtés 6,2 cm, 8,6 cm et 4 cm, avec une hauteur de 4 cm relative à la base de 8,6 cm. Calculer son périmètre et son aire.">A triangle has sides 6.2 cm, 8.6 cm and 4 cm, and a height of 4 cm relative to the base of 8.6 cm. Find its perimeter and area.</p>
+          <p data-fr="<strong>1. Périmètre :</strong> P = 6,2 + 8,6 + 4 = 18,8 cm."><strong>1. Perimeter:</strong> \(P = 6.2 + 8.6 + 4 = 18.8\) cm.</p>
+          <p data-fr="<strong>2. Aire :</strong> A = (8,6 × 4) / 2 = 34,4 / 2 = 17,2 cm²."><strong>2. Area:</strong> \(A = \dfrac{8.6 \times 4}{2} = \dfrac{34.4}{2} = 17.2\) cm².</p>
+        </div>
+
+        <div class="box bilan">
+          <div class="box-title" data-fr="🧩 Résumé">🧩 Summary</div>
+          <ul>
+            <li data-fr="Les triangles se classent selon les côtés (équilatéral / isocèle / scalène) et selon les angles (rectangle / acutangle / obtusangle).">Triangles are classified by sides (equilateral / isosceles / scalene) and by angles (right / acute / obtuse).</li>
+            <li data-fr="Périmètre = somme des côtés ; Aire = (base × hauteur) ÷ 2.">Perimeter = sum of all sides; Area = (base × height) ÷ 2.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="d0-pythagoras" data-track="core">
+      <div class="chapter">
+        <h2><span class="chnum">07</span><span data-fr="Théorème de Pythagore & rapports trigonométriques">Pythagoras’ Theorem &amp; Trigonometric Ratios</span> <span class="badge essential" data-fr="Essentiel">Essential</span></h2>
+        <p data-fr="Dans un triangle rectangle, le côté opposé à l'angle droit s'appelle l'<strong>hypoténuse</strong> — c'est toujours le plus long côté. Le théorème de Pythagore relie les trois côtés de tout triangle rectangle.">In a right-angled triangle, the side opposite the right angle is called the <strong>hypotenuse</strong> — it is always the longest side. Pythagoras’ theorem relates the three sides of any right-angled triangle.</p>
+
+        <div class="box formula" data-fr="Pythagore : a² + b² = c² où c est l'hypoténuse.">Pythagoras: \(\;a^2 + b^2 = c^2\;\) where \(c\) is the hypotenuse.</div>
+
+        <div class="box defs">
+          <div class="box-title" data-fr="📖 Définitions">📖 Definitions</div>
+          <dl>
+            <dt data-fr="Hypoténuse">Hypotenuse</dt><dd><span data-fr="Le côté opposé à l'angle droit ; le plus long côté.">The side opposite the right angle; the longest side.</span> <span class="fr">hypoténuse</span></dd>
+            <dt data-fr="Côté adjacent">Adjacent</dt><dd><span data-fr="Le côté à côté d'un angle donné.">The side next to a given angle.</span> <span class="fr">côté adjacent</span></dd>
+            <dt data-fr="Côté opposé">Opposite</dt><dd><span data-fr="Le côté opposé à un angle donné.">The side opposite a given angle.</span> <span class="fr">côté opposé</span></dd>
+          </dl>
+        </div>
+
+        <details class="acc">
+          <summary data-fr="📐 Démonstration visuelle du théorème de Pythagore">📐 Proof — a visual proof of Pythagoras’ theorem</summary>
+          <div class="acc-body">
+            <p data-fr="Considérons un carré de côté a+b contenant quatre copies d'un triangle rectangle de côtés a et b et d'hypoténuse c, arrangées de sorte que l'espace restant forme un carré penché de côté c. L'aire totale du grand carré est (a+b)² = a² + 2ab + b². L'aire des quatre triangles est 4 × (ab/2) = 2ab, donc l'aire du carré penché est (a+b)² − 2ab = a² + b². Or ce carré a pour aire c². D'où a² + b² = c².">Consider a square of side \(a+b\) containing four copies of a right-angled triangle with legs \(a\) and \(b\) and hypotenuse \(c\), arranged so that the remaining space forms a tilted square of side \(c\). The total area of the large square is \((a+b)^2 = a^2+2ab+b^2\). The area of the four triangles is \(4 \times \frac12 ab = 2ab\), so the area of the tilted square is \((a+b)^2 - 2ab = a^2+b^2\). But the tilted square has area \(c^2\). Hence \(a^2+b^2=c^2\).</p>
+          </div>
+        </details>
+
+        <h3 data-fr="Rapports trigonométriques (SOH CAH TOA)">Trigonometric ratios (SOH CAH TOA)</h3>
+        <div class="box formula">\(\sin\theta = \dfrac{\text{<span data-fr='Opposé'>Opposite</span>}}{\text{<span data-fr='Hypoténuse'>Hypotenuse</span>}} \qquad \cos\theta = \dfrac{\text{<span data-fr='Adjacent'>Adjacent</span>}}{\text{<span data-fr='Hypoténuse'>Hypotenuse</span>}} \qquad \tan\theta = \dfrac{\text{<span data-fr='Opposé'>Opposite</span>}}{\text{<span data-fr='Adjacent'>Adjacent</span>}}\)</div>
+
+        <div class="box example">
+          <div class="box-title" data-fr="✏️ Exemple résolu">✏️ Worked example</div>
+          <p data-fr="Dans un triangle rectangle, les deux plus petits côtés mesurent 5 cm et 12 cm. Trouver l'hypoténuse et le plus petit angle.">In a right-angled triangle, the two shorter sides measure 5 cm and 12 cm. Find the hypotenuse and the smallest angle.</p>
+          <p data-fr="<strong>1. Pythagore :</strong> c² = 5² + 12² = 25 + 144 = 169, donc c = √169 = 13 cm."><strong>1. Pythagoras:</strong> \(c^2 = 5^2 + 12^2 = 25 + 144 = 169\), so \(c = \sqrt{169} = 13\) cm.</p>
+          <p data-fr="<strong>2. Plus petit angle :</strong> le plus petit angle est opposé au plus petit côté (5 cm). tan θ = 5/12, donc θ = arctan(5/12) ≈ 22,6°."><strong>2. Smallest angle:</strong> the smallest angle is opposite the smallest side (5 cm). \(\tan\theta = \frac{5}{12}\), so \(\theta = \tan^{-1}(5/12) \approx 22.6°\).</p>
+          <p data-fr="<strong>3. Vérification :</strong> 13² = 169 = 5² + 12² ✓. C'est un triangle 5-12-13, un triplet pythagoricien classique."><strong>3. Check:</strong> \(13^2 = 169 = 5^2+12^2\) ✓. This is a 5-12-13 triangle, a classic Pythagorean triple.</p>
+        </div>
+
+        <div class="box err">
+          <div class="box-title" data-fr="⚠ Erreur fréquente">⚠ Common mistake</div>
+          <p data-fr="Oublier de vérifier quel côté est l'hypoténuse avant d'appliquer Pythagore. L'hypoténuse est toujours <em>opposée à l'angle droit</em>, jamais l'un des deux côtés formant l'angle droit.">Forgetting to check which side is the hypotenuse before applying Pythagoras. The hypotenuse is always <em>opposite the right angle</em>, never one of the two sides that form the right angle.</p>
+        </div>
+
+        <div class="box bilan">
+          <div class="box-title" data-fr="🧩 Résumé">🧩 Summary</div>
+          <ul>
+            <li data-fr="Pythagore : a² + b² = c² où c est l'hypoténuse.">Pythagoras: \(a^2 + b^2 = c^2\) where \(c\) is the hypotenuse.</li>
+            <li data-fr="SOH CAH TOA : sin = Opp/Hyp, cos = Adj/Hyp, tan = Opp/Adj.">SOH CAH TOA: sin = Opp/Hyp, cos = Adj/Hyp, tan = Opp/Adj.</li>
+            <li data-fr="Utiliser les fonctions trigonométriques inverses (sin⁻¹, cos⁻¹, tan⁻¹) pour trouver un angle inconnu.">Use inverse trig functions (\(\sin^{-1}\), \(\cos^{-1}\), \(\tan^{-1}\)) to find an unknown angle.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="d0-quads" data-track="core">
+      <div class="chapter">
+        <h2><span class="chnum">08</span><span data-fr="Quadrilatères & cercles">Quadrilaterals &amp; Circles</span> <span class="badge essential" data-fr="Essentiel">Essential</span></h2>
+        <p data-fr="Un <strong>quadrilatère</strong> est une forme 2D à 4 côtés et 4 sommets. Un <strong>cercle</strong> est l'ensemble des points situés à une distance fixe d'un centre.">A <strong>quadrilateral</strong> is a 2D shape with 4 sides and 4 vertices. A <strong>circle</strong> is the set of all points at a fixed distance from a centre.</p>
+
+        <h3 data-fr="Quadrilatères">Quadrilaterals</h3>
+        <table>
+          <tr><th data-fr="Nom">Name</th><th data-fr="Propriétés">Properties</th><th data-fr="Français">French</th></tr>
+          <tr><td data-fr="Carré">Square</td><td data-fr="4 côtés égaux, 4 angles droits">4 equal sides, 4 right angles</td><td>carré</td></tr>
+          <tr><td data-fr="Rectangle">Rectangle</td><td data-fr="Côtés opposés égaux, 4 angles droits">Opposite sides equal, 4 right angles</td><td>rectangle</td></tr>
+          <tr><td data-fr="Parallélogramme">Parallelogram</td><td data-fr="Côtés opposés parallèles et égaux">Opposite sides parallel and equal</td><td>parallélogramme</td></tr>
+          <tr><td data-fr="Losange">Rhombus</td><td data-fr="4 côtés égaux, angles opposés égaux">4 equal sides, opposite angles equal</td><td>losange</td></tr>
+          <tr><td data-fr="Trapèze">Trapezium</td><td data-fr="Une paire de côtés parallèles">One pair of parallel sides</td><td>trapèze</td></tr>
+          <tr><td data-fr="Cerf-volant">Kite</td><td data-fr="Deux paires de côtés adjacents égaux">Two pairs of adjacent equal sides</td><td>cerf-volant</td></tr>
+        </table>
+
+        <div class="box formula" data-fr="Aire d'un rectangle : A = L × l &nbsp;&nbsp; Aire d'un parallélogramme : A = b × h &nbsp;&nbsp; Aire d'un trapèze : A = ((a+b)h)/2">Area of a rectangle: \(A = L \times W\) &nbsp;&nbsp; Area of a parallelogram: \(A = b \times h\) &nbsp;&nbsp; Area of a trapezium: \(A = \dfrac{(a+b)h}{2}\)</div>
+
+        <h3 data-fr="Cercles">Circles</h3>
+        <div class="box defs">
+          <div class="box-title" data-fr="📖 Définitions">📖 Definitions</div>
+          <dl>
+            <dt data-fr="Rayon">Radius</dt><dd><span data-fr="Distance du centre au cercle.">Distance from the centre to the circle.</span> <span class="fr">rayon</span></dd>
+            <dt data-fr="Diamètre">Diameter</dt><dd><span data-fr="Distance à travers le cercle passant par le centre (d = 2r).">Distance across the circle through the centre (\(d = 2r\)).</span> <span class="fr">diamètre</span></dd>
+            <dt data-fr="Circonférence">Circumference</dt><dd><span data-fr="Périmètre d'un cercle.">Perimeter of a circle.</span> <span class="fr">circonférence</span></dd>
+            <dt data-fr="Corde">Chord</dt><dd><span data-fr="Segment joignant deux points du cercle.">A line segment joining two points on the circle.</span> <span class="fr">corde</span></dd>
+            <dt data-fr="Tangente">Tangent</dt><dd><span data-fr="Droite qui touche le cercle en un seul point.">A line that touches the circle at exactly one point.</span> <span class="fr">tangente</span></dd>
+            <dt data-fr="Secteur">Sector</dt><dd><span data-fr="Une « part » de cercle délimitée par deux rayons et un arc.">A “slice” of a circle bounded by two radii and an arc.</span> <span class="fr">secteur</span></dd>
+          </dl>
+        </div>
+
+        <div class="box formula" data-fr="Circonférence : C = 2πr = πd &nbsp;&nbsp; Aire : A = πr²">Circumference: \(C = 2\pi r = \pi d\) &nbsp;&nbsp; Area: \(A = \pi r^2\)</div>
+
+        <div class="box example">
+          <div class="box-title" data-fr="✏️ Exemple résolu">✏️ Worked example</div>
+          <p data-fr="Un cercle a un rayon de 7 cm. Calculer sa circonférence et son aire (π ≈ 3,14).">A circle has radius 7 cm. Find its circumference and area (use \(\pi \approx 3.14\)).</p>
+          <p data-fr="<strong>1. Circonférence :</strong> C = 2πr = 2 × 3,14 × 7 ≈ 43,96 cm."><strong>1. Circumference:</strong> \(C = 2\pi r = 2 \times 3.14 \times 7 \approx 43.96\) cm.</p>
+          <p data-fr="<strong>2. Aire :</strong> A = πr² = 3,14 × 49 ≈ 153,86 cm²."><strong>2. Area:</strong> \(A = \pi r^2 = 3.14 \times 49 \approx 153.86\) cm².</p>
+        </div>
+
+        <div class="box bilan">
+          <div class="box-title" data-fr="🧩 Résumé">🧩 Summary</div>
+          <ul>
+            <li data-fr="Les quadrilatères se classent selon leurs côtés et leurs angles.">Quadrilaterals are classified by their sides and angles.</li>
+            <li data-fr="Formules du cercle : C = 2πr, A = πr².">Circle formulae: \(C = 2\pi r\), \(A = \pi r^2\).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="d0-angles" data-track="core">
+      <div class="chapter">
+        <h2><span class="chnum">09</span><span data-fr="Angles">Angles</span> <span class="badge essential" data-fr="Essentiel">Essential</span></h2>
+        <p data-fr="Les angles se mesurent en degrés (°). Ils ont plusieurs noms selon leur taille, et il existe des sommes d'angles utiles dans les triangles et les cercles.">Angles are measured in degrees (°). There are several names depending on their size, and useful angle sums in triangles and circles.</p>
+
+        <div class="box defs">
+          <div class="box-title" data-fr="📖 Définitions">📖 Definitions</div>
+          <dl>
+            <dt data-fr="Angle aigu">Acute angle</dt><dd><span data-fr="Un angle inférieur à 90°.">An angle less than 90°.</span> <span class="fr">angle aigu</span></dd>
+            <dt data-fr="Angle droit">Right angle</dt><dd><span data-fr="Un angle exactement égal à 90°.">An angle exactly equal to 90°.</span> <span class="fr">angle droit</span></dd>
+            <dt data-fr="Angle obtus">Obtuse angle</dt><dd><span data-fr="Un angle entre 90° et 180°.">An angle between 90° and 180°.</span> <span class="fr">angle obtus</span></dd>
+            <dt data-fr="Angle plat">Straight angle</dt><dd><span data-fr="Un angle de 180°.">An angle of exactly 180°.</span> <span class="fr">angle plat</span></dd>
+            <dt data-fr="Angle rentrant">Reflex angle</dt><dd><span data-fr="Un angle supérieur à 180° et inférieur à 360°.">An angle greater than 180° and less than 360°.</span> <span class="fr">angle rentrant</span></dd>
+            <dt data-fr="Angles complémentaires">Complementary angles</dt><dd><span data-fr="Deux angles dont la somme vaut 90°.">Two angles that add up to 90°.</span> <span class="fr">angles complémentaires</span></dd>
+            <dt data-fr="Angles supplémentaires">Supplementary angles</dt><dd><span data-fr="Deux angles dont la somme vaut 180°.">Two angles that add up to 180°.</span> <span class="fr">angles supplémentaires</span></dd>
+          </dl>
+        </div>
+
+        <div class="box formula" data-fr="Somme des angles d'un triangle : a + b + c = 180° &nbsp;&nbsp; Angle dans un demi-cercle : 90°">Angle sum in a triangle: \(a + b + c = 180°\) &nbsp;&nbsp; Angle in a semi-circle: \(90°\)</div>
+
+        <div class="box example">
+          <div class="box-title" data-fr="✏️ Exemple résolu">✏️ Worked example</div>
+          <p data-fr="Deux angles d'un triangle mesurent 48° et 63°. Trouver le troisième.">Two angles of a triangle measure 48° and 63°. Find the third angle.</p>
+          <p data-fr="La somme des angles d'un triangle vaut 180°, donc le troisième = 180 − (48 + 63) = 180 − 111 = 69°.">Sum of angles in a triangle = 180°, so the third angle = \(180 - (48 + 63) = 180 - 111 = 69°\).</p>
+        </div>
+
+        <div class="box bilan">
+          <div class="box-title" data-fr="🧩 Résumé">🧩 Summary</div>
+          <ul>
+            <li data-fr="Les angles sont nommés selon leur taille : aigu, droit, obtus, plat, rentrant.">Angles are named by size: acute, right, obtuse, straight, reflex.</li>
+            <li data-fr="L'angle dans un demi-cercle vaut toujours 90° (théorème de Thalès).">The angle in a semi-circle is always 90° (Thales’ theorem).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="d0-3d" data-track="core">
+      <div class="chapter">
+        <h2><span class="chnum">10</span><span data-fr="Formes 3D">3D Shapes</span> <span class="badge recommended" data-fr="Conseillé">Recommended</span></h2>
+        <p data-fr="Les formes tridimensionnelles ont un volume et une aire de surface. Voici les principales.">Three-dimensional shapes have volume and surface area. Here are the most common ones.</p>
+
+        <table>
+          <tr><th data-fr="Nom">Name</th><th data-fr="Volume">Volume</th><th data-fr="Aire de surface">Surface area</th><th data-fr="Français">French</th></tr>
+          <tr><td data-fr="Cube (côté a)">Cube (side \(a\))</td><td>\(V = a^3\)</td><td>\(S = 6a^2\)</td><td>cube</td></tr>
+          <tr><td data-fr="Pavé droit (l, L, h)">Cuboid (\(l,w,h\))</td><td>\(V = lwh\)</td><td>\(S = 2(lw+lh+wh)\)</td><td>pavé droit</td></tr>
+          <tr><td data-fr="Cylindre (rayon r, hauteur h)">Cylinder (radius \(r\), height \(h\))</td><td>\(V = \pi r^2 h\)</td><td>\(S = 2\pi r^2 + 2\pi rh\)</td><td>cylindre</td></tr>
+          <tr><td data-fr="Sphère (rayon r)">Sphere (radius \(r\))</td><td>\(V = \frac{4}{3}\pi r^3\)</td><td>\(S = 4\pi r^2\)</td><td>sphère</td></tr>
+          <tr><td data-fr="Cône (rayon r, hauteur h)">Cone (radius \(r\), height \(h\))</td><td>\(V = \frac{1}{3}\pi r^2 h\)</td><td>\(S = \pi r^2 + \pi r l\) (l oblique)</td><td>cône</td></tr>
+        </table>
+
+        <div class="box bilan">
+          <div class="box-title" data-fr="🧩 Résumé">🧩 Summary</div>
+          <ul>
+            <li data-fr="Le volume se mesure en unités cubes (cm³, m³) ; l'aire de surface en unités carrées (cm², m²).">Volume is measured in cubic units (cm³, m³); surface area in square units (cm², m²).</li>
+            <li data-fr="Toujours identifier la forme d'abord, puis appliquer la bonne formule.">Always identify the shape first, then apply the correct formula.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="d0-algebra" data-track="core">
+      <div class="section-kicker" data-fr="Domaine 0 — Connaissances de base">Domain 0 — Core Knowledge</div>
+      <h1><span data-fr="Résolution">Solving</span> <em data-fr="algébrique">Algebraically</em></h1>
+      <p class="section-lede" data-fr="Une <strong>équation linéaire</strong> est une équation où l'inconnue apparaît uniquement à la puissance 1. S'il y a deux inconnues, il faut deux équations simultanées pour les trouver.">A <strong>linear equation</strong> is an equation where the unknown appears only to the first power. If there are two unknowns, you need two simultaneous equations to find their values.</p>
+
+      <div class="chapter">
+        <h2><span class="chnum">11</span><span data-fr="Équations linéaires">Linear Equations</span> <span class="badge essential" data-fr="Essentiel">Essential</span></h2>
+
+        <div class="box defs">
+          <div class="box-title" data-fr="📖 Définitions">📖 Definitions</div>
+          <dl>
+            <dt data-fr="Équation linéaire">Linear equation</dt><dd><span data-fr="Une équation de la forme ax + b = c ou ax + by = c.">An equation of the form \(ax + b = c\) or \(ax + by = c\).</span> <span class="fr">équation linéaire</span></dd>
+            <dt data-fr="Inconnue">Unknown</dt><dd><span data-fr="La valeur que l'on cherche (souvent x ou y).">The value we are trying to find (often \(x\) or \(y\)).</span> <span class="fr">inconnue</span></dd>
+            <dt data-fr="Solution">Solution</dt><dd><span data-fr="Une valeur qui rend l'équation vraie.">A value that makes the equation true.</span> <span class="fr">solution</span></dd>
+          </dl>
+        </div>
+
+        <div class="box formula" data-fr="Forme générale : ax + by = c">General form: \(\;ax + by = c\)</div>
+
+        <div class="box example">
+          <div class="box-title" data-fr="✏️ Exemple résolu 1 — une inconnue">✏️ Worked example 1 — one unknown</div>
+          <p data-fr="Résoudre 3x + 5 = 17.">Solve \(3x + 5 = 17\).</p>
+          <p data-fr="<strong>1.</strong> Soustraire 5 des deux côtés : 3x = 12."><strong>1.</strong> Subtract 5 from both sides: \(3x = 12\).</p>
+          <p data-fr="<strong>2.</strong> Diviser par 3 : x = 4."><strong>2.</strong> Divide both sides by 3: \(x = 4\).</p>
+          <p data-fr="<strong>Vérification :</strong> 3(4) + 5 = 12 + 5 = 17 ✓."><strong>Check:</strong> \(3(4) + 5 = 12 + 5 = 17\) ✓.</p>
+        </div>
+
+        <div class="box example">
+          <div class="box-title" data-fr="✏️ Exemple résolu 2 — deux inconnues">✏️ Worked example 2 — two unknowns</div>
+          <p data-fr="On sait que y = 16 et que l'équation linéaire est y = 5x + 1. Trouver x.">We know \(y = 16\) and the linear equation is \(y = 5x + 1\). Find \(x\).</p>
+          <p data-fr="<strong>1.</strong> Substituer y = 16 : 16 = 5x + 1."><strong>1.</strong> Substitute \(y = 16\): \(16 = 5x + 1\).</p>
+          <p data-fr="<strong>2.</strong> Soustraire 1 : 15 = 5x."><strong>2.</strong> Subtract 1: \(15 = 5x\).</p>
+          <p data-fr="<strong>3.</strong> Diviser par 5 : x = 3."><strong>3.</strong> Divide by 5: \(x = 3\).</p>
+        </div>
+
+        <h3 data-fr="Inéquations">Inequalities</h3>
+        <p data-fr="Il y a quatre symboles d'inégalité :">There are four inequality signs:</p>
+        <table>
+          <tr><th data-fr="Signe">Sign</th><th data-fr="Signification">Meaning</th><th data-fr="Français">French</th></tr>
+          <tr><td>\(x \le y\)</td><td data-fr="x est inférieur ou égal à y">\(x\) is less than or equal to \(y\)</td><td>inférieur ou égal</td></tr>
+          <tr><td>\(x < y\)</td><td data-fr="x est strictement inférieur à y">\(x\) is less than \(y\)</td><td>strictement inférieur</td></tr>
+          <tr><td>\(x > y\)</td><td data-fr="x est strictement supérieur à y">\(x\) is greater than \(y\)</td><td>strictement supérieur</td></tr>
+          <tr><td>\(x \ge y\)</td><td data-fr="x est supérieur ou égal à y">\(x\) is greater than or equal to \(y\)</td><td>supérieur ou égal</td></tr>
+        </table>
+
+        <div class="box err">
+          <div class="box-title" data-fr="⚠ Erreur fréquente">⚠ Common mistake</div>
+          <p data-fr="Quand on multiplie ou divise les deux membres d'une inégalité par un nombre <strong>négatif</strong>, le sens de l'inégalité doit être inversé. Exemple : −2x > 8 ⇒ x &lt; −4 (et non x > −4).">When you multiply or divide both sides of an inequality by a <strong>negative</strong> number, the direction of the inequality sign must be reversed. Example: \(-2x > 8 \Rightarrow x < -4\) (not \(x > -4\)).</p>
+        </div>
+
+        <div class="box example">
+          <div class="box-title" data-fr="✏️ Exemple résolu — inéquation">✏️ Worked example — inequality</div>
+          <p data-fr="Résoudre 2x − 6 > 2.">Solve \(2x - 6 > 2\).</p>
+          <p data-fr="<strong>1.</strong> Ajouter 6 : 2x > 8."><strong>1.</strong> Add 6: \(2x > 8\).</p>
+          <p data-fr="<strong>2.</strong> Diviser par 2 : x > 4."><strong>2.</strong> Divide by 2: \(x > 4\).</p>
+          <p data-fr="Maintenant résoudre −2x − 6 > 2 : ajouter 6 → −2x > 8 ; diviser par −2 (inverser le sens) → x &lt; −4.">Now solve \(-2x - 6 > 2\): add 6 → \(-2x > 8\); divide by −2 (reverse the sign) → \(x < -4\).</p>
+        </div>
+
+        <div class="box bilan">
+          <div class="box-title" data-fr="🧩 Résumé">🧩 Summary</div>
+          <ul>
+            <li data-fr="Isoler l'inconnue en effectuant la même opération des deux côtés.">Isolate the unknown by doing the same operation on both sides.</li>
+            <li data-fr="En multipliant ou divisant par un nombre négatif, inverser le sens de l'inégalité.">When multiplying or dividing by a negative number, reverse the inequality sign.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="chapter">
+        <h2><span class="chnum">12</span><span data-fr="Systèmes d'équations">Simultaneous Equations</span> <span class="badge essential" data-fr="Essentiel">Essential</span></h2>
+        <p data-fr="S'il y a deux inconnues, il faut deux équations simultanées. On peut les résoudre <strong>graphiquement</strong> (point d'intersection des deux droites) ou <strong>algébriquement</strong> (par substitution ou par élimination).">If there are two unknowns, you need two simultaneous equations. They can be solved <strong>graphically</strong> (the intersection point of the two lines) or <strong>algebraically</strong> (by substitution or by elimination).</p>
+
+        <div class="box formula" data-fr="Système exemple : { 2x − y = 3 ; x + 2y = 14 }">Example system: \(\begin{cases} 2x - y = 3 \\ x + 2y = 14 \end{cases}\)</div>
+
+        <h3 data-fr="Méthode graphique">Graphical method</h3>
+        <p data-fr="Tracer les deux droites. Les coordonnées de leur point d'intersection donnent les valeurs des inconnues. Dans l'exemple ci-dessus, les droites se coupent en x = 4 et y = 5.">Plot both lines. The coordinates of their point of intersection give the values of the unknowns. In the example above, the lines intersect at \(x = 4\) and \(y = 5\).</p>
+
+        <h3 data-fr="Méthode 1 — Substitution">Method 1 — Substitution</h3>
+        <div class="steps">
+          <div class="step"><h4 data-fr="Isoler une inconnue">Isolate one unknown</h4><p data-fr="Dans la deuxième équation : x = −2y + 14.">From the second equation: \(x = -2y + 14\).</p></div>
+          <div class="step"><h4 data-fr="Substituer">Substitute</h4><p data-fr="Dans la première équation : 2(−2y + 14) − y = 3.">Into the first equation: \(2(-2y + 14) - y = 3\).</p></div>
+          <div class="step"><h4 data-fr="Résoudre pour y">Solve for \(y\)</h4><p>\(-4y + 28 - y = 3 \Rightarrow -5y = -25 \Rightarrow y = 5\).</p></div>
+          <div class="step"><h4 data-fr="Trouver x">Find \(x\)</h4><p>\(x = -2(5) + 14 = 4\).</p></div>
+          <div class="step"><h4 data-fr="Conclusion">Conclusion</h4><p data-fr="Solution : x = 4, y = 5.">Solution: \(x = 4\), \(y = 5\).</p></div>
+        </div>
+
+        <h3 data-fr="Méthode 2 — Élimination">Method 2 — Elimination</h3>
+        <div class="steps">
+          <div class="step"><h4 data-fr="Multiplier pour aligner les coefficients">Multiply to match coefficients</h4><p data-fr="Multiplier la première équation par 2 : 4x − 2y = 6.">Multiply the first equation by 2: \(4x - 2y = 6\).</p></div>
+          <div class="step"><h4 data-fr="Additionner ou soustraire">Add or subtract</h4><p data-fr="Additionner à la deuxième équation : 4x − 2y + x + 2y = 6 + 14 ⇒ 5x = 20.">Add to the second equation: \(4x - 2y + x + 2y = 6 + 14 \Rightarrow 5x = 20\).</p></div>
+          <div class="step"><h4 data-fr="Résoudre pour x">Solve for \(x\)</h4><p>\(x = 4\).</p></div>
+          <div class="step"><h4 data-fr="Reporter">Substitute back</h4><p>\(4 + 2y = 14 \Rightarrow 2y = 10 \Rightarrow y = 5\).</p></div>
+        </div>
+
+        <div class="box example">
+          <div class="box-title" data-fr="✏️ Exemple résolu — figurines de dinosaures">✏️ Worked example — dinosaur figurines</div>
+          <p data-fr="Anna a des figurines de tricératops (3 cornes, 4 pattes) et d'allosaurus (2 cornes, 2 pattes). Son frère compte 73 cornes et 86 pattes. Combien de chaque ?">Anna has triceratops (3 horns, 4 legs) and allosaurus (2 horns, 2 legs) figurines. Her brother counts 73 horns and 86 legs. How many of each does she have?</p>
+          <p data-fr="<strong>1. Soit x = tricératops, y = allosaurus.</strong>"><strong>1. Let \(x\) = triceratops, \(y\) = allosaurus.</strong></p>
+          <p data-fr="<strong>2. Cornes :</strong> 3x + 2y = 73."><strong>2. Horns:</strong> \(3x + 2y = 73\).</p>
+          <p data-fr="<strong>3. Pattes :</strong> 4x + 2y = 86."><strong>3. Legs:</strong> \(4x + 2y = 86\).</p>
+          <p data-fr="<strong>4. Soustraction :</strong> (4x + 2y) − (3x + 2y) = 86 − 73 ⇒ x = 13."><strong>4. Subtract:</strong> \((4x + 2y) - (3x + 2y) = 86 - 73 \Rightarrow x = 13\).</p>
+          <p data-fr="<strong>5. Substitution :</strong> 3(13) + 2y = 73 ⇒ 39 + 2y = 73 ⇒ 2y = 34 ⇒ y = 17."><strong>5. Substitute:</strong> \(3(13) + 2y = 73 \Rightarrow 39 + 2y = 73 \Rightarrow 2y = 34 \Rightarrow y = 17\).</p>
+          <p data-fr="<strong>Conclusion :</strong> Anna a 13 tricératops et 17 allosaurus."><strong>Conclusion:</strong> Anna has 13 triceratops and 17 allosaurus figurines.</p>
+          <p data-fr="<strong>Vérification :</strong> cornes 3(13)+2(17) = 39+34 = 73 ✓ ; pattes 4(13)+2(17) = 52+34 = 86 ✓."><strong>Check:</strong> horns \(3(13)+2(17) = 39+34 = 73\) ✓; legs \(4(13)+2(17) = 52+34 = 86\) ✓.</p>
+        </div>
+
+        <div class="box bilan">
+          <div class="box-title" data-fr="🧩 Résumé">🧩 Summary</div>
+          <ul>
+            <li data-fr="Deux inconnues → deux équations.">Two unknowns → two equations.</li>
+            <li data-fr="Substitution : isoler une inconnue et la remplacer dans l'autre équation.">Substitution: isolate one unknown and replace it in the other equation.</li>
+            <li data-fr="Élimination : faire correspondre les coefficients d'une inconnue, puis additionner ou soustraire.">Elimination: make the coefficients of one unknown match, then add or subtract.</li>
+            <li data-fr="Graphiquement, la solution est le point d'intersection des deux droites.">Graphically, the solution is the intersection point of the two lines.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="d0-compound" data-track="core">
+      <div class="chapter">
+        <h2><span class="chnum">13</span><span data-fr="Mesures composées & unités impériales">Compound Measures &amp; Imperial Units</span> <span class="badge recommended" data-fr="Conseillé">Recommended</span></h2>
+        <p data-fr="Une <strong>mesure composée</strong> combine deux ou plusieurs quantités — par exemple la vitesse (distance ÷ temps), la masse volumique (masse ÷ volume) ou la consommation (carburant ÷ distance).">A <strong>compound measure</strong> combines two or more quantities — for example speed (distance ÷ time), density (mass ÷ volume), or consumption (fuel ÷ distance).</p>
+
+        <table>
+          <tr><th data-fr="Mesure">Measure</th><th data-fr="Formule">Formula</th><th data-fr="Unités usuelles">Common units</th><th data-fr="Français">French</th></tr>
+          <tr><td data-fr="Vitesse">Speed</td><td>\(v = \dfrac{d}{t}\)</td><td>m/s, km/h, mph</td><td>vitesse</td></tr>
+          <tr><td data-fr="Masse volumique">Density</td><td>\(\rho = \dfrac{m}{V}\)</td><td>kg/m³, g/cm³</td><td>masse volumique</td></tr>
+          <tr><td data-fr="Consommation">Consumption</td><td>\(C = \dfrac{\text{<span data-fr='carburant'>fuel</span>}}{\text{<span data-fr='distance'>distance</span>}}\)</td><td>L/100 km, mpg</td><td>consommation</td></tr>
+          <tr><td data-fr="Accélération">Acceleration</td><td>\(a = \dfrac{\Delta v}{\Delta t}\)</td><td>m/s²</td><td>accélération</td></tr>
+        </table>
+
+        <h3 data-fr="Unités impériales (UK / US)">Imperial units (UK / US)</h3>
+        <table>
+          <tr><th data-fr="Longueur">Length</th><th data-fr="Masse">Mass</th><th data-fr="Capacité">Capacity</th></tr>
+          <tr><td>1 inch = 2.54 cm</td><td>1 ounce ≈ 28.35 g</td><td>1 pint ≈ 568 mL (UK)</td></tr>
+          <tr><td>1 foot = 12 inches ≈ 30.48 cm</td><td>1 pound ≈ 453.6 g</td><td>1 gallon ≈ 4.55 L (UK)</td></tr>
+          <tr><td>1 mile ≈ 1.609 km</td><td>1 stone = 14 pounds</td><td>1 cup ≈ 240 mL</td></tr>
+        </table>
+
+        <div class="box bilan">
+          <div class="box-title" data-fr="🧩 Résumé">🧩 Summary</div>
+          <ul>
+            <li data-fr="Les mesures composées combinent deux quantités en un taux unique.">Compound measures combine two quantities in a single rate.</li>
+            <li data-fr="Toujours vérifier les unités avant de substituer dans une formule (la conversion est un piège fréquent).">Always check the units before substituting into a formula (unit conversion is a common trap).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ DOMAIN 1 ============================================================ -->
+
+    <section class="section" id="d1-functions" data-track="mapping">
+      <div class="section-kicker" data-fr="Domaine 1 — Fonctions">Domain 1 — Mapping</div>
+      <h1><span data-fr="Fonctions :">Functions:</span> <em data-fr="domaine, image, graphe">domain, range, graph</em></h1>
+      <p class="section-lede" data-fr="Une fonction est une règle qui associe exactement une sortie à chaque entrée. Le <strong>domaine</strong> est l'ensemble des entrées autorisées ; l'<strong>image</strong> (range) est l'ensemble des sorties possibles.">A function is a rule that assigns exactly one output to each input. The <strong>domain</strong> is the set of allowed inputs; the <strong>range</strong> is the set of possible outputs.</p>
+
+      <div class="chapter">
+        <h2><span class="chnum">14</span><span data-fr="Définition d'une fonction">Definition of a Function</span> <span class="badge essential" data-fr="Essentiel">Essential</span></h2>
+
+        <div class="box defs">
+          <div class="box-title" data-fr="📖 Définitions">📖 Definitions</div>
+          <dl>
+            <dt data-fr="Fonction">Function</dt><dd><span data-fr="Une règle qui associe à chaque entrée exactement une sortie.">A rule that maps each input to exactly one output.</span> <span class="fr">fonction</span></dd>
+            <dt data-fr="Ensemble de définition">Domain</dt><dd><span data-fr="L'ensemble des entrées autorisées.">The set of all allowed input values.</span> <span class="fr">ensemble de définition</span></dd>
+            <dt data-fr="Image (ensemble)">Range</dt><dd><span data-fr="L'ensemble des sorties possibles.">The set of all output values the function can produce.</span> <span class="fr">ensemble image</span></dd>
+            <dt data-fr="Image">Image</dt><dd><span data-fr="La sortie d'une fonction pour une entrée donnée.">The output of a function for a specific input.</span> <span class="fr">image</span></dd>
+            <dt data-fr="Antécédent">Preimage</dt><dd><span data-fr="L'entrée (ou les entrées) qui produisent une sortie donnée.">The input(s) that produce a given output.</span> <span class="fr">antécédent</span></dd>
+            <dt data-fr="Monotone">Monotonic</dt><dd><span data-fr="Une fonction toujours croissante ou toujours décroissante.">A function that is either always increasing or always decreasing.</span> <span class="fr">monotone</span></dd>
+          </dl>
+        </div>
+
+        <div class="box formula" data-fr="Notation : f : x ↦ f(x) &nbsp;&nbsp; Domaine : D_f &nbsp;&nbsp; Image : R_f">Notation: \(\;f : x \mapsto f(x)\) &nbsp;&nbsp; Domain: \(D_f\) &nbsp;&nbsp; Range: \(R_f\)</div>
+
+        <div class="box example">
+          <div class="box-title" data-fr="✏️ Exemple résolu">✏️ Worked example</div>
+          <p data-fr="Pour f(x) = x² − 1, trouver l'image de 3 et les antécédents de 8.">For \(f(x) = x^2 - 1\), find the image of 3 and the preimages of 8.</p>
+          <p data-fr="<strong>1. Image de 3 :</strong> f(3) = 3² − 1 = 8."><strong>1. Image of 3:</strong> \(f(3) = 3^2 - 1 = 8\).</p>
+          <p data-fr="<strong>2. Antécédents de 8 :</strong> résoudre x² − 1 = 8 ⇒ x² = 9 ⇒ x = 3 ou x = −3."><strong>2. Preimages of 8:</strong> solve \(x^2 - 1 = 8 \Rightarrow x^2 = 9 \Rightarrow x = 3\) or \(x = -3\).</p>
+        </div>
+
+        <div class="box bilan">
+          <div class="box-title" data-fr="🧩 Résumé">🧩 Summary</div>
+          <ul>
+            <li data-fr="Chaque entrée a exactement une sortie (test de la droite verticale).">Every input has exactly one output (vertical line test).</li>
+            <li data-fr="Le domaine peut être restreint (dénominateur ≠ 0, racine carrée ≥ 0…).">The domain can be restricted (e.g. denominator ≠ 0, square root ≥ 0).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="d1-particular" data-track="mapping">
+      <div class="chapter">
+        <h2><span class="chnum">15</span><span data-fr="Fonctions linéaires & inverse">Linear &amp; Reciprocal Functions</span> <span class="badge essential" data-fr="Essentiel">Essential</span></h2>
+
+        <h3 data-fr="Fonctions linéaires">Linear functions</h3>
+        <div class="box formula" data-fr="f(x) = mx + c &nbsp;&nbsp; m = coefficient directeur, c = ordonnée à l'origine">\(f(x) = mx + c\) &nbsp;&nbsp; \(m\) = gradient (slope), \(c\) = \(y\)-intercept.</div>
+
+        <div class="box example">
+          <div class="box-title" data-fr="✏️ Exemple résolu">✏️ Worked example</div>
+          <p data-fr="Pour f(x) = 2x + 4, trouver f(3) et l'abscisse à l'origine.">For \(f(x) = 2x + 4\), find \(f(3)\) and the \(x\)-intercept.</p>
+          <p data-fr="<strong>1.</strong> f(3) = 2(3) + 4 = 10."><strong>1.</strong> \(f(3) = 2(3) + 4 = 10\).</p>
+          <p data-fr="<strong>2.</strong> Abscisse à l'origine : 2x + 4 = 0 ⇒ x = −2."><strong>2.</strong> \(x\)-intercept: \(2x + 4 = 0 \Rightarrow x = -2\).</p>
+        </div>
+
+        <h3 data-fr="Fonction inverse">Reciprocal function</h3>
+        <div class="box formula" data-fr="f(x) = 1/x &nbsp;&nbsp; Domaine : x ≠ 0 &nbsp;&nbsp; Image : y ≠ 0">\(f(x) = \dfrac{1}{x}\) &nbsp;&nbsp; Domain: \(x \ne 0\) &nbsp;&nbsp; Range: \(y \ne 0\)</div>
+        <p data-fr="Le graphe est une hyperbole avec deux branches. Les axes sont des asymptotes : la courbe s'en rapproche sans jamais les toucher.">The graph is a hyperbola with two branches. The axes are asymptotes: the curve gets closer to them but never touches them.</p>
+
+        <div class="box bilan">
+          <div class="box-title" data-fr="🧩 Résumé">🧩 Summary</div>
+          <ul>
+            <li data-fr="Les fonctions linéaires ont un coefficient directeur constant ; leur graphe est une droite.">Linear functions have a constant gradient; their graph is a straight line.</li>
+            <li data-fr="La fonction inverse n'est pas définie en x = 0 et son graphe a deux asymptotes.">The reciprocal function is undefined at \(x = 0\), and its graph has two asymptotes.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="d1-quadratic" data-track="mapping">
+      <div class="chapter">
+        <h2><span class="chnum">16</span><span data-fr="Fonctions du second degré">Quadratic Functions</span> <span class="badge essential" data-fr="Essentiel">Essential</span></h2>
+        <p data-fr="Une fonction du second degré s'écrit f(x) = ax² + bx + c avec a ≠ 0. Son graphe est une <strong>parabole</strong>.">A quadratic function is of the form \(f(x) = ax^2 + bx + c\) with \(a \ne 0\). Its graph is a <strong>parabola</strong>.</p>
+
+        <div class="box defs">
+          <div class="box-title" data-fr="📖 Définitions">📖 Definitions</div>
+          <dl>
+            <dt data-fr="Fonction du second degré">Quadratic function</dt><dd><span data-fr="Fonction de la forme ax² + bx + c.">Function of the form \(ax^2 + bx + c\).</span> <span class="fr">fonction du second degré</span></dd>
+            <dt data-fr="Discriminant">Discriminant</dt><dd><span data-fr="Δ = b² − 4ac ; détermine le nombre de racines réelles.">\(\Delta = b^2 - 4ac\); determines the number of real roots.</span> <span class="fr">discriminant</span></dd>
+            <dt data-fr="Racine (zéro)">Root (zero)</dt><dd><span data-fr="Une valeur de x pour laquelle f(x) = 0.">A value of \(x\) for which \(f(x) = 0\).</span> <span class="fr">racine</span></dd>
+            <dt data-fr="Forme canonique">Completing the square</dt><dd><span data-fr="Réécrire ax² + bx + c sous la forme a(x−α)² + β.">Rewriting \(ax^2+bx+c\) as \(a(x-\alpha)^2+\beta\).</span> <span class="fr">mise sous forme canonique</span></dd>
+          </dl>
+        </div>
+
+        <div class="box formula" data-fr="Δ = b² − 4ac &nbsp;&nbsp; Racines : x = (−b ± √Δ) / 2a">\(\Delta = b^2 - 4ac\) &nbsp;&nbsp; Roots: \(x = \dfrac{-b \pm \sqrt{\Delta}}{2a}\)</div>
+
+        <table>
+          <tr><th data-fr="Discriminant">Discriminant</th><th data-fr="Nombre de racines réelles">Number of real roots</th></tr>
+          <tr><td>\(\Delta > 0\)</td><td data-fr="Deux racines réelles distinctes">Two distinct real roots</td></tr>
+          <tr><td>\(\Delta = 0\)</td><td data-fr="Une racine double x = −b/(2a)">One repeated root \(x = -b/(2a)\)</td></tr>
+          <tr><td>\(\Delta < 0\)</td><td data-fr="Aucune racine réelle">No real roots</td></tr>
+        </table>
+
+        <details class="acc">
+          <summary data-fr="📐 Démonstration — la formule quadratique par forme canonique">📐 Proof — the quadratic formula from completing the square</summary>
+          <div class="acc-body">
+            <p data-fr="Partons de ax² + bx + c = 0. Divisons par a : x² + (b/a)x + c/a = 0. Complétons le carré : (x + b/(2a))² − b²/(4a²) + c/a = 0, donc (x + b/(2a))² = (b² − 4ac)/(4a²) = Δ/(4a²). En prenant la racine : x + b/(2a) = ±√Δ/(2a), d'où x = (−b ± √Δ)/(2a).">Start with \(ax^2 + bx + c = 0\). Divide by \(a\): \(x^2 + \frac{b}{a}x + \frac{c}{a} = 0\). Complete the square: \(\left(x + \frac{b}{2a}\right)^2 - \frac{b^2}{4a^2} + \frac{c}{a} = 0\), so \(\left(x + \frac{b}{2a}\right)^2 = \frac{b^2 - 4ac}{4a^2} = \frac{\Delta}{4a^2}\). Taking square roots: \(x + \frac{b}{2a} = \pm \frac{\sqrt{\Delta}}{2a}\), hence \(x = \frac{-b \pm \sqrt{\Delta}}{2a}\).</p>
+          </div>
+        </details>
+
+        <div class="box example">
+          <div class="box-title" data-fr="✏️ Exemple résolu">✏️ Worked example</div>
+          <p data-fr="Résoudre 2x² − 4x − 6 = 0.">Solve \(2x^2 - 4x - 6 = 0\).</p>
+          <p data-fr="<strong>1. Discriminant :</strong> Δ = (−4)² − 4(2)(−6) = 16 + 48 = 64 = 8²."><strong>1. Discriminant:</strong> \(\Delta = (-4)^2 - 4(2)(-6) = 16 + 48 = 64 = 8^2\).</p>
+          <p data-fr="<strong>2. Racines :</strong> x = (4 ± 8) / 4, donc x₁ = −1 et x₂ = 3."><strong>2. Roots:</strong> \(x = \dfrac{4 \pm 8}{4}\), so \(x_1 = -1\) and \(x_2 = 3\).</p>
+          <p data-fr="<strong>3. Vérification :</strong> x₁ + x₂ = 2 = −b/a ✓, x₁x₂ = −3 = c/a ✓."><strong>3. Check:</strong> \(x_1 + x_2 = 2 = -b/a\) ✓, \(x_1 x_2 = -3 = c/a\) ✓.</p>
+          <p data-fr="<strong>4. Signe :</strong> comme a = 2 > 0, f(x) > 0 à l'extérieur des racines, f(x) &lt; 0 entre elles."><strong>4. Sign:</strong> since \(a = 2 > 0\), \(f(x) > 0\) outside the roots, \(f(x) < 0\) between them.</p>
+        </div>
+
+        <div class="box bilan">
+          <div class="box-title" data-fr="🧩 Résumé">🧩 Summary</div>
+          <ul>
+            <li data-fr="Le signe de Δ indique le nombre de racines réelles.">The sign of \(\Delta\) tells you how many real roots there are.</li>
+            <li data-fr="La forme canonique donne à la fois le sommet (α, β) et la formule quadratique.">Completing the square gives both the vertex \((\alpha,\beta)\) and the quadratic formula.</li>
+            <li data-fr="Relations : x₁ + x₂ = −b/a et x₁x₂ = c/a.">Relations: \(x_1 + x_2 = -b/a\) and \(x_1 x_2 = c/a\).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ STATISTICS ============================================================ -->
+
+    <section class="section" id="s-data" data-track="stats">
+      <div class="section-kicker" data-fr="Domaines 0 & 4 — Statistiques">Domains 0 &amp; 4 — Statistics</div>
+      <h1><span data-fr="Types de">Types of</span> <em data-fr="données">Data</em></h1>
+      <p class="section-lede" data-fr="Les données peuvent être représentées de nombreuses façons : diagrammes circulaires, diagrammes en bâtons, graphiques temporels, diagrammes tige-feuille, histogrammes. Chacun a ses forces et ses faiblesses.">Data can be represented in many ways: pie charts, bar charts, time-series line graphs, stem-and-leaf diagrams, histograms. Each has strengths and weaknesses.</p>
+
+      <div class="chapter">
+        <h2><span class="chnum">17</span><span data-fr="Représentations des données">Representations of Data</span> <span class="badge essential" data-fr="Essentiel">Essential</span></h2>
+
+        <table>
+          <tr><th data-fr="Type">Type</th><th data-fr="Idéal pour">Best for</th><th data-fr="Français">French</th></tr>
+          <tr><td data-fr="Diagramme circulaire">Pie chart</td><td data-fr="Montrer des proportions d'un tout">Showing proportions of a whole</td><td>diagramme circulaire</td></tr>
+          <tr><td data-fr="Diagramme en bâtons">Bar chart</td><td data-fr="Comparer des catégories">Comparing categories</td><td>diagramme en bâtons</td></tr>
+          <tr><td data-fr="Graphique temporel">Time-series line graph</td><td data-fr="Montrer l'évolution dans le temps">Showing change over time</td><td>graphique temporel</td></tr>
+          <tr><td data-fr="Diagramme tige-feuille">Stem-and-leaf diagram</td><td data-fr="Montrer la distribution en gardant les données brutes">Showing distribution while keeping raw data</td><td>diagramme tige-feuille</td></tr>
+          <tr><td data-fr="Histogramme">Histogram</td><td data-fr="Montrer des données continues par intervalles">Showing continuous data in intervals</td><td>histogramme</td></tr>
+        </table>
+
+        <div class="box err">
+          <div class="box-title" data-fr="⚠ Graphiques trompeurs">⚠ Misleading graphs</div>
+          <p data-fr="Un graphique peut être trompeur si l'axe vertical ne part pas de zéro, si l'échelle est irrégulière, ou si un effet 3D déforme les proportions. Toujours vérifier attentivement les axes.">Graphs can be misleading if the vertical axis does not start at zero, if the scale is uneven, or if 3D effects distort proportions. Always check the axes carefully.</p>
+        </div>
+
+        <div class="box bilan">
+          <div class="box-title" data-fr="🧩 Résumé">🧩 Summary</div>
+          <ul>
+            <li data-fr="Choisir la représentation la mieux adaptée aux données et au message.">Choose the representation that best fits the data and the message.</li>
+            <li data-fr="Toujours vérifier les axes en interprétant un graphique.">Always check the axes when interpreting a graph critically.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="s-discrete" data-track="stats">
+      <div class="chapter">
+        <h2><span class="chnum">18</span><span data-fr="Données discrètes">Discrete Data</span> <span class="badge essential" data-fr="Essentiel">Essential</span></h2>
+        <p data-fr="Les données discrètes ne prennent que des valeurs séparées (par ex. nombre de frères et sœurs). On utilise des mesures de tendance centrale (moyenne, médiane, mode) et de dispersion (étendue, écart interquartile), et on peut tracer une <strong>boîte à moustaches</strong>.">Discrete data takes only specific, separate values (e.g. number of siblings). We use measures of central tendency (mean, median, mode) and spread (range, interquartile range), and can draw a <strong>box plot</strong>.</p>
+
+        <div class="box defs">
+          <div class="box-title" data-fr="📖 Définitions">📖 Definitions</div>
+          <dl>
+            <dt data-fr="Moyenne">Mean</dt><dd><span data-fr="Somme des valeurs ÷ nombre de valeurs.">Sum of values ÷ number of values.</span> <span class="fr">moyenne</span></dd>
+            <dt data-fr="Médiane">Median</dt><dd><span data-fr="Valeur du milieu quand les données sont ordonnées.">Middle value when data is ordered.</span> <span class="fr">médiane</span></dd>
+            <dt data-fr="Mode">Mode</dt><dd><span data-fr="Valeur la plus fréquente.">Most frequent value.</span> <span class="fr">mode</span></dd>
+            <dt data-fr="Étendue">Range</dt><dd><span data-fr="Maximum − minimum.">Maximum − minimum.</span> <span class="fr">étendue</span></dd>
+            <dt data-fr="Écart interquartile">Interquartile range (IQR)</dt><dd><span data-fr="Q₃ − Q₁.">\(Q_3 - Q_1\).</span> <span class="fr">écart interquartile</span></dd>
+            <dt data-fr="Boîte à moustaches">Box plot</dt><dd><span data-fr="Diagramme montrant minimum, Q1, médiane, Q3, maximum.">A diagram showing minimum, Q1, median, Q3, maximum.</span> <span class="fr">boîte à moustaches</span></dd>
+          </dl>
+        </div>
+
+        <div class="box example">
+          <div class="box-title" data-fr="✏️ Exemple résolu">✏️ Worked example</div>
+          <p data-fr="Données : 3, 5, 5, 7, 8, 9, 11. Trouver la moyenne, la médiane et le mode.">Data: 3, 5, 5, 7, 8, 9, 11. Find the mean, median and mode.</p>
+          <p data-fr="<strong>1. Moyenne :</strong> (3+5+5+7+8+9+11)/7 = 48/7 ≈ 6,86."><strong>1. Mean:</strong> \((3+5+5+7+8+9+11)/7 = 48/7 \approx 6.86\).</p>
+          <p data-fr="<strong>2. Médiane :</strong> la valeur du milieu (4ᵉ) est 7."><strong>2. Median:</strong> the middle value (4th) is 7.</p>
+          <p data-fr="<strong>3. Mode :</strong> 5 apparaît deux fois, donc mode = 5."><strong>3. Mode:</strong> 5 appears twice, so mode = 5.</p>
+        </div>
+
+        <div class="box bilan">
+          <div class="box-title" data-fr="🧩 Résumé">🧩 Summary</div>
+          <ul>
+            <li data-fr="La moyenne est sensible aux valeurs extrêmes ; la médiane est plus robuste.">Mean is sensitive to outliers; median is more robust.</li>
+            <li data-fr="L'écart interquartile mesure la dispersion des 50 % centraux.">IQR measures the spread of the middle 50% of the data.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="s-continuous" data-track="stats">
+      <div class="chapter">
+        <h2><span class="chnum">19</span><span data-fr="Données continues">Continuous Data</span> <span class="badge recommended" data-fr="Conseillé">Recommended</span></h2>
+        <p data-fr="Les données continues peuvent prendre n'importe quelle valeur dans un intervalle (par ex. taille, durée). On les regroupe en <strong>classes</strong> et on utilise des histogrammes ou des fréquences cumulées.">Continuous data can take any value in an interval (e.g. height, time). We group it into <strong>class intervals</strong> and use histograms or cumulative frequency graphs.</p>
+
+        <div class="box formula" data-fr="Moyenne estimée à partir de données groupées : x̄ ≈ (Σ fᵢ mᵢ) / (Σ fᵢ) où mᵢ est le centre de chaque classe.">Estimated mean from grouped data: \(\bar{x} \approx \dfrac{\sum f_i \times m_i}{\sum f_i}\) where \(m_i\) is the midpoint of each class.</div>
+
+        <div class="box bilan">
+          <div class="box-title" data-fr="🧩 Résumé">🧩 Summary</div>
+          <ul>
+            <li data-fr="Les données continues sont regroupées en intervalles ; le centre représente chaque intervalle.">Continuous data is grouped into intervals; the midpoint represents each interval.</li>
+            <li data-fr="Les boîtes à moustaches fonctionnent pour les données discrètes comme continues.">Box plots work for both discrete and continuous data.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ DOMAIN 5 ============================================================ -->
+
+    <section class="section" id="g-angles" data-track="advgeo">
+      <div class="section-kicker" data-fr="Domaine 5 — Géométrie avancée">Domain 5 — Advanced Geometry</div>
+      <h1><span data-fr="Angles &">Angles &amp;</span> <em data-fr="azimuts">Bearings</em></h1>
+      <p class="section-lede" data-fr="Les azimuts à trois chiffres servent à décrire une direction. Les angles formés par des droites parallèles ont des noms particuliers qui permettent de trouver des angles inconnus.">Three-figure bearings are used to describe direction. Angles formed by parallel lines have special names that let you find unknown angles.</p>
+
+      <div class="chapter">
+        <h2><span class="chnum">20</span><span data-fr="Azimuts & vocabulaire des angles">Bearings &amp; Angle Vocabulary</span> <span class="badge essential" data-fr="Essentiel">Essential</span></h2>
+
+        <div class="box defs">
+          <div class="box-title" data-fr="📖 Définitions">📖 Definitions</div>
+          <dl>
+            <dt data-fr="Azimut (relèvement)">Three-figure bearing</dt><dd><span data-fr="Un angle mesuré dans le sens horaire depuis le Nord, écrit avec trois chiffres (ex. 045°).">An angle measured clockwise from North, written with three digits (e.g. 045°).</span> <span class="fr">relèvement / azimut</span></dd>
+            <dt data-fr="Angles complémentaires">Complementary angles</dt><dd><span data-fr="Deux angles dont la somme vaut 90°.">Two angles adding up to 90°.</span> <span class="fr">angles complémentaires</span></dd>
+            <dt data-fr="Angles supplémentaires">Supplementary angles</dt><dd><span data-fr="Deux angles dont la somme vaut 180°.">Two angles adding up to 180°.</span> <span class="fr">angles supplémentaires</span></dd>
+            <dt data-fr="Angles opposés par le sommet">Vertically opposite angles</dt><dd><span data-fr="Angles opposés quand deux droites se coupent ; ils sont égaux.">Angles opposite each other when two lines cross; they are equal.</span> <span class="fr">angles opposés par le sommet</span></dd>
+            <dt data-fr="Angles alternes-internes">Alternate angles</dt><dd><span data-fr="Angles de part et d'autre d'une sécante entre deux parallèles ; égaux.">Angles on opposite sides of a transversal between parallel lines; they are equal.</span> <span class="fr">angles alternes-internes</span></dd>
+            <dt data-fr="Angles correspondants">Corresponding angles</dt><dd><span data-fr="Angles en positions identiques sur des parallèles ; égaux.">Angles in matching positions on parallel lines; they are equal.</span> <span class="fr">angles correspondants</span></dd>
+          </dl>
+        </div>
+
+        <div class="box formula" data-fr="Les azimuts s'écrivent toujours avec 3 chiffres : 045°, 120°, 270°.">Bearings are always written with 3 digits: 045°, 120°, 270°.</div>
+
+        <div class="box bilan">
+          <div class="box-title" data-fr="🧩 Résumé">🧩 Summary</div>
+          <ul>
+            <li data-fr="Azimuts : dans le sens horaire depuis le Nord, trois chiffres.">Bearings: clockwise from North, three figures.</li>
+            <li data-fr="Règles des parallèles : angles alternes-internes égaux, angles correspondants égaux, angles co-internes supplémentaires.">Parallel line rules: alternate angles are equal, corresponding angles are equal, co-interior angles add to 180°.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="g-coord" data-track="advgeo">
+      <div class="chapter">
+        <h2><span class="chnum">21</span><span data-fr="Géométrie analytique">Coordinate Geometry</span> <span class="badge essential" data-fr="Essentiel">Essential</span></h2>
+        <p data-fr="La géométrie analytique relie algèbre et géométrie : les points ont des coordonnées, les droites ont des équations, et les distances et coefficients directeurs se calculent à partir des coordonnées.">Coordinate geometry links algebra and geometry: points have coordinates, lines have equations, and distances and gradients can be calculated from coordinates.</p>
+
+        <div class="box defs">
+          <div class="box-title" data-fr="📖 Définitions">📖 Definitions</div>
+          <dl>
+            <dt data-fr="Coordonnées">Coordinates</dt><dd><span data-fr="Un couple (x, y) qui repère un point.">A pair \((x, y)\) locating a point.</span> <span class="fr">coordonnées</span></dd>
+            <dt data-fr="Milieu">Midpoint</dt><dd><span data-fr="Le point à mi-chemin entre deux points.">The point halfway between two points.</span> <span class="fr">milieu</span></dd>
+            <dt data-fr="Coefficient directeur">Gradient</dt><dd><span data-fr="La pente d'une droite, m = Δy / Δx.">The slope of a line, \(m = \frac{\Delta y}{\Delta x}\).</span> <span class="fr">coefficient directeur / pente</span></dd>
+          </dl>
+        </div>
+
+        <div class="box formula" data-fr="Distance : d = √((x₂−x₁)² + (y₂−y₁)²) &nbsp;&nbsp; Milieu : ((x₁+x₂)/2, (y₁+y₂)/2)">Distance: \(\;d = \sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}\) &nbsp;&nbsp; Midpoint: \(\;\left(\dfrac{x_1+x_2}{2},\dfrac{y_1+y_2}{2}\right)\)</div>
+        <div class="box formula" data-fr="Coefficient directeur : m = (y₂−y₁)/(x₂−x₁) &nbsp;&nbsp; Équation d'une droite : y = mx + c">Gradient: \(\;m = \dfrac{y_2-y_1}{x_2-x_1}\) &nbsp;&nbsp; Equation of a line: \(\;y = mx + c\)</div>
+
+        <div class="box example">
+          <div class="box-title" data-fr="✏️ Exemple résolu">✏️ Worked example</div>
+          <p data-fr="Soient A(2, 3) et B(6, 11). Trouver la longueur, le milieu et le coefficient directeur de [AB], puis l'équation de la droite (AB).">Given \(A(2, 3)\) and \(B(6, 11)\), find the length, midpoint and gradient of \([AB]\), then the equation of the line through \(A\) and \(B\).</p>
+          <p data-fr="<strong>1. Longueur :</strong> d = √((6−2)² + (11−3)²) = √(16+64) = √80 = 4√5."><strong>1. Length:</strong> \(d = \sqrt{(6-2)^2+(11-3)^2} = \sqrt{16+64} = \sqrt{80} = 4\sqrt5\).</p>
+          <p data-fr="<strong>2. Milieu :</strong> ((2+6)/2, (3+11)/2) = (4, 7)."><strong>2. Midpoint:</strong> \(\left(\frac{2+6}{2},\frac{3+11}{2}\right) = (4, 7)\).</p>
+          <p data-fr="<strong>3. Coefficient directeur :</strong> m = (11−3)/(6−2) = 8/4 = 2."><strong>3. Gradient:</strong> \(m = \frac{11-3}{6-2} = \frac{8}{4} = 2\).</p>
+          <p data-fr="<strong>4. Équation :</strong> y = 2x + c. Avec A(2, 3) : 3 = 4 + c ⇒ c = −1. Donc y = 2x − 1."><strong>4. Equation:</strong> \(y = 2x + c\). Using \(A(2,3)\): \(3 = 4 + c \Rightarrow c = -1\). So \(y = 2x - 1\).</p>
+        </div>
+
+        <div class="box err">
+          <div class="box-title" data-fr="⚠ Erreur fréquente">⚠ Common mistake</div>
+          <p data-fr="Ne pas soustraire les coordonnées dans le mauvais ordre — la formule (y₂−y₁)/(x₂−x₁) est cohérente tant qu'on garde A et B dans le même ordre au numérateur et au dénominateur.">Do not subtract the coordinates in the wrong order — the formula \(\frac{y_2-y_1}{x_2-x_1}\) is consistent as long as you keep \(A\) and \(B\) in the same order for both numerator and denominator.</p>
+        </div>
+
+        <div class="box bilan">
+          <div class="box-title" data-fr="🧩 Résumé">🧩 Summary</div>
+          <ul>
+            <li data-fr="Distance, milieu et coefficient directeur se calculent à partir des coordonnées.">Distance, midpoint and gradient are all derived from coordinates.</li>
+            <li data-fr="L'équation d'une droite nécessite deux points, ou un point et le coefficient directeur.">The equation of a line needs either two points or one point and the gradient.</li>
+            <li data-fr="Droites parallèles : même coefficient directeur. Droites perpendiculaires : produit des coefficients = −1.">Parallel lines have the same gradient; perpendicular lines have gradients whose product is −1.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ GLOSSARY ============================================================ -->
+    <section class="section" id="glossaire" data-track="methode">
+      <div class="section-kicker" data-fr="Référence rapide">Quick Reference</div>
+      <h1><span data-fr="Glossaire">Full</span> <em data-fr="complet">Glossary</em></h1>
+      <p class="section-lede" data-fr="Tous les termes définis dans les chapitres, réunis ici pour une recherche rapide. Tapez un mot-clé pour filtrer.">All the terms defined in the chapters, gathered here for quick search. Type a keyword to filter.</p>
+
+      <input type="text" class="glossary-search" id="glossarySearch" placeholder="Search a term (e.g. discriminant, hypotenuse, bearing…)" data-fr-ph="Rechercher un terme (ex. discriminant, hypoténuse, azimut…)">
+      <span class="glossary-count" id="glossaryCount"></span>
+      <div class="glossary-grid" id="glossaryGrid"></div>
+    </section>
+
+    <!-- ============================================================ QUIZ ============================================================ -->
+    <section class="section" id="quiz" data-track="methode">
+      <div class="section-kicker" data-fr="Entraînement">Practice</div>
+      <h1 data-fr="Quiz de <em>positionnement</em>">Placement <em>Quiz</em></h1>
+      <p class="section-lede" data-fr="Questions mélangeant connaissances de base et vocabulaire, pour repérer vos priorités de révision.">Questions mixing core knowledge and vocabulary, to help you identify your revision priorities.</p>
+      <div class="quiz-card" id="quizCard"></div>
+    </section>
+
+    <!-- ============================================================ CHECKLIST ============================================================ -->
+    <section class="section" id="checklist" data-track="methode">
+      <div class="section-kicker" data-fr="Entraînement">Practice</div>
+      <h1><span data-fr="Fiche de">Revision</span> <em data-fr="révision">Checklist</em></h1>
+
+      <div class="chapter">
+        <h2 data-fr="Vocabulaire & prononciation">Vocabulary &amp; pronunciation</h2>
+        <div class="checklist">
+          <label><input type="checkbox"><span data-fr="Je sais prononcer « hypotenuse », « discriminant », « quadrilateral », « bearings » correctement">I can pronounce “hypotenuse”, “discriminant”, “quadrilateral”, “bearings” correctly</span></label>
+          <label><input type="checkbox"><span data-fr="Je connais la différence entre « mean », « median » et « mode »">I know the difference between “mean”, “median” and “mode”</span></label>
+          <label><input type="checkbox"><span data-fr="Je sais dire « rounded to two decimal places » et « to two significant figures »">I can say “rounded to two decimal places” and “to two significant figures”</span></label>
+          <label><input type="checkbox"><span data-fr="Je connais les noms anglais des figures courantes (equilateral, isosceles, scalene…)">I know the English names of common shapes (equilateral, isosceles, scalene…)</span></label>
+        </div>
+      </div>
+
+      <div class="chapter">
+        <h2 data-fr="Maîtrise du contenu">Content mastery</h2>
+        <div class="checklist">
+          <label><input type="checkbox"><span data-fr="Je sais définir et illustrer chacun des quatre concepts sur les nombres (mixed, rounding, prime, standard form)">I can define and illustrate each of the four number concepts (mixed, rounding, prime, standard form)</span></label>
+          <label><input type="checkbox"><span data-fr="Je sais résoudre un système de deux équations par substitution et par élimination">I can solve a system of two simultaneous equations by substitution and by elimination</span></label>
+          <label><input type="checkbox"><span data-fr="Je sais énoncer et appliquer Pythagore et SOH CAH TOA">I can state and apply Pythagoras’ theorem and SOH CAH TOA</span></label>
+          <label><input type="checkbox"><span data-fr="Je sais compléter le carré et retrouver la formule quadratique">I can complete the square and derive the quadratic formula</span></label>
+          <label><input type="checkbox"><span data-fr="Je peux décrire les principales représentations de données et leurs usages">I can describe the main types of data representation and their uses</span></label>
+          <label><input type="checkbox"><span data-fr="Je sais lire et donner des azimuts à trois chiffres">I can read and give three-figure bearings</span></label>
+        </div>
+      </div>
+
+      <div class="box star">
+        <div class="box-title" data-fr="★ Dernier conseil">★ Final tip</div>
+        <p data-fr="Les mathématiques ne consistent pas seulement à trouver la bonne réponse — il s'agit aussi de comprendre et d'expliquer la méthode. Dans une DNL, la clarté du langage compte autant que la justesse du calcul.">Mathematics is not only about finding the right answer — it is also about understanding and explaining the method. In a DNL, clarity of language is just as important as correctness of calculation.</p>
+      </div>
+    </section>
+
+    <footer class="credit"><span data-fr="Σ DNL Maths en anglais — Domaines 0, 1, 4, 5 — Banque de cours">Σ DNL Maths in English — Domains 0, 1, 4, 5 — Course Bank</span></footer>
+
+  </div>
+  </div>
+</div>
+
+<script>
+/* ================= SAFE LOCALSTORAGE =================
+   localStorage peut être bloqué (file://, iframe sandbox, mode privé).
+   On l'utilise toujours via ces helpers pour ne jamais faire planter le script. */
+function safeGet(key){ try { return localStorage.getItem(key); } catch(e){ return null; } }
+function safeSet(key,val){ try { localStorage.setItem(key,val); } catch(e){} }
+
+/* ================= THEME ================= */
+function applyTheme(t){
+  document.documentElement.setAttribute('data-theme', t);
+  const icon = (t === 'dark') ? '☀️' : '🌙';
+  const t1 = document.getElementById('themeToggle');
+  const t2 = document.getElementById('themeToggleMobile');
+  if(t1) t1.textContent = icon;
+  if(t2) t2.textContent = icon;
+}
+function toggleTheme(){
+  const cur = document.documentElement.getAttribute('data-theme');
+  const next = (cur === 'dark') ? 'light' : 'dark';
+  applyTheme(next);
+  safeSet('theme', next);
+}
+const themeBtn1 = document.getElementById('themeToggle');
+const themeBtn2 = document.getElementById('themeToggleMobile');
+if(themeBtn1) themeBtn1.addEventListener('click', toggleTheme);
+if(themeBtn2) themeBtn2.addEventListener('click', toggleTheme);
+
+const savedTheme = safeGet('theme');
+const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+applyTheme(savedTheme || (prefersDark ? 'dark' : 'light'));
+
+/* ================= LANGUAGE ================= */
+let currentLang = safeGet('lang') || 'en';
+
+function setLanguage(lang){
+  currentLang = lang;
+  document.documentElement.setAttribute('lang', lang);
+
+  document.querySelectorAll('[data-fr]').forEach(el => {
+    if(!el.dataset.en) el.dataset.en = el.innerHTML;
+    el.innerHTML = (lang === 'fr') ? el.dataset.fr : el.dataset.en;
+  });
+
+  document.querySelectorAll('[data-fr-ph]').forEach(el => {
+    if(!el.dataset.enPh) el.dataset.enPh = el.placeholder;
+    el.placeholder = (lang === 'fr') ? el.dataset.frPh : el.dataset.enPh;
+  });
+
+  const lbl = (lang === 'fr') ? 'EN' : 'FR';
+  const lt1 = document.getElementById('langToggle');
+  const lt2 = document.getElementById('langToggleMobile');
+  if(lt1) lt1.textContent = lbl;
+  if(lt2) lt2.textContent = lbl;
+
+  try { renderGlossary(document.getElementById('glossarySearch') ? document.getElementById('glossarySearch').value : ''); } catch(e){ console.warn('glossary', e); }
+  try { renderQuiz(); } catch(e){ console.warn('quiz', e); }
+  if(window.katexRender) window.katexRender();
+  safeSet('lang', lang);
+}
+function toggleLanguage(){ setLanguage(currentLang === 'fr' ? 'en' : 'fr'); }
+
+/* ================= NAVIGATION ================= */
+const sections = document.querySelectorAll('.section');
+const trackColorVar = {core:'--core', mapping:'--mapping', stats:'--stats', advgeo:'--advgeo', methode:'--methode'};
+
+function showSection(id){
+  sections.forEach(s=>{ s.style.display = (s.id===id) ? 'block' : 'none'; });
+  const target = document.getElementById(id);
+  if(target){
+    const track = target.dataset.track || 'methode';
+    document.documentElement.style.setProperty('--track-color', `var(${trackColorVar[track]})`);
+  }
+  document.querySelectorAll('.nav-link').forEach(l=>{ l.classList.toggle('active', l.dataset.target === id); });
+  window.scrollTo({top:0, behavior:'instant'});
+  const sb = document.querySelector('.sidebar');
+  if(sb) sb.classList.remove('open');
+  if(window.katexRender) window.katexRender();
+}
+document.querySelectorAll('[data-target]').forEach(el=>{
+  el.addEventListener('click', (e)=>{ e.preventDefault(); showSection(el.dataset.target); history.replaceState(null,'','#'+el.dataset.target); });
+});
+const initial = location.hash ? location.hash.substring(1) : 'accueil';
+showSection(document.getElementById(initial) ? initial : 'accueil');
+
+/* ================= MATH ================= */
+function renderMath(){
+  if(window.renderMathInElement){
+    try {
+      renderMathInElement(document.body, {
+        delimiters: [{left:'\\(', right:'\\)', display:false},{left:'\\[', right:'\\]', display:true}],
+        throwOnError:false
+      });
+    } catch(e){ console.warn('katex', e); }
+  }
+}
+window.katexRender = renderMath;
+window.addEventListener('load', renderMath);
+
+/* ================= GLOSSARY ================= */
+const glossaryData = [
+  {t:"Numerator", t_fr:"Numérateur", d:"The top number of a fraction.", d_fr:"Le nombre du haut d'une fraction.", tr:"core", l:"d0-numbers", ln:"Numbers", ln_fr:"Nombres"},
+  {t:"Denominator", t_fr:"Dénominateur", d:"The bottom number of a fraction.", d_fr:"Le nombre du bas d'une fraction.", tr:"core", l:"d0-numbers", ln:"Numbers", ln_fr:"Nombres"},
+  {t:"Proper fraction", t_fr:"Fraction propre", d:"A fraction where the numerator is smaller than the denominator.", d_fr:"Une fraction dont le numérateur est plus petit que le dénominateur.", tr:"core", l:"d0-numbers", ln:"Numbers", ln_fr:"Nombres"},
+  {t:"Improper / top-heavy fraction", t_fr:"Fraction impropre", d:"A fraction where the numerator is greater than or equal to the denominator.", d_fr:"Une fraction dont le numérateur est supérieur ou égal au dénominateur.", tr:"core", l:"d0-numbers", ln:"Numbers", ln_fr:"Nombres"},
+  {t:"Mixed number", t_fr:"Nombre mixte", d:"A whole number followed by a proper fraction.", d_fr:"Un nombre entier suivi d'une fraction propre.", tr:"core", l:"d0-numbers", ln:"Numbers", ln_fr:"Nombres"},
+  {t:"Decimal place", t_fr:"Décimale", d:"A position after the decimal point.", d_fr:"Une position après la virgule.", tr:"core", l:"d0-numbers", ln:"Numbers", ln_fr:"Nombres"},
+  {t:"Significant figure", t_fr:"Chiffre significatif", d:"A digit that carries meaning, starting from the first non-zero digit.", d_fr:"Un chiffre porteur de sens, à partir du premier chiffre non nul.", tr:"core", l:"d0-numbers", ln:"Numbers", ln_fr:"Nombres"},
+  {t:"Prime number", t_fr:"Nombre premier", d:"An integer greater than 1 whose only positive divisors are 1 and itself.", d_fr:"Un entier supérieur à 1 dont les seuls diviseurs positifs sont 1 et lui-même.", tr:"core", l:"d0-numbers", ln:"Numbers", ln_fr:"Nombres"},
+  {t:"Composite number", t_fr:"Nombre composé", d:"An integer greater than 1 that is not prime.", d_fr:"Un entier supérieur à 1 qui n'est pas premier.", tr:"core", l:"d0-numbers", ln:"Numbers", ln_fr:"Nombres"},
+  {t:"Prime factorization", t_fr:"Décomposition en facteurs premiers", d:"Writing a number as a product of prime numbers.", d_fr:"Écrire un nombre comme produit de nombres premiers.", tr:"core", l:"d0-numbers", ln:"Numbers", ln_fr:"Nombres"},
+  {t:"Ratio", t_fr:"Ratio", d:"A comparison of two or more quantities.", d_fr:"Une comparaison de deux ou plusieurs quantités.", tr:"core", l:"d0-ratios", ln:"Ratios", ln_fr:"Ratios"},
+  {t:"Proportion", t_fr:"Proportion", d:"An equation stating that two ratios are equal.", d_fr:"Une égalité entre deux ratios.", tr:"core", l:"d0-ratios", ln:"Ratios", ln_fr:"Ratios"},
+  {t:"Vertex", t_fr:"Sommet", d:"A corner of a shape.", d_fr:"Un coin d'une figure.", tr:"core", l:"d0-triangles", ln:"Triangles", ln_fr:"Triangles"},
+  {t:"Hypotenuse", t_fr:"Hypoténuse", d:"The side opposite the right angle; the longest side.", d_fr:"Le côté opposé à l'angle droit ; le plus long côté.", tr:"core", l:"d0-pythagoras", ln:"Pythagoras", ln_fr:"Pythagore"},
+  {t:"Adjacent", t_fr:"Côté adjacent", d:"The side next to a given angle.", d_fr:"Le côté à côté d'un angle donné.", tr:"core", l:"d0-pythagoras", ln:"Pythagoras", ln_fr:"Pythagore"},
+  {t:"Opposite", t_fr:"Côté opposé", d:"The side opposite a given angle.", d_fr:"Le côté opposé à un angle donné.", tr:"core", l:"d0-pythagoras", ln:"Pythagoras", ln_fr:"Pythagore"},
+  {t:"Quadrilateral", t_fr:"Quadrilatère", d:"A 2D shape with 4 sides and 4 vertices.", d_fr:"Une forme 2D à 4 côtés et 4 sommets.", tr:"core", l:"d0-quads", ln:"Quadrilaterals", ln_fr:"Quadrilatères"},
+  {t:"Radius", t_fr:"Rayon", d:"Distance from the centre to the circle.", d_fr:"Distance du centre au cercle.", tr:"core", l:"d0-quads", ln:"Circles", ln_fr:"Cercles"},
+  {t:"Diameter", t_fr:"Diamètre", d:"Distance across the circle through the centre.", d_fr:"Distance à travers le cercle passant par le centre.", tr:"core", l:"d0-quads", ln:"Circles", ln_fr:"Cercles"},
+  {t:"Circumference", t_fr:"Circonférence", d:"Perimeter of a circle.", d_fr:"Périmètre d'un cercle.", tr:"core", l:"d0-quads", ln:"Circles", ln_fr:"Cercles"},
+  {t:"Tangent", t_fr:"Tangente", d:"A line that touches the circle at exactly one point.", d_fr:"Droite qui touche le cercle en un seul point.", tr:"core", l:"d0-quads", ln:"Circles", ln_fr:"Cercles"},
+  {t:"Acute angle", t_fr:"Angle aigu", d:"An angle less than 90°.", d_fr:"Un angle inférieur à 90°.", tr:"core", l:"d0-angles", ln:"Angles", ln_fr:"Angles"},
+  {t:"Obtuse angle", t_fr:"Angle obtus", d:"An angle between 90° and 180°.", d_fr:"Un angle entre 90° et 180°.", tr:"core", l:"d0-angles", ln:"Angles", ln_fr:"Angles"},
+  {t:"Reflex angle", t_fr:"Angle rentrant", d:"An angle greater than 180° and less than 360°.", d_fr:"Un angle supérieur à 180° et inférieur à 360°.", tr:"core", l:"d0-angles", ln:"Angles", ln_fr:"Angles"},
+  {t:"Complementary angles", t_fr:"Angles complémentaires", d:"Two angles that add up to 90°.", d_fr:"Deux angles dont la somme vaut 90°.", tr:"core", l:"d0-angles", ln:"Angles", ln_fr:"Angles"},
+  {t:"Supplementary angles", t_fr:"Angles supplémentaires", d:"Two angles that add up to 180°.", d_fr:"Deux angles dont la somme vaut 180°.", tr:"core", l:"d0-angles", ln:"Angles", ln_fr:"Angles"},
+  {t:"Linear equation", t_fr:"Équation linéaire", d:"An equation of the form ax + b = c or ax + by = c.", d_fr:"Une équation de la forme ax + b = c ou ax + by = c.", tr:"core", l:"d0-algebra", ln:"Solving Algebraically", ln_fr:"Résolution algébrique"},
+  {t:"Simultaneous equations", t_fr:"Système d'équations", d:"A set of two or more equations with the same unknowns.", d_fr:"Un ensemble de deux ou plusieurs équations avec les mêmes inconnues.", tr:"core", l:"d0-algebra", ln:"Solving Algebraically", ln_fr:"Résolution algébrique"},
+  {t:"Substitution", t_fr:"Substitution", d:"Solving by isolating one unknown and replacing it.", d_fr:"Résoudre en isolant une inconnue et en la remplaçant.", tr:"core", l:"d0-algebra", ln:"Solving Algebraically", ln_fr:"Résolution algébrique"},
+  {t:"Elimination", t_fr:"Élimination", d:"Solving by adding or subtracting equations.", d_fr:"Résoudre en additionnant ou soustrayant les équations.", tr:"core", l:"d0-algebra", ln:"Solving Algebraically", ln_fr:"Résolution algébrique"},
+  {t:"Function", t_fr:"Fonction", d:"A rule that maps each input to exactly one output.", d_fr:"Une règle qui associe à chaque entrée exactement une sortie.", tr:"mapping", l:"d1-functions", ln:"Functions", ln_fr:"Fonctions"},
+  {t:"Domain", t_fr:"Ensemble de définition", d:"The set of all allowed input values.", d_fr:"L'ensemble des entrées autorisées.", tr:"mapping", l:"d1-functions", ln:"Functions", ln_fr:"Fonctions"},
+  {t:"Range", t_fr:"Image", d:"The set of all output values.", d_fr:"L'ensemble des sorties possibles.", tr:"mapping", l:"d1-functions", ln:"Functions", ln_fr:"Fonctions"},
+  {t:"Preimage", t_fr:"Antécédent", d:"The input(s) that produce a given output.", d_fr:"L'entrée (ou les entrées) qui produisent une sortie donnée.", tr:"mapping", l:"d1-functions", ln:"Functions", ln_fr:"Fonctions"},
+  {t:"Monotonic", t_fr:"Monotone", d:"A function that is either always increasing or always decreasing.", d_fr:"Une fonction toujours croissante ou toujours décroissante.", tr:"mapping", l:"d1-functions", ln:"Functions", ln_fr:"Fonctions"},
+  {t:"Gradient", t_fr:"Coefficient directeur", d:"The slope of a line, m = Δy/Δx.", d_fr:"La pente d'une droite, m = Δy/Δx.", tr:"mapping", l:"d1-particular", ln:"Linear Functions", ln_fr:"Fonctions linéaires"},
+  {t:"Reciprocal function", t_fr:"Fonction inverse", d:"The function f(x) = 1/x, undefined at x=0.", d_fr:"La fonction f(x) = 1/x, non définie en x=0.", tr:"mapping", l:"d1-particular", ln:"Particular Functions", ln_fr:"Fonctions particulières"},
+  {t:"Quadratic function", t_fr:"Fonction du second degré", d:"Function of the form ax² + bx + c.", d_fr:"Fonction de la forme ax² + bx + c.", tr:"mapping", l:"d1-quadratic", ln:"Quadratic Functions", ln_fr:"Fonctions du second degré"},
+  {t:"Discriminant", t_fr:"Discriminant", d:"Δ = b² − 4ac; determines the number of real roots.", d_fr:"Δ = b² − 4ac ; détermine le nombre de racines réelles.", tr:"mapping", l:"d1-quadratic", ln:"Quadratic Functions", ln_fr:"Fonctions du second degré"},
+  {t:"Root (zero)", t_fr:"Racine", d:"A value of x for which f(x) = 0.", d_fr:"Une valeur de x pour laquelle f(x) = 0.", tr:"mapping", l:"d1-quadratic", ln:"Quadratic Functions", ln_fr:"Fonctions du second degré"},
+  {t:"Completing the square", t_fr:"Forme canonique", d:"Rewriting ax²+bx+c as a(x−α)²+β.", d_fr:"Réécrire ax²+bx+c sous la forme a(x−α)²+β.", tr:"mapping", l:"d1-quadratic", ln:"Quadratic Functions", ln_fr:"Fonctions du second degré"},
+  {t:"Pie chart", t_fr:"Diagramme circulaire", d:"A circular diagram showing proportions of a whole.", d_fr:"Un diagramme circulaire montrant des proportions d'un tout.", tr:"stats", l:"s-data", ln:"Types of Data", ln_fr:"Types de données"},
+  {t:"Bar chart", t_fr:"Diagramme en bâtons", d:"A diagram comparing categories with bars.", d_fr:"Un diagramme comparant des catégories avec des barres.", tr:"stats", l:"s-data", ln:"Types of Data", ln_fr:"Types de données"},
+  {t:"Stem-and-leaf diagram", t_fr:"Diagramme tige-feuille", d:"A diagram showing distribution while keeping raw data.", d_fr:"Un diagramme montrant la distribution en gardant les données brutes.", tr:"stats", l:"s-data", ln:"Types of Data", ln_fr:"Types de données"},
+  {t:"Histogram", t_fr:"Histogramme", d:"A diagram for continuous data grouped in intervals.", d_fr:"Un diagramme pour données continues regroupées en intervalles.", tr:"stats", l:"s-data", ln:"Types of Data", ln_fr:"Types de données"},
+  {t:"Mean", t_fr:"Moyenne", d:"Sum of values divided by the number of values.", d_fr:"Somme des valeurs divisée par le nombre de valeurs.", tr:"stats", l:"s-discrete", ln:"Discrete Data", ln_fr:"Données discrètes"},
+  {t:"Median", t_fr:"Médiane", d:"The middle value when data is ordered.", d_fr:"La valeur du milieu quand les données sont ordonnées.", tr:"stats", l:"s-discrete", ln:"Discrete Data", ln_fr:"Données discrètes"},
+  {t:"Mode", t_fr:"Mode", d:"The most frequent value.", d_fr:"La valeur la plus fréquente.", tr:"stats", l:"s-discrete", ln:"Discrete Data", ln_fr:"Données discrètes"},
+  {t:"Interquartile range", t_fr:"Écart interquartile", d:"Q₃ − Q₁, the spread of the middle 50%.", d_fr:"Q₃ − Q₁, la dispersion des 50 % centraux.", tr:"stats", l:"s-discrete", ln:"Discrete Data", ln_fr:"Données discrètes"},
+  {t:"Box plot", t_fr:"Boîte à moustaches", d:"A diagram showing min, Q1, median, Q3, max.", d_fr:"Un diagramme montrant min, Q1, médiane, Q3, max.", tr:"stats", l:"s-discrete", ln:"Discrete Data", ln_fr:"Données discrètes"},
+  {t:"Three-figure bearing", t_fr:"Azimut (relèvement)", d:"An angle measured clockwise from North, written with three digits.", d_fr:"Un angle mesuré dans le sens horaire depuis le Nord, écrit avec trois chiffres.", tr:"advgeo", l:"g-angles", ln:"Angles & Bearings", ln_fr:"Angles & Azimuts"},
+  {t:"Alternate angles", t_fr:"Angles alternes-internes", d:"Angles on opposite sides of a transversal between parallel lines; equal.", d_fr:"Angles de part et d'autre d'une sécante entre deux parallèles ; égaux.", tr:"advgeo", l:"g-angles", ln:"Angles & Bearings", ln_fr:"Angles & Azimuts"},
+  {t:"Corresponding angles", t_fr:"Angles correspondants", d:"Angles in matching positions on parallel lines; equal.", d_fr:"Angles en positions identiques sur des parallèles ; égaux.", tr:"advgeo", l:"g-angles", ln:"Angles & Bearings", ln_fr:"Angles & Azimuts"},
+  {t:"Midpoint", t_fr:"Milieu", d:"The point halfway between two points.", d_fr:"Le point à mi-chemin entre deux points.", tr:"advgeo", l:"g-coord", ln:"Coordinate Geometry", ln_fr:"Géométrie analytique"},
+  {t:"Coordinates", t_fr:"Coordonnées", d:"A pair (x, y) locating a point.", d_fr:"Un couple (x, y) qui repère un point.", tr:"advgeo", l:"g-coord", ln:"Coordinate Geometry", ln_fr:"Géométrie analytique"}
+];
+glossaryData.sort((a,b)=>a.t.localeCompare(b.t,'en'));
+
+function renderGlossary(filter){
+  const grid = document.getElementById('glossaryGrid');
+  if(!grid) return;
+  const countEl = document.getElementById('glossaryCount');
+  const f = (filter||'').trim().toLowerCase();
+  const items = f ? glossaryData.filter(g =>
+    g.t.toLowerCase().includes(f) ||
+    g.d.toLowerCase().includes(f) ||
+    (g.t_fr && g.t_fr.toLowerCase().includes(f)) ||
+    (g.d_fr && g.d_fr.toLowerCase().includes(f))
+  ) : glossaryData;
+  const isFr = currentLang === 'fr';
+  if(countEl) countEl.textContent = isFr
+    ? `${items.length} terme${items.length>1?'s':''} sur ${glossaryData.length}`
+    : `${items.length} term${items.length>1?'s':''} out of ${glossaryData.length}`;
+  const trackVarMap = {core:'--core', mapping:'--mapping', stats:'--stats', advgeo:'--advgeo'};
+  grid.innerHTML = items.map(g => `
+    <div class="gterm" style="--gcolor:var(${trackVarMap[g.tr]})">
+      <div class="gt-head">
+        <span class="gt-term">${isFr ? g.t_fr : g.t}</span>
+        <span class="gt-tag">${isFr ? g.ln_fr : g.ln}</span>
+      </div>
+      <div class="gt-def">${isFr ? g.d_fr : g.d}</div>
+      <div class="gt-fr">${isFr ? '🇬🇧 ' + g.t : '🇫🇷 ' + (g.t_fr || g.t)}</div>
+    </div>`).join('');
+  renderMath();
+}
+const gsInput = document.getElementById('glossarySearch');
+if(gsInput) gsInput.addEventListener('input', (e)=>renderGlossary(e.target.value));
+
+/* ================= QUIZ ================= */
+const quizData = [
+  {q:"Which of these is an improper fraction?", q_fr:"Laquelle de ces fractions est impropre ?", opts:["\\(\\frac{3}{4}\\)","\\(\\frac{7}{4}\\)","\\(\\frac{1}{2}\\)"], a:1},
+  {q:"Round 3.146 to 2 decimal places.", q_fr:"Arrondir 3,146 à 2 décimales.", opts:["3.14","3.15","3.16"], a:1},
+  {q:"Which number is prime?", q_fr:"Quel nombre est premier ?", opts:["9","15","13"], a:2},
+  {q:"Write 5600 in standard index form.", q_fr:"Écrire 5600 en écriture scientifique.", opts:["5.6 × 10³","56 × 10²","0.56 × 10⁴"], a:0},
+  {q:"In a right-angled triangle, the hypotenuse is:", q_fr:"Dans un triangle rectangle, l'hypoténuse est :", opts:["the shortest side","the side opposite the right angle","the side adjacent to the right angle"], opts_fr:["le plus petit côté","le côté opposé à l'angle droit","le côté adjacent à l'angle droit"], a:1},
+  {q:"Pythagoras’ theorem states:", q_fr:"Le théorème de Pythagore énonce :", opts:["\\(a+b=c\\)","\\(a^2+b^2=c^2\\)","\\(a^2-b^2=c^2\\)"], a:1},
+  {q:"SOH CAH TOA: sin θ =", q_fr:"SOH CAH TOA : sin θ =", opts:["Adj/Hyp","Opp/Hyp","Opp/Adj"], a:1},
+  {q:"The discriminant of \\(2x^2-4x-6\\) is:", q_fr:"Le discriminant de \\(2x^2-4x-6\\) est :", opts:["64","−32","16"], a:0},
+  {q:"A rule that maps each input to exactly one output is called:", q_fr:"Une règle qui associe à chaque entrée exactement une sortie s'appelle :", opts:["a relation","a function","a mapping diagram"], opts_fr:["une relation","une fonction","un diagramme de correspondance"], a:1},
+  {q:"The domain of \\(f(x)=1/x\\) is:", q_fr:"L'ensemble de définition de \\(f(x)=1/x\\) est :", opts:["all real numbers","all real numbers except 0","\\(x > 0\\)"], opts_fr:["tous les réels","tous les réels sauf 0","\\(x > 0\\)"], a:1},
+  {q:"The mean of 3, 5, 5, 7, 8, 9, 11 is approximately:", q_fr:"La moyenne de 3, 5, 5, 7, 8, 9, 11 est environ :", opts:["6.86","7","5"], a:0},
+  {q:"A three-figure bearing is measured:", q_fr:"Un azimut à trois chiffres se mesure :", opts:["clockwise from North","anticlockwise from East","clockwise from South"], opts_fr:["dans le sens horaire depuis le Nord","dans le sens antihoraire depuis l'Est","dans le sens horaire depuis le Sud"], a:0},
+  {q:"The gradient of the line through (2,3) and (6,11) is:", q_fr:"Le coefficient directeur de la droite passant par (2,3) et (6,11) est :", opts:["2","4","8"], a:0},
+  {q:"The midpoint of A(2,3) and B(6,11) is:", q_fr:"Le milieu de A(2,3) et B(6,11) est :", opts:["(4,7)","(8,14)","(2,4)"], a:0},
+  {q:"Which measure is most affected by outliers?", q_fr:"Quelle mesure est la plus affectée par les valeurs extrêmes ?", opts:["Median","Mean","Mode"], opts_fr:["Médiane","Moyenne","Mode"], a:1}
+];
+let qIndex=0, qScore=0, answered=false;
+function renderQuiz(){
+  const card = document.getElementById('quizCard');
+  if(!card) return;
+  const isFr = currentLang === 'fr';
+  if(qIndex >= quizData.length){
+    card.innerHTML = `<div class="quiz-q">${isFr?'Résultat':'Result'} : ${qScore} / ${quizData.length}</div>
+      <p style="color:var(--ink-soft)">${isFr
+        ? (qScore>=12 ? "Excellente maîtrise — vous êtes prêt !" : qScore>=8 ? "Bonne base — revoyez les chapitres liés aux questions manquées." : "Reprenez calmement les chapitres de base avant d'attaquer la Terminale.")
+        : (qScore>=12 ? "Excellent mastery — you are ready!" : qScore>=8 ? "Good base — review the chapters linked to the questions you missed." : "Take time to review the core knowledge chapters before Terminale.")}</p>
+      <button class="btn" onclick="qIndex=0;qScore=0;renderQuiz();">${isFr?'Recommencer':'Restart'}</button>`;
+    return;
+  }
+  answered=false;
+  const item = quizData[qIndex];
+  const opts = (isFr && item.opts_fr) ? item.opts_fr : item.opts;
+  card.innerHTML = `
+    <div class="quiz-q">Question ${qIndex+1}. ${isFr && item.q_fr ? item.q_fr : item.q}</div>
+    <div class="quiz-opts">${opts.map((o,i)=>`<div class="quiz-opt" data-i="${i}">${o}</div>`).join('')}</div>
+    <div class="quiz-footer">
+      <span class="quiz-progress">${qIndex+1} / ${quizData.length} · score ${qScore}</span>
+      <button class="btn" id="nextBtn" disabled>${isFr?'Suivant':'Next'}</button>
+    </div>`;
+  card.querySelectorAll('.quiz-opt').forEach(el=>{
+    el.addEventListener('click', ()=>{
+      if(answered) return;
+      answered=true;
+      const i = parseInt(el.dataset.i);
+      card.querySelectorAll('.quiz-opt').forEach((o,idx)=>{
+        if(idx===item.a) o.classList.add('correct'); else if(idx===i) o.classList.add('wrong');
+      });
+      if(i===item.a) qScore++;
+      const nb = document.getElementById('nextBtn');
+      if(nb) nb.disabled=false;
+      renderMath();
+    });
+  });
+  const nb = document.getElementById('nextBtn');
+  if(nb) nb.addEventListener('click', ()=>{ qIndex++; renderQuiz(); });
+  renderMath();
+}
+
+/* ================= INIT ================= */
+/* On initialise la langue à la toute fin, une fois tout le reste défini.
+   setLanguage est enveloppé dans un try/catch pour ne jamais bloquer le reste. */
+try { setLanguage(currentLang); } catch(e){ console.warn('setLanguage init', e); }
+</script>
